@@ -9,7 +9,7 @@ export default function Facial() {
           src={media.facial}
           alt=""
           className="absolute inset-0 h-full w-full origin-center object-cover"
-          style={{ objectPosition: "50% 92%" }}
+          style={{ objectPosition: "50% 60%" }}
         />
         <div
           className="absolute inset-0"
