@@ -1,27 +1,22 @@
+import BgImage from "./bg-image";
+import BgVideo from "./bg-video";
 import { media } from "@/lib/site";
 
 export default function Massagem() {
   return (
     <section id="sec-massagem" data-pin="1" className="relative h-[200vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
-        <img
+        <BgImage
+          asset={media.massagem}
           data-anim="1"
           data-range="0,0.62"
           data-zoom="0.06"
-          src={media.massagem}
-          alt=""
-          className="absolute inset-0 h-full w-full origin-center object-cover"
-          style={{ objectPosition: "50% 45%" }}
+          className="absolute inset-0 h-full w-full origin-center object-cover object-[78%_50%] md:object-[50%_45%]"
         />
-        <video
+        <BgVideo
+          asset={media.massagemVideo}
           data-anim="1"
           data-range="0.58,1"
-          data-lazy="1"
-          muted
-          loop
-          playsInline
-          preload="none"
-          src={media.massagemVideo}
           className="absolute inset-0 h-full w-full object-cover opacity-0"
           style={{ objectPosition: "50% 10%" }}
         />

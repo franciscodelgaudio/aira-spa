@@ -1,3 +1,4 @@
+import BgImage from "./bg-image";
 import { media } from "@/lib/site";
 
 const cardShell =
@@ -31,9 +32,8 @@ export default function PrimeiraVez() {
               </p>
             </div>
             <div className={cardMedia}>
-              <img
-                src={media.card1}
-                alt=""
+              <BgImage
+                asset={media.card1}
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -54,9 +54,8 @@ export default function PrimeiraVez() {
               </p>
             </div>
             <div className={cardMedia}>
-              <img
-                src={media.card2}
-                alt=""
+              <BgImage
+                asset={media.card2}
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -65,9 +64,8 @@ export default function PrimeiraVez() {
 
           <article className={cardShell}>
             <div className={`${cardMedia} order-2`}>
-              <img
-                src={media.card3}
-                alt=""
+              <BgImage
+                asset={media.card3}
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />

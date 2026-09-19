@@ -1,3 +1,4 @@
+import BgImage from "./bg-image";
 import { media } from "@/lib/site";
 
 const shadow = { textShadow: "0 2px 24px rgba(36,31,27,.35)" };
@@ -58,12 +59,10 @@ export default function Corpo() {
   return (
     <section id="sec-corpo" data-pin="1" className="relative h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-stone">
-        <img
+        <BgImage
+          asset={media.corpo}
           data-zoom="0.09"
-          src={media.corpo}
-          alt=""
-          className="absolute inset-0 h-full w-full origin-center object-cover"
-          style={{ objectPosition: "50% 35%" }}
+          className="absolute inset-0 h-full w-full origin-center object-cover object-[45%_50%] md:object-[50%_35%]"
         />
         <div
           className="absolute inset-0"

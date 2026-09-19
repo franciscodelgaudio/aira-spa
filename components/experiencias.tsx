@@ -1,12 +1,19 @@
-import { media } from "@/lib/site";
+import BgImage from "./bg-image";
+import BgVideo from "./bg-video";
+import { media, type ImageAsset, type VideoAsset } from "@/lib/site";
 
-const rows = [
-  { label: "Relaxante", src: media.massagemVideo, position: "50% 10%", video: true },
-  { label: "Massagem Candle", src: media.candleVideo, position: "50% 10%", video: true },
-  { label: "Escalpes", src: media.escalpesVideo, position: "50% 22%", video: true },
-  { label: "Drenagem Linfática", src: media.escalpesVideo, position: "50% 10%", video: true },
-  { label: "Pedras Quentes", src: media.salaVideo, position: "50% 10%", video: true },
-  { label: "Facial", src: media.facial, position: "50% 100%", video: false },
+// Uniao discriminada por `video` para o TS estreitar o tipo de `asset` no JSX.
+type Row =
+  | { label: string; video: true; asset: VideoAsset; position: string }
+  | { label: string; video: false; asset: ImageAsset; position: string };
+
+const rows: Row[] = [
+  { label: "Relaxante", video: true, asset: media.massagemVideo, position: "50% 10%" },
+  { label: "Massagem Candle", video: true, asset: media.candleVideo, position: "50% 10%" },
+  { label: "Escalpes", video: true, asset: media.escalpesVideo, position: "50% 22%" },
+  { label: "Drenagem Linfática", video: true, asset: media.escalpesVideo, position: "50% 10%" },
+  { label: "Pedras Quentes", video: true, asset: media.salaVideo, position: "50% 10%" },
+  { label: "Facial", video: false, asset: media.facial, position: "50% 100%" },
 ];
 
 export default function Experiencias() {
@@ -27,21 +34,15 @@ export default function Experiencias() {
               style={{ transition: "flex-grow .7s cubic-bezier(.22,.61,.36,1)" }}
             >
               {row.video ? (
-                <video
+                <BgVideo
+                  asset={row.asset}
                   data-rowmedia={index}
-                  data-lazy="1"
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  src={row.src}
                   className="absolute inset-0 h-full w-full object-cover"
                   style={{ objectPosition: row.position }}
                 />
               ) : (
-                <img
-                  src={row.src}
-                  alt=""
+                <BgImage
+                  asset={row.asset}
                   className="absolute inset-0 h-full w-full object-cover"
                   style={{ objectPosition: row.position }}
                 />

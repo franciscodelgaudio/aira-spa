@@ -1,4 +1,5 @@
 import Wordmark from "./wordmark";
+import BgVideo from "./bg-video";
 import { instagram, media, units } from "@/lib/site";
 
 const layers = [
@@ -32,16 +33,11 @@ export default function Cta() {
     <section id="sec-cta" data-pin="1" className="relative h-[260vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
         {layers.map((layer) => (
-          <video
+          <BgVideo
             key={layer.range}
+            asset={layer.src}
             data-anim="1"
             data-range={layer.range}
-            data-lazy="1"
-            muted
-            loop
-            playsInline
-            preload="none"
-            src={layer.src}
             className={`absolute inset-0 h-full w-full object-cover ${
               layer.first ? "" : "opacity-0"
             }`}

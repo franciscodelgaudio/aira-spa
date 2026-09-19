@@ -1,31 +1,21 @@
+import BgVideo from "./bg-video";
 import { media } from "@/lib/site";
 
 export default function Ambiente() {
   return (
     <section id="sec-ambiente" data-pin="1" className="relative h-[240vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
-        <video
+        <BgVideo
+          asset={media.ambienteVideo}
           data-anim="1"
           data-range="0,0.66"
-          data-lazy="1"
           data-zoom="0.05"
-          muted
-          loop
-          playsInline
-          preload="none"
-          src={media.ambienteVideo}
-          className="absolute inset-0 h-full w-full origin-center object-cover"
-          style={{ objectPosition: "50% 10%" }}
+          className="absolute inset-0 h-full w-full origin-center object-cover object-[75%_50%] md:object-[50%_10%]"
         />
-        <video
+        <BgVideo
+          asset={media.salaVideo}
           data-anim="1"
           data-range="0.62,1"
-          data-lazy="1"
-          muted
-          loop
-          playsInline
-          preload="none"
-          src={media.salaVideo}
           className="absolute inset-0 h-full w-full object-cover opacity-0"
           style={{ objectPosition: "50% 10%" }}
         />

@@ -1,3 +1,4 @@
+import BgImage from "./bg-image";
 import { media, units } from "@/lib/site";
 
 export default function Local() {
@@ -8,9 +9,8 @@ export default function Local() {
           data-parallax="1"
           className="relative min-h-[clamp(280px,56vh,720px)] flex-1 basis-[320px] overflow-hidden"
         >
-          <img
-            src={media.local1}
-            alt=""
+          <BgImage
+            asset={media.local1}
             className="absolute inset-x-0 h-[116%] w-full object-cover"
             style={{ top: "-8%", bottom: "-8%", objectPosition: "50% 50%" }}
           />
@@ -92,9 +92,8 @@ export default function Local() {
           data-parallax="1"
           className="relative min-h-[clamp(280px,56vh,720px)] flex-1 basis-[320px] overflow-hidden"
         >
-          <img
-            src={media.local2}
-            alt=""
+          <BgImage
+            asset={media.local2}
             className="absolute inset-x-0 h-[116%] w-full object-cover"
             style={{ top: "-8%", bottom: "-8%", objectPosition: "50% 50%" }}
           />

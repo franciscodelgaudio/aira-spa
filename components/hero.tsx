@@ -1,18 +1,15 @@
 import Wordmark from "./wordmark";
+import BgVideo from "./bg-video";
 import { media } from "@/lib/site";
 
 export default function Hero() {
   return (
     <section id="sec-hero" data-pin="1" className="relative h-[200vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
-        <video
+        <BgVideo
+          asset={media.heroVideo}
+          priority
           data-zoom="0.07"
-          data-lazy="1"
-          muted
-          loop
-          playsInline
-          preload="none"
-          src={media.heroVideo}
           className="absolute inset-0 h-full w-full origin-center object-cover"
           style={{ objectPosition: "50% 55%" }}
         />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Cormorant_Garamond } from "next/font/google";
+import { media } from "@/lib/site";
 import "./globals.css";
 
 const jost = Jost({
@@ -32,6 +33,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${jost.variable} ${cormorant.variable}`}>
+      <head>
+        {/*
+          O poster do hero e a primeira pintura da pagina. Sem esse preload ele
+          so entra na fila depois do parser achar o <video>, e o topo fica preto
+          ate o MP4/WebM ter buffer — que e justamente o que demora no 4G.
+        */}
+        <link
+          rel="preload"
+          as="image"
+          href={media.heroVideo.poster}
+          fetchPriority="high"
+        />
+      </head>
       <body className="w-full overflow-x-hidden bg-sand text-ink">{children}</body>
     </html>
   );

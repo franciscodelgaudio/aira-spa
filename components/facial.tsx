@@ -1,13 +1,13 @@
+import BgImage from "./bg-image";
 import { media, units } from "@/lib/site";
 
 export default function Facial() {
   return (
     <section id="sec-facial" data-pin="1" className="relative h-[180vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
-        <img
+        <BgImage
+          asset={media.facial}
           data-zoom="0.08"
-          src={media.facial}
-          alt=""
           className="absolute inset-0 h-full w-full origin-center object-cover"
           style={{ objectPosition: "50% 60%" }}
         />

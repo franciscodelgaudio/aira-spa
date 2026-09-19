@@ -25,19 +25,50 @@ export const agency = {
   whatsapp: "https://wa.me/5545988351168",
 } as const;
 
+export type VideoAsset = {
+  webm: string;
+  mp4: string;
+  /** Primeira pintura, e o que fica na tela se o autoplay for bloqueado. */
+  poster: string;
+};
+
+export type ImageAsset = {
+  avif: string;
+  webp: string;
+  jpg: string;
+  width: number;
+  height: number;
+};
+
+// Os arquivos sao gerados por scripts/optimize-media.mjs a partir de media-original/.
+const video = (name: string): VideoAsset => ({
+  webm: `/uploads/${name}.webm`,
+  mp4: `/uploads/${name}.mp4`,
+  poster: `/uploads/posters/${name}.jpg`,
+});
+
+// width/height sao os do arquivo, usados para reservar a caixa e nao dar layout shift.
+const image = (name: string, width: number, height: number): ImageAsset => ({
+  avif: `/uploads/${name}.avif`,
+  webp: `/uploads/${name}.webp`,
+  jpg: `/uploads/${name}.jpg`,
+  width,
+  height,
+});
+
 export const media = {
-  heroVideo: "/uploads/hero.mp4",
-  corpo: "/uploads/corpo.jpg",
-  massagem: "/uploads/massagem.jpg",
-  massagemVideo: "/uploads/costas.mp4",
-  candleVideo: "/uploads/cha.mp4",
-  escalpesVideo: "/uploads/pes.mp4",
-  ambienteVideo: "/uploads/hidro.mp4",
-  salaVideo: "/uploads/sala-spa.mp4",
-  facial: "/uploads/facial.jpg",
-  card1: "/uploads/chegada.jpg",
-  card2: "/uploads/hidro.jpg",
-  card3: "/uploads/banho.jpg",
-  local1: "/uploads/sala.jpg",
-  local2: "/uploads/cha.jpg",
+  heroVideo: video("hero"),
+  corpo: image("corpo", 1080, 610),
+  massagem: image("massagem", 1350, 624),
+  massagemVideo: video("costas"),
+  candleVideo: video("cha"),
+  escalpesVideo: video("pes"),
+  ambienteVideo: video("hidro"),
+  salaVideo: video("sala-spa"),
+  facial: image("facial", 1820, 1666),
+  card1: image("chegada", 720, 1280),
+  card2: image("hidro", 519, 649),
+  card3: image("banho", 720, 1280),
+  local1: image("sala", 1086, 1358),
+  local2: image("cha", 1088, 1344),
 } as const;

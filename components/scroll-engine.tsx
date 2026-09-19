@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createMediaLoader } from "@/lib/media-loader";
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 
@@ -8,6 +9,15 @@ const smooth = (e0: number, e1: number, x: number) => {
   const t = clamp((x - e0) / (e1 - e0), 0, 1);
   return t * t * (3 - 2 * t);
 };
+
+/**
+ * Antecipacao do download: comeca a buscar o video quando ele ainda esta a duas
+ * telas de distancia. Com a margem curta de antes o download de 1 MB so comecava
+ * com o video praticamente na tela, e ele sempre chegava atrasado.
+ */
+const PRELOAD_MARGIN = "200% 0px";
+/** Margem curta, so para revelar textos na hora certa. */
+const REVEAL_MARGIN = "10% 0px";
 
 const descriptions = [
   "Para soltar tensões e desacelerar.",
@@ -21,9 +31,16 @@ const descriptions = [
 export default function ScrollEngine() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const loader = createMediaLoader();
     let activeRow = -1;
     let ticking = false;
     let descTimer: ReturnType<typeof setTimeout>;
+
+    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>("video[data-video]"));
+
+    // Com movimento reduzido nenhum video toca. Nesse caso nao ha motivo para
+    // baixar megabyte nenhum: o poster ja mostra exatamente o mesmo quadro.
+    if (!reduce) videos.forEach((v) => loader.register(v));
 
     const update = () => {
       const vh = window.innerHeight;
@@ -54,8 +71,8 @@ export default function ScrollEngine() {
           }
           if (el.tagName === "VIDEO" && !reduce) {
             const v = el as HTMLVideoElement;
-            if (o > 0.05) void v.play().catch(() => {});
-            else v.pause();
+            if (o > 0.05) loader.play(v);
+            else loader.pause(v);
           }
         });
 
@@ -79,7 +96,8 @@ export default function ScrollEngine() {
           const idx = Math.min(n - 1, Math.floor(p * n * 0.999));
           if (idx !== activeRow) {
             activeRow = idx;
-            sec.querySelectorAll<HTMLElement>("[data-row]").forEach((row, i) => {
+            const rows = sec.querySelectorAll<HTMLElement>("[data-row]");
+            rows.forEach((row, i) => {
               const on = i === idx;
               row.style.flexGrow = on ? "2.6" : "1";
               const label = row.querySelector<HTMLElement>("[data-rowlabel]");
@@ -91,23 +109,26 @@ export default function ScrollEngine() {
               }
               const media = row.querySelector<HTMLVideoElement>("[data-rowmedia]");
               if (media && !reduce) {
-                if (on) {
-                  if (media.preload === "none") media.preload = "auto";
-                  void media.play().catch(() => {});
-                } else {
-                  media.pause();
+                // Toca so a linha ativa, mas ja pede a proxima: quando o scroll
+                // chegar nela o arquivo tende a estar bufferizado. Sem isso as
+                // seis linhas entram na tela juntas e brigam pela mesma banda.
+                if (on) loader.play(media);
+                else {
+                  loader.pause(media);
+                  if (i === idx + 1) loader.want(media);
                 }
               }
             });
-            const desc = sec.querySelector<HTMLElement>("[data-desc]");
-            if (desc) {
-              desc.style.opacity = "0";
-              clearTimeout(descTimer);
-              descTimer = setTimeout(() => {
-                desc.textContent = descriptions[idx];
-                desc.style.opacity = "1";
-              }, 220);
-            }
+          }
+          const desc = sec.querySelector<HTMLElement>("[data-desc]");
+          if (desc && desc.dataset.shown !== String(idx)) {
+            desc.dataset.shown = String(idx);
+            desc.style.opacity = "0";
+            clearTimeout(descTimer);
+            descTimer = setTimeout(() => {
+              desc.textContent = descriptions[idx];
+              desc.style.opacity = "1";
+            }, 220);
           }
         }
 
@@ -139,51 +160,69 @@ export default function ScrollEngine() {
       });
     };
 
-    const io = new IntersectionObserver(
+    // Observer largo: so enfileira o download, nao decide o play.
+    const preloadIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          loader.want(e.target as HTMLVideoElement);
+          preloadIo.unobserve(e.target);
+        });
+      },
+      { rootMargin: PRELOAD_MARGIN }
+    );
+
+    // Observer curto: pausa o que saiu da tela e revela os textos.
+    const viewIo = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           const el = e.target as HTMLElement;
           if (el.tagName === "VIDEO") {
-            const v = el as HTMLVideoElement;
-            if (e.isIntersecting) {
-              if (v.preload === "none") v.preload = "auto";
-              if (!v.dataset.manual && !reduce) void v.play().catch(() => {});
-            } else {
-              v.pause();
-            }
+            if (!e.isIntersecting) loader.pause(el as HTMLVideoElement);
           } else if (e.isIntersecting) {
             el.style.opacity = "1";
             el.style.transform = "translateY(0)";
-            io.unobserve(el);
+            viewIo.unobserve(el);
           }
         });
       },
-      { rootMargin: "10% 0px" }
+      { rootMargin: REVEAL_MARGIN }
     );
 
-    document
-      .querySelectorAll<HTMLVideoElement>("video[data-lazy]")
-      .forEach((v) => io.observe(v));
-    document
-      .querySelectorAll<HTMLElement>("[data-rowmedia]")
-      .forEach((v) => (v.dataset.manual = "1"));
+    if (!reduce) {
+      videos.forEach((v) => {
+        // O hero ja esta baixando desde o HTML, nao precisa passar pela fila.
+        if (v.preload !== "auto") preloadIo.observe(v);
+        viewIo.observe(v);
+      });
+    }
+
     document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
       el.style.opacity = "0";
       if (!reduce) el.style.transform = "translateY(22px)";
       el.style.transition =
         "opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1)";
-      io.observe(el);
+      viewIo.observe(el);
     });
+
+    // Um toque/clique do usuario derruba a restricao de autoplay do browser.
+    const onGesture = () => loader.unblock();
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("pointerdown", onGesture, { passive: true });
+    window.addEventListener("keydown", onGesture);
     update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("pointerdown", onGesture);
+      window.removeEventListener("keydown", onGesture);
       clearTimeout(descTimer);
-      io.disconnect();
+      preloadIo.disconnect();
+      viewIo.disconnect();
+      loader.destroy();
     };
   }, []);
 
