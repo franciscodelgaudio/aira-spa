@@ -178,9 +178,12 @@ export function createMediaLoader(): MediaLoader {
     el.addEventListener("playing", onProgress);
     el.addEventListener("waiting", onWaiting);
     el.addEventListener("stalled", onWaiting);
+    // So o error do proprio <video>. O error de um <source> dispara assim que
+    // aquela fonte falha, com o browser ainda por tentar a seguinte: reagir a ele
+    // reiniciaria a cadeia no WebM e o fallback MP4 nunca teria vez. O <video>
+    // so emite error depois de esgotar todas as <source>, que e o momento certo
+    // de contar como falha e reagendar.
     el.addEventListener("error", onError);
-    // Um <source> que falha dispara error nele, nao no <video>.
-    el.querySelectorAll("source").forEach((s) => s.addEventListener("error", onError));
 
     e.detach = () => {
       el.removeEventListener("canplay", onCanPlay);
@@ -189,9 +192,6 @@ export function createMediaLoader(): MediaLoader {
       el.removeEventListener("waiting", onWaiting);
       el.removeEventListener("stalled", onWaiting);
       el.removeEventListener("error", onError);
-      el.querySelectorAll("source").forEach((s) =>
-        s.removeEventListener("error", onError)
-      );
     };
 
     entries.set(el, e);

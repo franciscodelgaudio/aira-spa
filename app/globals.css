@@ -45,24 +45,43 @@ html {
   font-style: italic;
 }
 
-@keyframes aira-pulse {
+@keyframes aira-cue {
   0%,
   100% {
-    opacity: 0.35;
     transform: translateY(0);
   }
   50% {
-    opacity: 0.9;
-    transform: translateY(5px);
+    transform: translateY(6px);
   }
 }
 
-.aira-pulse {
-  animation: aira-pulse 3.4s ease-in-out infinite;
+/* Estado discreto: so respira. */
+.aira-cue {
+  animation: aira-cue 2.8s ease-in-out infinite;
+}
+
+/* Estado insistente, depois de alguns segundos parado no topo. */
+.aira-cue-strong {
+  animation-duration: 1.3s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aira-pulse {
+  .aira-cue,
+  .aira-cue-strong {
     animation: none;
+  }
+}
+
+/* Verbo do aviso de rolagem: mouse rola, dedo desliza. */
+.aira-cue-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .aira-cue-mouse {
+    display: none;
+  }
+  .aira-cue-touch {
+    display: inline;
   }
 }

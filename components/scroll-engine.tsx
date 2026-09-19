@@ -24,7 +24,7 @@ const descriptions = [
   "Calor, aroma e toque em uma experiência sensorial.",
   "Uma pausa delicada para cabeça e mente.",
   "Leveza e cuidado para o corpo.",
-  "Calor terapêutico e profundo relaxamento.",
+  "Calor envolvente e relaxamento profundo.",
   "Hidratação, massagem e renovação.",
 ];
 

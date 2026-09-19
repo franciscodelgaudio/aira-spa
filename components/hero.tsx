@@ -1,4 +1,5 @@
 import Wordmark from "./wordmark";
+import ScrollCue from "./scroll-cue";
 import BgVideo from "./bg-video";
 import { media } from "@/lib/site";
 
@@ -58,15 +59,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="absolute bottom-[22px] left-1/2 -translate-x-1/2">
-          <div
-            className="aira-pulse h-[46px] w-px"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(246,242,234,0), rgba(246,242,234,.8))",
-            }}
-          />
-        </div>
+        <ScrollCue />
       </div>
     </section>
   );

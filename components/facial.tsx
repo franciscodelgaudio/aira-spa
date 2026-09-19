@@ -49,7 +49,7 @@ export default function Facial() {
             rel="noreferrer"
             className="mt-[clamp(22px,3vw,40px)] inline-flex min-h-12 items-center rounded-full border border-cream/50 px-8 py-[14px] text-xs font-light uppercase tracking-[0.24em] text-cream transition-colors hover:bg-cream/15"
           >
-            Conheça os tratamentos
+            Agendar Facial Aira
           </a>
         </div>
       </div>
