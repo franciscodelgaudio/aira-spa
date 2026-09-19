@@ -178,11 +178,19 @@ export function createMediaLoader(): MediaLoader {
     el.addEventListener("playing", onProgress);
     el.addEventListener("waiting", onWaiting);
     el.addEventListener("stalled", onWaiting);
-    // So o error do proprio <video>. O error de um <source> dispara assim que
-    // aquela fonte falha, com o browser ainda por tentar a seguinte: reagir a ele
-    // reiniciaria a cadeia no WebM e o fallback MP4 nunca teria vez. O <video>
-    // so emite error depois de esgotar todas as <source>, que e o momento certo
-    // de contar como falha e reagendar.
+    // Um <video> que usa <source> filhos NUNCA emite error e mantem .error em
+    // null, mesmo com todas as fontes falhando — quem emite error e cada
+    // <source>. Mas reagir a qualquer um deles seria cedo demais: quando o WebM
+    // falha o browser ainda vai tentar o MP4, e reiniciar ali mataria o
+    // fallback. NETWORK_NO_SOURCE e o unico sinal de "a cadeia inteira acabou
+    // sem nada utilizavel", entao e ele que marca a falha.
+    const onSourceError = () => {
+      if (el.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) fail(e);
+    };
+    el.querySelectorAll("source").forEach((s) =>
+      s.addEventListener("error", onSourceError)
+    );
+    // Cobre erro de decodificacao e o caso de src direto, em que o <video> emite.
     el.addEventListener("error", onError);
 
     e.detach = () => {
@@ -192,6 +200,9 @@ export function createMediaLoader(): MediaLoader {
       el.removeEventListener("waiting", onWaiting);
       el.removeEventListener("stalled", onWaiting);
       el.removeEventListener("error", onError);
+      el.querySelectorAll("source").forEach((s) =>
+        s.removeEventListener("error", onSourceError)
+      );
     };
 
     entries.set(el, e);
