@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: auto; }
+  body { margin: 0; background: #E9E5DC; color: #241F1B; font-family: Jost, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #8A6A4F; text-decoration: none; }
+  a:hover { color: #5E4432; }
+  video { display: block; }
+  @keyframes airaPulse { 0%,100% { opacity: .35; transform: translateY(0); } 50% { opacity: .9; transform: translateY(5px); } }
+</style>
+</helmet>
+
+<div style="width:100%; overflow-x:hidden; background:#E9E5DC">
+
+  <a href="https://wa.me/5545991331717" target="_blank" rel="noreferrer" style="position:fixed; right:clamp(14px,2.2vw,28px); bottom:clamp(14px,2.2vw,28px); z-index:60; display:flex; align-items:center; gap:10px; padding:14px 22px; min-height:48px; border-radius:999px; background:#8A6A4F; color:#F6F2EA; font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:300; box-shadow:0 10px 30px rgba(36,31,27,.22)" style-hover="background:#6E5340">Agendar</a>
+
+  <section id="sec-hero" data-pin="1" data-screen-label="Hero" style="position:relative; height:200vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#241F1B">
+      <video data-zoom="0.07" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-08-24_20-42-55_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; transform-origin:center"></video>
+      <div data-anim="1" data-range="0,1" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(36,31,27,.5) 0%, rgba(36,31,27,.28) 40%, rgba(36,31,27,.62) 100%)"></div>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:clamp(24px,5vw,72px); text-align:center; color:#F6F2EA">
+        <div data-anim="1" data-range="0,1" style="position:absolute; top:clamp(24px,4vw,44px); left:0; right:0; text-align:center">
+          <div style="font-size:clamp(22px,2.4vw,32px); letter-spacing:.42em; font-weight:200; text-indent:.42em">AIRA</div>
+          <div style="font-size:clamp(9px,1vw,11px); letter-spacing:.6em; font-weight:300; opacity:.8; text-indent:.6em; margin-top:4px">SPA</div>
+        </div>
+        <h1 data-anim="1" data-range="0,1" style="margin:0; font-weight:200; font-size:clamp(34px,6.4vw,92px); line-height:1.08; letter-spacing:.01em">Seu corpo pede pausa.</h1>
+        <p data-anim="1" data-range="0.42,1" style="margin:clamp(16px,2vw,28px) 0 0; font-family:'Cormorant Garamond', Georgia, serif; font-style:italic; font-weight:300; font-size:clamp(20px,2.8vw,40px); opacity:.94">Um instante para desacelerar.</p>
+        <a data-anim="1" data-range="0.7,1" href="#sec-exp" style="margin-top:clamp(28px,4vw,52px); display:inline-flex; align-items:center; min-height:48px; padding:14px 34px; border:1px solid rgba(246,242,234,.55); border-radius:999px; color:#F6F2EA; font-size:12px; letter-spacing:.24em; text-transform:uppercase; font-weight:300" style-hover="background:rgba(246,242,234,.14)">Conheça a experiência</a>
+      </div>
+      <div style="position:absolute; bottom:22px; left:50%; transform:translateX(-50%); width:1px; height:46px; background:linear-gradient(180deg, rgba(246,242,234,0), rgba(246,242,234,.8)); animation:airaPulse 3.4s ease-in-out infinite"></div>
+    </div>
+  </section>
+
+  <section id="sec-corpo" data-pin="1" data-screen-label="Seu corpo fala" style="position:relative; height:300vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#CFC7BA">
+      <img data-zoom="0.09" src="uploads/2026-08-28_21-00-03_UTC_1.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 0%; transform-origin:center" />
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(233,229,220,.18), rgba(60,48,40,.46))"></div>
+      <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:clamp(24px,6vw,80px); text-align:center; color:#FFFFFF">
+        <div data-anim="1" data-range="0,0.23" style="position:absolute; max-width:18ch; font-weight:300; font-size:clamp(30px,5.2vw,72px); line-height:1.16; text-shadow:0 2px 24px rgba(36,31,27,.35)">Seu corpo fala.<br /><em style="font-family:'Cormorant Garamond',Georgia,serif; font-weight:400">Você escuta?</em></div>
+        <div data-anim="1" data-range="0.25,0.47" style="position:absolute; max-width:20ch; font-weight:300; font-size:clamp(26px,4.4vw,60px); line-height:1.22; text-shadow:0 2px 24px rgba(36,31,27,.35)">Ombros pesados.<br />Pernas cansadas.<br />Vontade de simplesmente <em style="font-family:'Cormorant Garamond',Georgia,serif">parar.</em></div>
+        <div data-anim="1" data-range="0.49,0.71" style="position:absolute; max-width:20ch; font-weight:300; font-size:clamp(28px,4.8vw,64px); line-height:1.2; text-shadow:0 2px 24px rgba(36,31,27,.35)">Às vezes, o corpo está pedindo um pouco de <em style="font-family:'Cormorant Garamond',Georgia,serif">cuidado.</em></div>
+        <div data-anim="1" data-range="0.73,1" style="position:absolute; max-width:18ch; font-weight:300; font-size:clamp(34px,6vw,86px); line-height:1.12; text-shadow:0 2px 24px rgba(36,31,27,.35)">Não espere ele pedir mais alto.<br /><em style="font-family:'Cormorant Garamond',Georgia,serif; font-weight:400">Escute-se.</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-massagem" data-pin="1" data-screen-label="A massagem como cuidado" style="position:relative; height:200vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#241F1B">
+      <img data-anim="1" data-range="0,0.62" data-zoom="0.06" src="uploads/2026-09-10_21-37-22_UTC.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 8%; transform-origin:center" />
+      <video data-anim="1" data-range="0.58,1" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-14_22-31-16_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; opacity:0"></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(36,31,27,.34), rgba(36,31,27,.58))"></div>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:clamp(24px,6vw,80px); color:#F6F2EA">
+        <h2 data-anim="1" data-range="0.05,1" style="margin:0; max-width:16ch; font-weight:300; font-size:clamp(32px,5.6vw,80px); line-height:1.14">Você sabe que precisa de uma <span data-grow="1" style="display:inline-block; font-weight:400; letter-spacing:.02em">massagem…</span></h2>
+        <p data-anim="1" data-range="0.4,1" style="margin:clamp(18px,2.4vw,34px) 0 0; font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(22px,3vw,44px); font-weight:300">Falta se permitir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-exp" data-pin="1" data-steps="6" data-screen-label="Experiências" style="position:relative; height:280vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#B5A08A; display:flex; flex-wrap:wrap; align-items:center; gap:clamp(18px,3vw,56px); padding:clamp(16px,3vw,56px)">
+      <div style="flex:1 1 320px; display:flex; flex-direction:column; gap:3px; height:clamp(300px,52vh,760px); min-width:260px">
+        <div data-row="0" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <video data-rowmedia="0" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-14_22-31-16_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="0" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Relaxante</span>
+        </div>
+        <div data-row="1" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <video data-rowmedia="1" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-08-24_20-42-55_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="1" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Massagem Candle</span>
+        </div>
+        <div data-row="2" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <video data-rowmedia="2" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-01_15-51-39_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 22%"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="2" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Escalpes</span>
+        </div>
+        <div data-row="3" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <video data-rowmedia="3" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-01_15-51-39_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="3" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Drenagem Linfática</span>
+        </div>
+        <div data-row="4" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <video data-rowmedia="4" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-08-21_15-26-15_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="4" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Pedras Quentes</span>
+        </div>
+        <div data-row="5" style="position:relative; flex:1 1 0; min-height:0; overflow:hidden; transition:flex-grow .7s cubic-bezier(.22,.61,.36,1)">
+          <img src="uploads/2026-09-02_20-21-45_UTC.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 100%" />
+          <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))"></div>
+          <span data-rowlabel="5" style="position:absolute; left:clamp(12px,1.6vw,24px); bottom:clamp(8px,1.2vw,16px); color:rgba(246,242,234,.72); font-size:clamp(13px,1.3vw,19px); letter-spacing:.16em; text-transform:uppercase; font-weight:300; transition:color .5s, font-size .5s">Facial</span>
+        </div>
+      </div>
+      <div style="flex:1 1 300px; min-width:240px; color:#F6F2EA; padding:clamp(4px,1.5vw,32px) 0">
+        <h2 style="margin:0; font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-weight:400; font-size:clamp(28px,3.6vw,56px); line-height:1.14">Quais experiências posso escolher?</h2>
+        <p style="margin:clamp(14px,1.6vw,24px) 0 0; max-width:34ch; font-weight:300; font-size:clamp(15px,1.15vw,19px); line-height:1.65; color:rgba(246,242,234,.9)">Temos diferentes experiências de relaxamento e cuidado, para você escolher aquela que mais combina com o seu momento.</p>
+        <div style="margin-top:clamp(18px,2.4vw,40px); min-height:clamp(66px,7vh,96px); border-top:1px solid rgba(246,242,234,.3); padding-top:clamp(12px,1.4vw,22px)">
+          <div data-desc="1" style="font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(19px,2vw,30px); font-weight:300; line-height:1.4; transition:opacity .4s">Para soltar tensões e desacelerar.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-facial" data-pin="1" data-screen-label="Facial Aira" style="position:relative; height:180vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#241F1B">
+      <img data-zoom="0.08" src="uploads/2026-09-02_20-21-45_UTC.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 92%; transform-origin:center" />
+      <div style="position:absolute; inset:0; background:linear-gradient(115deg, rgba(36,31,27,.62) 0%, rgba(36,31,27,.18) 55%, rgba(36,31,27,.05) 100%)"></div>
+      <div style="position:absolute; top:0; left:0; padding:clamp(28px,7vw,110px); max-width:min(620px,86vw); color:#F6F2EA">
+        <div data-anim="1" data-range="0.02,1" style="font-size:11px; letter-spacing:.42em; text-transform:uppercase; font-weight:300; opacity:.8">Destaque</div>
+        <h2 data-anim="1" data-range="0.08,1" style="margin:clamp(12px,1.6vw,22px) 0 0; font-weight:200; font-size:clamp(34px,5.4vw,78px); letter-spacing:.06em; line-height:1.05">Facial Aira</h2>
+        <p data-anim="1" data-range="0.24,1" style="margin:clamp(14px,1.8vw,26px) 0 0; font-weight:300; font-size:clamp(16px,1.45vw,23px); line-height:1.6; max-width:30ch; color:rgba(246,242,234,.92)">Hidratação, massagem e relaxamento em uma experiência completa de cuidado.</p>
+        <a data-anim="1" data-range="0.5,1" href="https://wa.me/5545991331717" target="_blank" rel="noreferrer" style="margin-top:clamp(22px,3vw,40px); display:inline-flex; align-items:center; min-height:48px; padding:14px 32px; border:1px solid rgba(246,242,234,.5); border-radius:999px; color:#F6F2EA; font-size:12px; letter-spacing:.24em; text-transform:uppercase; font-weight:300" style-hover="background:rgba(246,242,234,.14)">Conheça os tratamentos</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-ambiente" data-pin="1" data-screen-label="Ambiente" style="position:relative; height:240vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#241F1B">
+      <video data-anim="1" data-range="0,0.66" data-lazy="1" data-zoom="0.05" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-04_23-28-13_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; transform-origin:center"></video>
+      <video data-anim="1" data-range="0.62,1" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-08-21_15-26-15_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; opacity:0"></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(36,31,27,.28), rgba(36,31,27,.66))"></div>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:clamp(28px,6vw,96px); color:#F6F2EA">
+        <h2 data-anim="1" data-range="0.22,1" style="margin:0; max-width:16ch; font-weight:200; font-size:clamp(30px,5vw,74px); line-height:1.1">Cada detalhe convida você a desacelerar.</h2>
+        <p data-anim="1" data-range="0.42,1" style="margin:clamp(14px,1.8vw,26px) 0 0; max-width:44ch; font-weight:300; font-size:clamp(16px,1.35vw,22px); line-height:1.6; color:rgba(246,242,234,.9)">Do ambiente ao toque, tudo foi pensado para transformar o seu momento em experiência.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-primeira" data-pin="1" data-screen-label="Primeira vez" style="position:relative; height:300vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#E9E5DC; display:flex; align-items:center">
+      <div data-cards="1" style="display:flex; gap:clamp(16px,2.4vw,44px); padding:0 clamp(20px,8vw,160px); will-change:transform">
+        <article style="flex:0 0 min(78vw,780px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,36px); align-items:center; background:#F6F2EA; padding:clamp(20px,3vw,52px); border-radius:2px">
+          <div style="flex:1 1 240px; min-width:200px">
+            <div style="width:clamp(80px,9vw,140px); height:1px; background:#8A6A4F; margin-bottom:clamp(18px,2.4vw,34px)"></div>
+            <div style="font-size:clamp(12px,1.1vw,15px); letter-spacing:.42em; text-transform:uppercase; color:#8A6A4F; font-weight:300">Primeira vez no</div>
+            <h2 style="margin:8px 0 0; font-weight:200; font-size:clamp(30px,4.2vw,62px); letter-spacing:.06em; color:#8A6A4F; line-height:1.05">AIRA SPA?</h2>
+            <p style="margin:clamp(14px,1.8vw,26px) 0 0; max-width:32ch; font-weight:300; font-size:clamp(15px,1.15vw,19px); line-height:1.65; color:#4A403A">Criamos uma experiência simples, acolhedora e pensada para você relaxar desde a chegada.</p>
+          </div>
+          <div style="flex:0 1 200px; height:clamp(220px,42vh,420px); overflow:hidden">
+            <img src="uploads/2026-09-16_16-18-25_UTC_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:100% 50%" />
+          </div>
+        </article>
+        <article style="flex:0 0 min(78vw,780px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,36px); align-items:center; background:#F6F2EA; padding:clamp(20px,3vw,52px); border-radius:2px">
+          <div style="flex:1 1 240px; min-width:200px">
+            <div style="width:clamp(80px,9vw,140px); height:1px; background:#8A6A4F; margin-bottom:clamp(18px,2.4vw,34px)"></div>
+            <h2 style="margin:0; font-weight:200; font-size:clamp(28px,3.8vw,56px); letter-spacing:.05em; color:#8A6A4F; line-height:1.08">PRECISO ESTAR HOSPEDADO?</h2>
+            <div style="margin:clamp(16px,2vw,28px) 0 0; font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(24px,2.6vw,38px); color:#8A6A4F">Não</div>
+            <p style="margin:6px 0 0; max-width:32ch; font-weight:300; font-size:clamp(15px,1.15vw,19px); line-height:1.65; color:#4A403A">Recebemos hóspedes, moradores de Foz e visitantes.</p>
+          </div>
+          <div style="flex:0 1 200px; height:clamp(220px,42vh,420px); overflow:hidden">
+            <img src="uploads/2026-09-16_16-18-25_UTC_5.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:100% 50%" />
+          </div>
+        </article>
+        <article style="flex:0 0 min(78vw,780px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,36px); align-items:center; background:#F6F2EA; padding:clamp(20px,3vw,52px); border-radius:2px">
+          <div style="flex:0 1 200px; height:clamp(220px,42vh,420px); overflow:hidden; order:2">
+            <img src="uploads/2026-09-16_16-18-25_UTC_6.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:0% 50%" />
+          </div>
+          <div style="flex:1 1 240px; min-width:200px">
+            <div style="width:clamp(80px,9vw,140px); height:1px; background:#8A6A4F; margin-bottom:clamp(18px,2.4vw,34px)"></div>
+            <h2 style="margin:0; font-weight:200; font-size:clamp(28px,3.8vw,56px); letter-spacing:.05em; color:#8A6A4F; line-height:1.08">E QUANDO EU CHEGAR?</h2>
+            <p style="margin:clamp(16px,2vw,28px) 0 0; max-width:34ch; font-weight:300; font-size:clamp(15px,1.15vw,19px); line-height:1.65; color:#4A403A">É só se apresentar na recepção do hotel, que você será encaminhado até o Aira Spa. Depois, é só relaxar e aproveitar o seu momento.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-local" data-screen-label="Onde fica e agendamento" style="position:relative; background:#E9E5DC">
+    <div style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:80vh">
+      <div data-parallax="1" style="flex:1 1 320px; min-height:clamp(280px,56vh,720px); overflow:hidden; position:relative">
+        <img src="uploads/2026-09-16_16-18-25_UTC_2.jpg" alt="" style="position:absolute; inset:-8% 0; width:100%; height:116%; object-fit:cover; object-position:0% 50%" />
+      </div>
+      <div style="flex:1 1 380px; display:flex; flex-direction:column; justify-content:center; padding:clamp(32px,6vw,110px)">
+        <h2 data-reveal="1" style="margin:0; font-weight:200; font-size:clamp(32px,4.4vw,68px); letter-spacing:.04em; color:#8A6A4F; line-height:1.05">ONDE FICA?</h2>
+        <p data-reveal="1" style="margin:clamp(16px,2vw,28px) 0 0; max-width:34ch; font-weight:300; font-size:clamp(16px,1.2vw,20px); line-height:1.6; color:#4A403A">Você encontra o Aira Spa em duas unidades em Foz do Iguaçu:</p>
+        <div data-reveal="1" style="margin-top:clamp(22px,2.6vw,40px); display:flex; flex-direction:column; gap:clamp(16px,1.8vw,28px)">
+          <div>
+            <div style="font-weight:500; font-size:clamp(17px,1.35vw,22px); color:#8A6A4F">DoubleTree by Hilton</div>
+            <div style="font-weight:300; font-size:clamp(15px,1.1vw,18px); color:#6B5F56; margin-top:4px">Av. das Cataratas, 2930</div>
+          </div>
+          <div>
+            <div style="font-weight:500; font-size:clamp(17px,1.35vw,22px); color:#8A6A4F">Viale Cataratas</div>
+            <div style="font-weight:300; font-size:clamp(15px,1.1vw,18px); color:#6B5F56; margin-top:4px">Av. das Cataratas, 2420</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:stretch; min-height:80vh; background:#B5A08A">
+      <div style="flex:1 1 380px; display:flex; flex-direction:column; justify-content:center; padding:clamp(32px,6vw,110px); color:#F6F2EA">
+        <h2 data-reveal="1" style="margin:0; font-weight:200; font-size:clamp(32px,4.4vw,68px); letter-spacing:.04em; line-height:1.05">COMO FAÇO PARA AGENDAR?</h2>
+        <div data-reveal="1" style="margin:clamp(18px,2.2vw,32px) 0 0; font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(24px,2.6vw,38px)">É simples.</div>
+        <p data-reveal="1" style="margin:6px 0 0; max-width:34ch; font-weight:300; font-size:clamp(16px,1.2vw,20px); line-height:1.6; color:rgba(246,242,234,.94)">Escolha uma unidade e entre em contato pelo WhatsApp.</p>
+        <div data-reveal="1" style="margin-top:clamp(24px,3vw,44px); display:flex; flex-wrap:wrap; gap:14px">
+          <a href="https://wa.me/5545991331717" target="_blank" rel="noreferrer" style="display:flex; flex-direction:column; gap:4px; min-height:48px; padding:16px 28px; border:1px solid rgba(246,242,234,.55); border-radius:999px; color:#F6F2EA" style-hover="background:rgba(246,242,234,.16)"><span style="font-size:11px; letter-spacing:.2em; text-transform:uppercase; opacity:.85; font-weight:300">DoubleTree by Hilton</span><span style="font-size:clamp(16px,1.3vw,20px); font-weight:400">(45) 99133-1717</span></a>
+          <a href="https://wa.me/5545991031666" target="_blank" rel="noreferrer" style="display:flex; flex-direction:column; gap:4px; min-height:48px; padding:16px 28px; border:1px solid rgba(246,242,234,.55); border-radius:999px; color:#F6F2EA" style-hover="background:rgba(246,242,234,.16)"><span style="font-size:11px; letter-spacing:.2em; text-transform:uppercase; opacity:.85; font-weight:300">Viale Cataratas</span><span style="font-size:clamp(16px,1.3vw,20px); font-weight:400">(45) 99103-1666</span></a>
+        </div>
+      </div>
+      <div data-parallax="1" style="flex:1 1 320px; min-height:clamp(280px,56vh,720px); overflow:hidden; position:relative">
+        <img src="uploads/2026-09-16_16-18-25_UTC_3.jpg" alt="" style="position:absolute; inset:-8% 0; width:100%; height:116%; object-fit:cover; object-position:100% 50%" />
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-cta" data-pin="1" data-screen-label="CTA final" style="position:relative; height:260vh">
+    <div style="position:sticky; top:0; height:100vh; overflow:hidden; background:#241F1B">
+      <video data-anim="1" data-range="0,0.36" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-01_15-51-39_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%"></video>
+      <video data-anim="1" data-range="0.32,0.68" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-08-24_20-42-55_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; opacity:0"></video>
+      <video data-anim="1" data-range="0.64,1" data-lazy="1" muted="" loop="" playsinline="" preload="none" src="uploads/2026-09-14_22-31-16_UTC.mp4" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 10%; opacity:0"></video>
+      <div data-dim="1" style="position:absolute; inset:0; background:rgba(36,31,27,.42)"></div>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:clamp(24px,6vw,90px); color:#F6F2EA">
+        <div data-anim="1" data-range="0,0.3" style="position:absolute; max-width:18ch; font-weight:200; font-size:clamp(30px,5vw,74px); line-height:1.12">Bem-estar também faz parte da rotina.</div>
+        <div data-anim="1" data-range="0.32,0.6" style="position:absolute; max-width:18ch; font-weight:200; font-size:clamp(30px,5vw,74px); line-height:1.12">Reserve um tempo na agenda só para si.</div>
+        <div data-anim="1" data-range="0.62,0.82" style="position:absolute; max-width:16ch; font-weight:300; font-size:clamp(34px,5.8vw,86px); line-height:1.1">Você não precisa esperar mais.</div>
+        <div data-anim="1" data-range="0.84,1" style="position:absolute; display:flex; flex-direction:column; align-items:center; gap:clamp(18px,2.4vw,34px)">
+          <div style="text-align:center">
+            <div style="font-size:clamp(22px,2.4vw,32px); letter-spacing:.42em; font-weight:200; text-indent:.42em">AIRA</div>
+            <div style="font-size:clamp(9px,1vw,11px); letter-spacing:.6em; font-weight:300; opacity:.8; text-indent:.6em; margin-top:4px">SPA</div>
+          </div>
+          <h2 style="margin:0; font-weight:200; font-size:clamp(28px,4vw,58px); line-height:1.1">Agende sua experiência</h2>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px">
+            <a href="https://wa.me/5545991331717" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; min-height:48px; padding:15px 30px; border-radius:999px; background:#F6F2EA; color:#241F1B; font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:400" style-hover="background:#FFFFFF">WhatsApp DoubleTree</a>
+            <a href="https://wa.me/5545991031666" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; min-height:48px; padding:15px 30px; border-radius:999px; border:1px solid rgba(246,242,234,.6); color:#F6F2EA; font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:300" style-hover="background:rgba(246,242,234,.16)">WhatsApp Viale</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#241F1B; color:rgba(246,242,234,.7); padding:clamp(28px,4vw,56px) clamp(20px,6vw,90px); display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:center; font-weight:300; font-size:14px">
+    <span>Aira Spa · Foz do Iguaçu</span>
+    <span>Av. das Cataratas, 2930 · Av. das Cataratas, 2420</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.descs = [
+      'Para soltar tensões e desacelerar.',
+      'Calor, aroma e toque em uma experiência sensorial.',
+      'Uma pausa delicada para cabeça e mente.',
+      'Leveza e cuidado para o corpo.',
+      'Calor terapêutico e profundo relaxamento.',
+      'Hidratação, massagem e renovação.'
+    ];
+    this.activeRow = -1;
+    this.ticking = false;
+    this.onScroll = () => {
+      if (this.ticking) return;
+      this.ticking = true;
+      requestAnimationFrame(() => { this.ticking = false; this.update(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const el = e.target;
+        if (el.tagName === 'VIDEO') {
+          if (e.isIntersecting) { if (el.preload === 'none') el.preload = 'auto'; if (!el.dataset.manual) el.play().catch(() => {}); }
+          else el.pause();
+        } else if (e.isIntersecting) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          this.io.unobserve(el);
+        }
+      });
+    }, { rootMargin: '10% 0px' });
+
+    document.querySelectorAll('video[data-lazy]').forEach((v) => this.io.observe(v));
+    document.querySelectorAll('[data-rowmedia]').forEach((v) => { v.dataset.manual = '1'; });
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = 'opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1)';
+      this.io.observe(el);
+    });
+    this.update();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.io) this.io.disconnect();
+  }
+
+  clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  smooth(e0, e1, x) { const t = this.clamp((x - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); }
+
+  update() {
+    const vh = window.innerHeight;
+    document.querySelectorAll('[data-pin]').forEach((sec) => {
+      const r = sec.getBoundingClientRect();
+      const total = Math.max(1, sec.offsetHeight - vh);
+      const p = this.clamp(-r.top / total, 0, 1);
+      const live = r.top < vh && r.bottom > 0;
+      if (!live) return;
+
+      sec.querySelectorAll('[data-anim]').forEach((el) => {
+        const rg = (el.dataset.range || '0,1').split(',').map(Number);
+        const a = rg[0], b = rg[1];
+        const t = (p - a) / Math.max(0.0001, b - a);
+        if (t < -0.2 || t > 1.2) { el.style.opacity = '0'; el.style.pointerEvents = 'none'; return; }
+        const fin = a <= 0.001 ? 1 : this.smooth(0, 0.3, t);
+        const fout = b >= 0.999 ? 0 : this.smooth(0.74, 1, t);
+        const o = this.clamp(fin * (1 - fout), 0, 1);
+        el.style.opacity = String(o);
+        el.style.pointerEvents = o > 0.5 ? 'auto' : 'none';
+        if (el.tagName !== 'VIDEO' && el.tagName !== 'IMG') {
+          el.style.transform = 'translateY(' + ((1 - fin) * 26 - fout * 16).toFixed(2) + 'px)';
+        }
+        if (el.tagName === 'VIDEO') { if (o > 0.05) el.play().catch(() => {}); else el.pause(); }
+      });
+
+      sec.querySelectorAll('[data-zoom]').forEach((el) => {
+        const amt = parseFloat(el.dataset.zoom) || 0.06;
+        el.style.transform = 'scale(' + (1 + amt * p).toFixed(4) + ')';
+      });
+
+      const grow = sec.querySelector('[data-grow]');
+      if (grow) grow.style.transform = 'scale(' + (1 + 0.12 * this.smooth(0.3, 0.62, p)).toFixed(3) + ')';
+
+      const dim = sec.querySelector('[data-dim]');
+      if (dim) dim.style.background = 'rgba(36,31,27,' + (0.42 + 0.22 * p).toFixed(3) + ')';
+
+      if (sec.dataset.steps) {
+        const n = parseInt(sec.dataset.steps, 10);
+        const idx = Math.min(n - 1, Math.floor(p * n * 0.999));
+        if (idx !== this.activeRow) {
+          this.activeRow = idx;
+          sec.querySelectorAll('[data-row]').forEach((row, i) => {
+            const on = i === idx;
+            row.style.flexGrow = on ? '2.6' : '1';
+            const lab = row.querySelector('[data-rowlabel]');
+            if (lab) {
+              lab.style.color = on ? '#FFFFFF' : 'rgba(246,242,234,.72)';
+              lab.style.fontSize = on ? 'clamp(16px,1.8vw,26px)' : 'clamp(13px,1.3vw,19px)';
+            }
+            const med = row.querySelector('[data-rowmedia]');
+            if (med) { if (on) { if (med.preload === 'none') med.preload = 'auto'; med.play().catch(() => {}); } else med.pause(); }
+          });
+          const d = sec.querySelector('[data-desc]');
+          if (d) {
+            d.style.opacity = '0';
+            clearTimeout(this.descTimer);
+            this.descTimer = setTimeout(() => { d.textContent = this.descs[idx]; d.style.opacity = '1'; }, 220);
+          }
+        }
+      }
+
+      const cards = sec.querySelector('[data-cards]');
+      if (cards) {
+        const max = Math.max(0, cards.scrollWidth - window.innerWidth + 40);
+        cards.style.transform = 'translateX(' + (-max * this.smooth(0.04, 0.96, p)).toFixed(1) + 'px)';
+      }
+    });
+
+    document.querySelectorAll('[data-parallax] img').forEach((img) => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.top > vh || r.bottom < 0) return;
+      const q = (r.top + r.height / 2 - vh / 2) / vh;
+      img.style.transform = 'translateY(' + (q * -28).toFixed(1) + 'px)';
+    });
+  }
+}
+</script>
+</body>
+</html>

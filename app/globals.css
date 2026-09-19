@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --sand: #e9e5dc;
+  --ink: #241f1b;
+  --clay: #8a6a4f;
+  --clay-deep: #6e5340;
+  --cream: #f6f2ea;
+  --taupe: #b5a08a;
+  --stone: #cfc7ba;
+  --body: #4a403a;
+  --muted: #6b5f56;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-clay: var(--clay);
+  --color-clay-deep: var(--clay-deep);
+  --color-cream: var(--cream);
+  --color-taupe: var(--taupe);
+  --color-stone: var(--stone);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-jost);
+  --font-serif: var(--font-cormorant);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-jost), Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The pinned sections compute their own scroll progress, so native smooth
+   scrolling would fight the anchor jumps. */
+html {
+  scroll-behavior: auto;
+}
+
+.font-accent {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+}
+
+@keyframes aira-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(5px);
+  }
+}
+
+.aira-pulse {
+  animation: aira-pulse 3.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aira-pulse {
+    animation: none;
+  }
 }
