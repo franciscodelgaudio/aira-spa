@@ -88,12 +88,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    icon: [{ url: "/FAVICON.png?v=3", sizes: "1254x1254", type: "image/png" }],
+    apple: [{ url: "/FAVICON.png?v=3", sizes: "1254x1254", type: "image/png" }],
   },
   // O <link rel="manifest"> sai de app/manifest.ts — declarar aqui duplicaria a tag.
   other: {

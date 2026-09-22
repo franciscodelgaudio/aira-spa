@@ -4,7 +4,12 @@ import { hours, media, site } from "@/lib/site";
 
 export default function Hero() {
   return (
-    <section id="sec-hero" className="relative h-screen min-h-[620px] overflow-hidden bg-ink">
+    <section id="sec-hero" className="flex h-screen min-h-[620px] flex-col overflow-hidden bg-ink">
+      <div className="relative z-10 flex h-[clamp(104px,12vw,132px)] shrink-0 items-center justify-center bg-[#678481]">
+        <Wordmark />
+      </div>
+
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         <BgVideo
           asset={media.massagemVideo}
           priority
@@ -22,10 +27,6 @@ export default function Hero() {
         />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center p-[clamp(24px,5vw,72px)] text-center text-cream">
-          <div className="absolute inset-x-0 top-[clamp(24px,4vw,44px)]">
-            <Wordmark />
-          </div>
-
           {/*
             O <h1> e o texto de maior peso da pagina para um buscador, e sozinha
             "Seu corpo pede pausa." nao diz o que o negocio faz nem onde fica.
@@ -57,7 +58,7 @@ export default function Hero() {
             Dentro dos hotéis DoubleTree by Hilton e Viale Cataratas · {hours.human}
           </p>
         </div>
-
+      </div>
     </section>
   );
 }

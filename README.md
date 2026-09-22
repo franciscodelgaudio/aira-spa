@@ -66,9 +66,10 @@ NEXT_PUBLIC_SITE_URL=https://preview.exemplo.com npm run build
 
 ### Arquivos de marca gerados
 
-`public/og.jpg`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` e
-`apple-icon.png` sao **gerados** por `scripts/make-brand-assets.mjs` a partir de
-`media-original/massagem.jpg` e de `app/icon.svg`. Nao edite a mao:
+`public/FAVICON.png` e `public/LOGOTIPO.png` sao os arquivos oficiais da marca
+usados pelo site. `public/og.jpg`, `icon-192.png`, `icon-512.png`,
+`icon-maskable-512.png` e `apple-icon.png` sao arquivos legados **gerados** por
+`scripts/make-brand-assets.mjs`. Nao edite os arquivos gerados a mao:
 
 ```bash
 node scripts/make-brand-assets.mjs

@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function Wordmark() {
   return (
-    <div className="text-center">
-      <div className="text-[clamp(22px,2.4vw,32px)] font-extralight tracking-[0.42em] indent-[0.42em]">
-        AIRA
-      </div>
-      <div className="mt-1 text-[clamp(9px,1vw,11px)] font-light tracking-[0.6em] indent-[0.6em] opacity-80">
-        SPA
-      </div>
+    <div className="relative mx-auto h-[clamp(76px,8vw,96px)] w-[clamp(190px,22vw,240px)] overflow-hidden">
+      <Image
+        src="/LOGOTIPO.png"
+        alt="Aira Spa"
+        width={1254}
+        height={1254}
+        priority
+        className="absolute left-1/2 top-1/2 h-auto w-full max-w-none -translate-x-1/2 -translate-y-[52%]"
+      />
     </div>
   );
 }

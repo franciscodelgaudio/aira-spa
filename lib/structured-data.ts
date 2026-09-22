@@ -130,9 +130,9 @@ export const structuredData = {
       logo: {
         "@type": "ImageObject",
         "@id": id("logo"),
-        url: `${siteUrl}/icon-512.png`,
-        width: 512,
-        height: 512,
+        url: `${siteUrl}/LOGOTIPO.png`,
+        width: 1254,
+        height: 1254,
         caption: site.name,
       },
       image: { "@id": id("logo") },
