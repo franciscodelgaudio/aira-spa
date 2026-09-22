@@ -41,15 +41,11 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="font-accent m-0 mt-[clamp(16px,2vw,28px)] text-[clamp(20px,2.8vw,40px)] font-light opacity-95">
-            Um instante para desacelerar.
-          </p>
-
           <a
-            href="#sec-exp"
+            href="#sec-agendar"
             className="mt-[clamp(28px,4vw,52px)] inline-flex min-h-12 items-center rounded-full border border-cream/55 px-[34px] py-[14px] text-xs font-light uppercase tracking-[0.24em] text-cream transition-colors hover:bg-cream/15"
           >
-            Conheça a experiência
+            Agendar
           </a>
 
           {/*
