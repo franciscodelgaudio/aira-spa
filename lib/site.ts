@@ -57,9 +57,6 @@ const image = (name: string, width: number, height: number): ImageAsset => ({
 });
 
 export const media = {
-  heroVideo: video("hero"),
-  corpo: image("corpo", 1080, 610),
-  massagem: image("massagem", 1350, 624),
   massagemVideo: video("costas"),
   candleVideo: video("cha"),
   escalpesVideo: video("pes"),

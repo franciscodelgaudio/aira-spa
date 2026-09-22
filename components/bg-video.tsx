@@ -3,10 +3,7 @@ import type { VideoAsset } from "@/lib/site";
 
 type Props = Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster"> & {
   asset: VideoAsset;
-  /**
-   * Video acima da dobra. Sai da fila do media-loader e ja vem com preload="auto"
-   * no HTML, para o browser comecar o download antes do JS executar.
-   */
+  /** Video acima da dobra, carregado com prioridade pelo navegador. */
   priority?: boolean;
 };
 
@@ -15,7 +12,6 @@ type Props = Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster"> & {
  * arquivo baixa nem quando o autoplay e bloqueado. O WebM (VP9) vem primeiro e
  * pesa ~45% menos; quem nao le VP9 cai no MP4 (H.264).
  *
- * Quem decide o momento do download e do play e o media-loader, via scroll-engine.
  */
 export default function BgVideo({
   asset,
@@ -25,7 +21,6 @@ export default function BgVideo({
 }: Props) {
   return (
     <video
-      data-video="1"
       muted
       loop
       playsInline

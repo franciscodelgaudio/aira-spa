@@ -42,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link
           rel="preload"
           as="image"
-          href={media.heroVideo.poster}
+          href={media.massagemVideo.poster}
           fetchPriority="high"
         />
       </head>
