@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import BgImage from "./bg-image";
 import { media, units } from "@/lib/site";
 
 export default function Local() {
+  const [openUnit, setOpenUnit] = useState<number | null>(null);
+
   return (
     <section id="sec-local" className="relative bg-sand">
       <div className="flex min-h-[80vh] flex-wrap items-stretch">
@@ -33,19 +38,70 @@ export default function Local() {
             data-reveal="1"
             className="mt-[clamp(22px,2.6vw,40px)] flex flex-col gap-[clamp(16px,1.8vw,28px)]"
           >
-            {units.map((unit) => (
-              <div key={unit.name}>
-                <div className="text-[clamp(17px,1.35vw,22px)] font-medium text-clay">
-                  {unit.name}
-                </div>
-                <div className="mt-1 text-[clamp(15px,1.1vw,18px)] font-normal text-body">
-                  {unit.location}
-                </div>
-                <div className="mt-1 text-[clamp(15px,1.1vw,18px)] font-light text-muted">
-                  {unit.address}
+            {units.map((unit, index) => {
+              const isOpen = openUnit === index;
+              const mapId = `mapa-unidade-${index}`;
+
+              return (
+              <div
+                key={unit.name}
+                className="border-b border-clay/25 pb-[clamp(16px,1.8vw,24px)]"
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={mapId}
+                  onClick={() => setOpenUnit(isOpen ? null : index)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 rounded-sm border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-clay/45"
+                >
+                  <span>
+                    <span className="block text-[clamp(17px,1.35vw,22px)] font-medium text-clay">
+                      {unit.name}
+                    </span>
+                    <span className="mt-1 block text-[clamp(15px,1.1vw,18px)] font-normal text-body">
+                      {unit.location}
+                    </span>
+                    <span className="mt-1 block text-[clamp(15px,1.1vw,18px)] font-light text-muted">
+                      {unit.address}
+                    </span>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className={`flex size-9 shrink-0 items-center justify-center rounded-full border border-clay/35 text-xl font-light text-clay transition-transform duration-500 ease-in-out ${
+                      isOpen ? "rotate-45" : "rotate-0"
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  id={mapId}
+                  aria-hidden={!isOpen}
+                  className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ease-in-out ${
+                    isOpen
+                      ? "mt-4 grid-rows-[1fr] opacity-100"
+                      : "mt-0 grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <div className="overflow-hidden rounded-sm border border-clay/15 bg-cream">
+                      <iframe
+                        title={`Mapa da ${unit.name}`}
+                        src={`https://www.google.com/maps?q=${encodeURIComponent(
+                          `${unit.name}, ${unit.address}, Foz do Iguaçu - PR`
+                        )}&output=embed`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="h-[clamp(190px,26vw,280px)] w-full border-0"
+                        allowFullScreen
+                        tabIndex={isOpen ? 0 : -1}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

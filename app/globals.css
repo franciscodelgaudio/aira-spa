@@ -34,10 +34,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* The pinned sections compute their own scroll progress, so native smooth
-   scrolling would fight the anchor jumps. */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 .font-accent {
@@ -66,6 +64,10 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .aira-cue,
   .aira-cue-strong {
     animation: none;
