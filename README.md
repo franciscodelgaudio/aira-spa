@@ -35,6 +35,76 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## SEO e GEO
+
+O site e uma pagina so, entao tudo que um buscador ou um motor de resposta
+(ChatGPT, Perplexity, AI Overviews) sabe sobre o Aira Spa vem deste HTML. Os
+dados do negocio moram todos em `lib/site.ts` — nome, enderecos, telefones,
+horario, servicos e FAQ. **Mudou horario, telefone, endereco ou servico? Mude
+la e so la.** Dai saem, automaticamente:
+
+| saida | de onde vem | o que faz |
+| --- | --- | --- |
+| `<title>`, description, Open Graph, canonical | `app/layout.tsx` | o que aparece no resultado de busca e na previa de link |
+| JSON-LD (`DaySpa` x2, `Organization`, `FAQPage`) | `lib/structured-data.ts` | painel de negocio local e o que a IA le antes do HTML |
+| `/robots.txt` | `app/robots.ts` | libera crawlers, inclusive os de IA, e aponta o sitemap |
+| `/sitemap.xml` | `app/sitemap.ts` | URL canonica + fotos para o Google Imagens |
+| `/manifest.webmanifest` | `app/manifest.ts` | nome e icone ao salvar na tela inicial |
+| `/llms.txt` | `public/llms.txt` | ficha do negocio em texto, para motores de resposta |
+
+O `public/llms.txt` e o unico escrito a mao: ao mexer em `lib/site.ts`,
+atualize-o junto.
+
+### Domínio
+
+A URL canonica esta em `siteUrl` (`lib/site.ts`), com `https://airaspa.com.br`
+como padrao. Para publicar em outro dominio (preview, staging):
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://preview.exemplo.com npm run build
+```
+
+### Arquivos de marca gerados
+
+`public/og.jpg`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` e
+`apple-icon.png` sao **gerados** por `scripts/make-brand-assets.mjs` a partir de
+`media-original/massagem.jpg` e de `app/icon.svg`. Nao edite a mao:
+
+```bash
+node scripts/make-brand-assets.mjs
+```
+
+### Cuidados ao editar os componentes
+
+Tres coisas parecem enfeite e nao sao:
+
+- **`hidden` nas descricoes de `experiencias.tsx`.** As seis descricoes ficam no
+  HTML, nao so a do item aberto. Trocar por renderizacao condicional
+  (`{services[active].description}`) tira cinco das seis do alcance de quem
+  indexa — crawler nenhum clica nos botoes.
+- **A primeira linha do `<h1>` no hero.** "Seu corpo pede pausa." sozinha nao
+  diz o que o negocio faz nem onde fica. A linha de cima e o que conecta a
+  pagina a busca por "massagem em Foz do Iguacu".
+- **O horario escrito em `local.tsx` e no rodape.** O JSON-LD declara
+  `openingHoursSpecification`; o Google descarta dado estruturado que o
+  visitante nao consegue conferir na pagina. O mesmo vale para as respostas do
+  FAQ, que precisam existir em texto visivel.
+
+### O que falta, fora do codigo
+
+1. **Perfil da Empresa no Google** (Google Business Profile) para as duas
+   unidades. Pesa mais que tudo aqui para aparecer no mapa e no "perto de mim".
+   O NAP do perfil precisa bater caractere a caractere com o do rodape.
+2. **Google Search Console**: cadastrar o dominio e enviar
+   `https://airaspa.com.br/sitemap.xml`.
+3. **Coordenadas das unidades**: `lib/structured-data.ts` omite `geo` de
+   proposito, para nao publicar pino chutado. Pegue latitude/longitude no Google
+   Maps (botao direito no ponto certo) e adicione.
+4. **Versao em espanhol e ingles**: Foz do Iguacu recebe turista argentino,
+   paraguaio e estrangeiro, e hoje o site so existe em portugues. E o maior
+   ganho de alcance ainda disponivel — e o unico que exige mudanca de estrutura
+   (rotas por idioma + `hreflang`).
+
 ## Mídia
 
 Os arquivos em `public/uploads/` são **gerados** — não edite nem substitua
