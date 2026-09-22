@@ -62,7 +62,7 @@ export default function PrimeiraVez() {
           ref={trackRef}
           aria-label="Informações para a primeira visita ao Aira Spa"
           onScroll={syncCurrentCard}
-          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-pan-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
+          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
         >
           <article className={cardShell}>
             <div className={cardText}>
