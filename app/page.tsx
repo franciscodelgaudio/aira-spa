@@ -3,7 +3,6 @@ import Hero from "@/components/hero";
 import Experiencias from "@/components/experiencias";
 import PrimeiraVez from "@/components/primeira-vez";
 import Local from "@/components/local";
-import Cta from "@/components/cta";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <Experiencias />
       <PrimeiraVez />
       <Local />
-      <Cta />
       <Footer />
     </>
   );

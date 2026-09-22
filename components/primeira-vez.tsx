@@ -2,7 +2,7 @@ import BgImage from "./bg-image";
 import { media } from "@/lib/site";
 
 const cardShell =
-  "flex flex-[0_0_min(78vw,780px)] flex-wrap items-center gap-[clamp(16px,2vw,36px)] rounded-[2px] bg-cream p-[clamp(20px,3vw,52px)]";
+  "flex shrink-0 basis-[calc(100vw-40px)] snap-center flex-wrap items-center gap-[clamp(16px,3vw,48px)] rounded-[2px] bg-cream p-[clamp(20px,4vw,64px)] md:basis-[min(78vw,780px)]";
 const cardText = "min-w-[200px] flex-1 basis-[240px]";
 const cardMedia = "h-[clamp(220px,42vh,420px)] flex-[0_1_200px] overflow-hidden";
 const rule = "mb-[clamp(18px,2.4vw,34px)] h-px w-[clamp(80px,9vw,140px)] bg-clay";
@@ -11,11 +11,16 @@ const paragraph =
 
 export default function PrimeiraVez() {
   return (
-    <section id="sec-primeira" data-pin="1" className="relative h-[300vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-sand">
+    <section
+      id="sec-primeira"
+      data-pin="1"
+      className="relative bg-sand py-[clamp(56px,8vw,120px)] md:h-[300vh] md:py-0"
+    >
+      <div className="flex items-center overflow-hidden md:sticky md:top-0 md:h-screen">
         <div
           data-cards="1"
-          className="flex gap-[clamp(16px,2.4vw,44px)] px-[clamp(20px,8vw,160px)] will-change-transform"
+          aria-label="Informações para a primeira visita ao Aira Spa"
+          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-pan-x md:w-max md:snap-none md:overflow-visible md:px-[clamp(20px,8vw,160px)] md:pb-0"
         >
           <article className={cardShell}>
             <div className={cardText}>

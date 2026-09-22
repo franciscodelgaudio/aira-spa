@@ -134,8 +134,13 @@ export default function ScrollEngine() {
 
         const cards = sec.querySelector<HTMLElement>("[data-cards]");
         if (cards) {
-          const max = Math.max(0, cards.scrollWidth - window.innerWidth + 40);
-          cards.style.transform = `translateX(${(-max * smooth(0.04, 0.96, p)).toFixed(1)}px)`;
+          if (window.innerWidth >= 768) {
+            const max = Math.max(0, cards.scrollWidth - window.innerWidth + 40);
+            cards.style.transform = `translateX(${(-max * smooth(0.04, 0.96, p)).toFixed(1)}px)`;
+          } else {
+            // Em telas de toque, o trilho fica sob controle do gesto nativo.
+            cards.style.transform = "none";
+          }
         }
       });
 
