@@ -21,7 +21,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Aira Spa — Massagem e relaxamento em Foz do Iguaçu",
   description:
-    "Duas unidades em Foz do Iguaçu: DoubleTree by Hilton e Viale Cataratas. Massagem relaxante, candle, pedras quentes, drenagem linfática e facial. Agende pelo WhatsApp.",
+    "O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos hotéis DoubleTree by Hilton e Viale Cataratas. Massagem relaxante, candle, pedras quentes, drenagem linfática e facial.",
   openGraph: {
     title: "Aira Spa — Foz do Iguaçu",
     description: "Seu corpo pede pausa. Um instante para desacelerar.",

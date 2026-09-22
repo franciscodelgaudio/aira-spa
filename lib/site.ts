@@ -1,12 +1,14 @@
 export const units = [
   {
-    name: "DoubleTree by Hilton",
+    name: "Unidade DoubleTree by Hilton",
+    location: "Dentro do hotel DoubleTree by Hilton",
     address: "Av. das Cataratas, 2930",
     phone: "(45) 99133-1717",
     whatsapp: "https://wa.me/5545991331717",
   },
   {
-    name: "Viale Cataratas",
+    name: "Unidade Viale Cataratas",
+    location: "Dentro do hotel Viale Cataratas",
     address: "Av. das Cataratas, 2420",
     phone: "(45) 99103-1666",
     whatsapp: "https://wa.me/5545991031666",

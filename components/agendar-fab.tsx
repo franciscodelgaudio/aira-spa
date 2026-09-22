@@ -1,5 +1,5 @@
 import InstagramIcon from "./instagram-icon";
-import { instagram, units } from "@/lib/site";
+import { instagram } from "@/lib/site";
 
 const pill =
   "flex min-h-12 items-center rounded-full bg-clay text-cream shadow-[0_10px_30px_rgba(36,31,27,.22)] transition-colors hover:bg-clay-deep";
@@ -17,9 +17,7 @@ export default function AgendarFab() {
         <InstagramIcon className="h-[22px] w-[22px]" />
       </a>
       <a
-        href={units[0].whatsapp}
-        target="_blank"
-        rel="noreferrer"
+        href="#sec-agendar"
         className={`${pill} gap-2.5 px-[22px] py-3.5 text-[13px] font-light uppercase tracking-[0.16em]`}
       >
         Agendar

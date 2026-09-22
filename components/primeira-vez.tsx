@@ -97,7 +97,9 @@ export default function PrimeiraVez() {
                 Não
               </div>
               <p className="m-0 mt-1.5 max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
-                Recebemos hóspedes, moradores de Foz e visitantes.
+                Não é necessário se hospedar. As unidades do Aira Spa ficam dentro dos
+                hotéis DoubleTree e Viale, mas atendem hóspedes, moradores de Foz e
+                visitantes.
               </p>
             </div>
             <div className={cardMedia}>
@@ -123,8 +125,9 @@ export default function PrimeiraVez() {
                 E QUANDO EU CHEGAR?
               </h2>
               <p className="m-0 mt-[clamp(16px,2vw,28px)] max-w-[34ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
-                É só se apresentar na recepção do hotel, que você será encaminhado até o
-                Aira Spa. Depois, é só relaxar e aproveitar o seu momento.
+                É só se apresentar na recepção do hotel onde fica a unidade do Aira Spa
+                escolhida. A equipe indicará o caminho; depois, é só relaxar e aproveitar
+                o seu momento.
               </p>
             </div>
           </article>

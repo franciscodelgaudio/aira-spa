@@ -26,7 +26,8 @@ export default function Local() {
             data-reveal="1"
             className="m-0 mt-[clamp(16px,2vw,28px)] max-w-[34ch] text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-body"
           >
-            Você encontra o Aira Spa em duas unidades em Foz do Iguaçu:
+            O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos
+            hotéis DoubleTree by Hilton e Viale Cataratas.
           </p>
           <div
             data-reveal="1"
@@ -37,6 +38,9 @@ export default function Local() {
                 <div className="text-[clamp(17px,1.35vw,22px)] font-medium text-clay">
                   {unit.name}
                 </div>
+                <div className="mt-1 text-[clamp(15px,1.1vw,18px)] font-normal text-body">
+                  {unit.location}
+                </div>
                 <div className="mt-1 text-[clamp(15px,1.1vw,18px)] font-light text-muted">
                   {unit.address}
                 </div>
@@ -46,7 +50,10 @@ export default function Local() {
         </div>
       </div>
 
-      <div className="flex min-h-[80vh] flex-wrap items-stretch bg-taupe">
+      <div
+        id="sec-agendar"
+        className="flex min-h-[80vh] scroll-mt-0 flex-wrap items-stretch bg-taupe"
+      >
         <div className="flex flex-1 basis-[380px] flex-col justify-center p-[clamp(32px,6vw,110px)] text-cream">
           <h2
             data-reveal="1"
@@ -64,7 +71,8 @@ export default function Local() {
             data-reveal="1"
             className="m-0 mt-1.5 max-w-[34ch] text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-cream/95"
           >
-            Escolha uma unidade e entre em contato pelo WhatsApp.
+            Escolha a unidade do Aira Spa dentro do hotel de sua preferência e entre
+            em contato pelo WhatsApp.
           </p>
           <div
             data-reveal="1"
