@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState } from "react";
 import BgImage from "./bg-image";
 import { media } from "@/lib/site";
 
@@ -10,17 +13,56 @@ const paragraph =
   "m-0 mt-[clamp(14px,1.8vw,26px)] max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body";
 
 export default function PrimeiraVez() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [currentCard, setCurrentCard] = useState(0);
+
+  const goToCard = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll<HTMLElement>("article"));
+    const nextIndex = Math.max(0, Math.min(cards.length - 1, index));
+    const target = cards[nextIndex];
+    if (!target) return;
+
+    track.scrollTo({
+      left: target.offsetLeft - track.offsetLeft,
+      behavior: "smooth",
+    });
+    setCurrentCard(nextIndex);
+  };
+
+  const syncCurrentCard = () => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll<HTMLElement>("article"));
+    const trackLeft = track.getBoundingClientRect().left;
+    let nearest = 0;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < nearestDistance) {
+        nearest = index;
+        nearestDistance = distance;
+      }
+    });
+
+    setCurrentCard(nearest);
+  };
+
   return (
     <section
       id="sec-primeira"
-      data-pin="1"
-      className="relative bg-sand py-[clamp(56px,8vw,120px)] md:h-[300vh] md:py-0"
+      className="relative bg-sand py-[clamp(56px,8vw,120px)]"
     >
-      <div className="flex items-center overflow-hidden md:sticky md:top-0 md:h-screen">
+      <div className="relative flex items-center overflow-hidden">
         <div
-          data-cards="1"
+          ref={trackRef}
           aria-label="Informações para a primeira visita ao Aira Spa"
-          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-pan-x md:w-max md:snap-none md:overflow-visible md:px-[clamp(20px,8vw,160px)] md:pb-0"
+          onScroll={syncCurrentCard}
+          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-pan-x [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
         >
           <article className={cardShell}>
             <div className={cardText}>
@@ -87,6 +129,25 @@ export default function PrimeiraVez() {
             </div>
           </article>
         </div>
+
+        <button
+          type="button"
+          aria-label="Ver cartão anterior"
+          disabled={currentCard === 0}
+          onClick={() => goToCard(currentCard - 1)}
+          className="absolute left-3 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border border-clay/25 bg-cream/95 text-clay shadow-lg transition hover:bg-white disabled:pointer-events-none disabled:opacity-30 md:flex"
+        >
+          <span aria-hidden="true" className="text-2xl leading-none">←</span>
+        </button>
+        <button
+          type="button"
+          aria-label="Ver próximo cartão"
+          disabled={currentCard === 2}
+          onClick={() => goToCard(currentCard + 1)}
+          className="absolute right-3 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border border-clay/25 bg-cream/95 text-clay shadow-lg transition hover:bg-white disabled:pointer-events-none disabled:opacity-30 md:flex"
+        >
+          <span aria-hidden="true" className="text-2xl leading-none">→</span>
+        </button>
       </div>
     </section>
   );
