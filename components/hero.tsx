@@ -55,7 +55,7 @@ export default function Hero() {
             marcas de hotel e o horario aparecem antes de qualquer rolagem.
           */}
           <p className="m-0 mt-[clamp(20px,2.6vw,34px)] max-w-[62ch] text-balance text-[clamp(11px,1.05vw,14px)] font-light leading-[1.7] text-cream/70">
-            Dentro dos hotéis DoubleTree by Hilton e Viale Cataratas · {hours.human}
+            Unidade DoubleTree by Hilton e Unidade Viale Cataratas · {hours.human}
           </p>
         </div>
       </div>

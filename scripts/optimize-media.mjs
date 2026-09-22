@@ -56,9 +56,13 @@ for (const file of files) {
     const webm = path.join(OUT, `${name}.webm`);
     const mp4 = path.join(OUT, `${name}.mp4`);
     const poster = path.join(POSTERS, `${name}.jpg`);
-    const startAt = name === "hero" ? "1" : "0";
-    const videoCrfVp9 = name === "hero" ? 28 : VIDEO_CRF_VP9;
-    const videoCrfH264 = name === "hero" ? 22 : VIDEO_CRF_H264;
+    const startAt = name === "hero" ? "1" : name === "cha" ? "3" : "0";
+    const videoCrfVp9 = name === "hero" || name === "cha" ? 28 : VIDEO_CRF_VP9;
+    const videoCrfH264 = name === "cha" ? 21 : name === "hero" ? 22 : VIDEO_CRF_H264;
+    const videoFilters =
+      name === "cha"
+        ? ["-vf", "hqdn3d=1.2:1.2:4:4,unsharp=3:3:0.25:3:3:0"]
+        : [];
 
     // Poster = primeiro frame exibido (1 s no hero, 0 nos demais), exatamente o
     // que o video mostra antes de tocar. Serve de
@@ -66,13 +70,16 @@ for (const file of files) {
     // (iOS em Modo de Baixo Consumo, por exemplo). JPEG de proposito: o atributo
     // poster aceita uma URL so, sem <source> de fallback.
     if (stale(src, poster)) {
-      ffmpeg(["-ss", startAt, "-i", src, "-frames:v", "1", "-q:v", "4", poster]);
+      ffmpeg([
+        "-ss", startAt, "-i", src, ...videoFilters,
+        "-frames:v", "1", "-q:v", "4", poster,
+      ]);
     }
 
     // -an: todo video da pagina toca mudo, faixa de audio e byte jogado fora.
     if (stale(src, webm)) {
       ffmpeg([
-        "-ss", startAt, "-i", src, "-an",
+        "-ss", startAt, "-i", src, "-an", ...videoFilters,
         "-c:v", "libvpx-vp9", "-crf", String(videoCrfVp9), "-b:v", "0",
         "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
         "-pix_fmt", "yuv420p", webm,
@@ -83,7 +90,7 @@ for (const file of files) {
     // player comecar sem baixar o arquivo inteiro.
     if (stale(src, mp4)) {
       ffmpeg([
-        "-ss", startAt, "-i", src, "-an",
+        "-ss", startAt, "-i", src, "-an", ...videoFilters,
         "-c:v", "libx264", "-preset", "slow", "-crf", String(videoCrfH264),
         "-profile:v", "high", "-level", "4.0", "-pix_fmt", "yuv420p",
         "-g", "60", "-movflags", "+faststart", mp4,

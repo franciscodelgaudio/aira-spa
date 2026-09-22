@@ -70,9 +70,6 @@ export default function Local() {
                     <span className="block text-[clamp(17px,1.35vw,22px)] font-medium text-clay">
                       {unit.name}
                     </span>
-                    <span className="mt-1 block text-[clamp(15px,1.1vw,18px)] font-normal text-body">
-                      {unit.location}
-                    </span>
                     <span className="mt-1 block text-[clamp(15px,1.1vw,18px)] font-light text-muted">
                       {unit.address} — {unit.district}, {site.city} - {site.region}
                     </span>

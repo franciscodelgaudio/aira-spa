@@ -35,8 +35,9 @@ export const site = {
   country: "BR",
   /** Previa de link, gerada por scripts/make-brand-assets.mjs. */
   ogImage: "/og.jpg",
+  /** Descreve o que a imagem gerada mostra: troque junto com a foto de origem. */
   ogImageAlt:
-    "Massagem relaxante no Aira Spa, spa em Foz do Iguaçu dentro dos hotéis DoubleTree by Hilton e Viale Cataratas",
+    "Sala de massagem do Aira Spa em Foz do Iguaçu, com duas macas preparadas, toalhas e espelhos de palha, dentro dos hotéis DoubleTree by Hilton e Viale Cataratas",
 } as const;
 
 /** Mesmo horario nas duas unidades. Formato 24h, como o schema.org exige. */
@@ -61,7 +62,7 @@ export const units = [
     slug: "doubletree",
     name: "Unidade DoubleTree by Hilton",
     hotel: "DoubleTree by Hilton Foz do Iguaçu",
-    location: "Dentro do hotel DoubleTree by Hilton",
+    location: "Unidade DoubleTree by Hilton",
     address: "Av. das Cataratas, 2930",
     district: "Vila Yolanda",
     postalCode: "85853-000",
@@ -74,7 +75,7 @@ export const units = [
     slug: "viale",
     name: "Unidade Viale Cataratas",
     hotel: "Viale Cataratas Hotel",
-    location: "Dentro do hotel Viale Cataratas",
+    location: "Unidade Viale Cataratas",
     address: "Av. das Cataratas, 2420",
     district: "Vila Yolanda",
     postalCode: "85853-000",
