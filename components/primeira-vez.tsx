@@ -67,11 +67,18 @@ export default function PrimeiraVez() {
           <article className={cardShell}>
             <div className={cardText}>
               <div className={rule} />
-              <div className="text-[clamp(12px,1.1vw,15px)] font-light uppercase tracking-[0.42em] text-clay">
-                Primeira vez no
-              </div>
-              <h2 className="m-0 mt-2 text-[clamp(30px,4.2vw,62px)] font-extralight leading-[1.05] tracking-[0.06em] text-clay">
-                AIRA SPA?
+              {/*
+                O rotulo e o nome eram duas caixas soltas: o titulo da secao,
+                lido isolado, era so "AIRA SPA?". Juntos em um <h2> viram a
+                pergunta inteira, que e como ela aparece num resultado de busca.
+              */}
+              <h2 className="m-0 text-clay">
+                <span className="block text-[clamp(12px,1.1vw,15px)] font-light uppercase tracking-[0.42em]">
+                  Primeira vez no
+                </span>
+                <span className="mt-2 block text-[clamp(30px,4.2vw,62px)] font-extralight leading-[1.05] tracking-[0.06em]">
+                  AIRA SPA?
+                </span>
               </h2>
               <p className={paragraph}>
                 Criamos uma experiência simples, acolhedora e pensada para você relaxar
@@ -81,6 +88,7 @@ export default function PrimeiraVez() {
             <div className={cardMedia}>
               <BgImage
                 asset={media.card1}
+                alt="Chegada e recepção de uma visitante no Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -98,13 +106,14 @@ export default function PrimeiraVez() {
               </div>
               <p className="m-0 mt-1.5 max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
                 Não é necessário se hospedar. As unidades do Aira Spa ficam dentro dos
-                hotéis DoubleTree e Viale, mas atendem hóspedes, moradores de Foz e
-                visitantes.
+                hotéis DoubleTree by Hilton e Viale Cataratas, mas atendem hóspedes,
+                moradores de Foz do Iguaçu e visitantes.
               </p>
             </div>
             <div className={cardMedia}>
               <BgImage
                 asset={media.card2}
+                alt="Hidromassagem do Aira Spa dentro do hotel, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -115,6 +124,7 @@ export default function PrimeiraVez() {
             <div className={`${cardMedia} order-2`}>
               <BgImage
                 asset={media.card3}
+                alt="Área de banho e relaxamento do Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />

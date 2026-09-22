@@ -9,10 +9,17 @@ export default function Home() {
   return (
     <>
       <AgendarFab />
-      <Hero />
-      <Experiencias />
-      <PrimeiraVez />
-      <Local />
+      {/*
+        <main> marca onde comeca o conteudo. Serve para o "pular para o conteudo"
+        dos leitores de tela e para os extratores de texto (incluindo os de IA),
+        que usam esse limite para separar conteudo de navegacao e rodape.
+      */}
+      <main>
+        <Hero />
+        <Experiencias />
+        <PrimeiraVez />
+        <Local />
+      </main>
       <Footer />
     </>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import BgImage from "./bg-image";
-import { media, units } from "@/lib/site";
+import { hours, mapsQuery, media, site, units } from "@/lib/site";
 
 export default function Local() {
   const [openUnit, setOpenUnit] = useState<number | null>(null);
@@ -16,6 +16,7 @@ export default function Local() {
         >
           <BgImage
             asset={media.local1}
+            alt="Sala de atendimento do Aira Spa dentro do hotel, em Foz do Iguaçu"
             className="absolute inset-x-0 h-[116%] w-full object-cover"
             style={{ top: "-8%", bottom: "-8%", objectPosition: "50% 50%" }}
           />
@@ -33,6 +34,17 @@ export default function Local() {
           >
             O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos
             hotéis DoubleTree by Hilton e Viale Cataratas.
+          </p>
+          {/*
+            O horario precisa estar escrito aqui porque o JSON-LD o declara em
+            openingHoursSpecification: o Google desconsidera dado estruturado que
+            o visitante nao consegue conferir na propria pagina.
+          */}
+          <p
+            data-reveal="1"
+            className="m-0 mt-[clamp(10px,1.2vw,16px)] text-[clamp(15px,1.1vw,18px)] font-light text-muted"
+          >
+            {hours.human}
           </p>
           <div
             data-reveal="1"
@@ -62,7 +74,7 @@ export default function Local() {
                       {unit.location}
                     </span>
                     <span className="mt-1 block text-[clamp(15px,1.1vw,18px)] font-light text-muted">
-                      {unit.address}
+                      {unit.address} — {unit.district}, {site.city} - {site.region}
                     </span>
                   </span>
                   <span
@@ -88,7 +100,7 @@ export default function Local() {
                       <iframe
                         title={`Mapa da ${unit.name}`}
                         src={`https://www.google.com/maps?q=${encodeURIComponent(
-                          `${unit.name}, ${unit.address}, Foz do Iguaçu - PR`
+                          mapsQuery(unit)
                         )}&output=embed`}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
@@ -158,6 +170,7 @@ export default function Local() {
         >
           <BgImage
             asset={media.local2}
+            alt="Chá de boas-vindas servido no Aira Spa, em Foz do Iguaçu"
             className="absolute inset-x-0 h-[116%] w-full object-cover"
             style={{ top: "-8%", bottom: "-8%", objectPosition: "50% 50%" }}
           />

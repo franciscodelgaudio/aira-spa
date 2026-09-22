@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Jost, Cormorant_Garamond } from "next/font/google";
-import { media } from "@/lib/site";
+import JsonLd from "@/components/json-ld";
+import { instagram, media, site, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const jost = Jost({
@@ -19,15 +20,96 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Aira Spa — Massagem e relaxamento em Foz do Iguaçu",
-  description:
-    "O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos hotéis DoubleTree by Hilton e Viale Cataratas. Massagem relaxante, candle, pedras quentes, drenagem linfática e facial.",
-  openGraph: {
-    title: "Aira Spa — Foz do Iguaçu",
-    description: "Seu corpo pede pausa. Um instante para desacelerar.",
-    locale: "pt_BR",
-    type: "website",
+  // Sem metadataBase o Next emite URL relativa em og:image, e o WhatsApp, o
+  // Facebook e o X descartam a imagem em vez de resolver o caminho.
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: site.title,
+    template: `%s | ${site.name} ${site.city}`,
   },
+  description: site.description,
+  applicationName: site.name,
+  // Uma so URL indexavel: sem canonical, cada variante (www, http, ?fbclid=,
+  // link do Instagram com utm) vira uma pagina concorrente aos olhos do Google.
+  alternates: { canonical: "/" },
+  keywords: [
+    "spa em Foz do Iguaçu",
+    "massagem em Foz do Iguaçu",
+    "massagem relaxante Foz do Iguaçu",
+    "drenagem linfática Foz do Iguaçu",
+    "massagem com pedras quentes",
+    "massagem candle",
+    "limpeza de pele e facial Foz do Iguaçu",
+    "spa DoubleTree by Hilton Foz do Iguaçu",
+    "spa Viale Cataratas",
+    "day spa Cataratas",
+  ],
+  category: "Spa e bem-estar",
+  authors: [{ name: site.name, url: `${siteUrl}/` }],
+  creator: site.name,
+  publisher: site.name,
+  // Os numeros ja estao dentro de links de WhatsApp. A auto-deteccao do iOS
+  // tentaria embrulha-los em um tel: proprio, aninhando <a> dentro de <a>.
+  formatDetection: { telephone: false, address: false, email: false },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 630,
+        alt: site.ogImageAlt,
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+    images: [{ url: site.ogImage, alt: site.ogImageAlt }],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      // Sem isso o Google usa a miniatura pequena nos resultados e corta o
+      // trecho de texto — os dois derrubam o clique.
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  // O <link rel="manifest"> sai de app/manifest.ts — declarar aqui duplicaria a tag.
+  other: {
+    // Sinais de negocio local que alguns agregadores e crawlers ainda leem.
+    "geo.region": `BR-${site.region}`,
+    "geo.placename": site.city,
+  },
+};
+
+export const viewport: Viewport = {
+  // Pinta a barra do navegador na cor do site antes do CSS carregar.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#e9e5dc" },
+    { media: "(prefers-color-scheme: dark)", color: "#241f1b" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -45,6 +127,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href={media.massagemVideo.poster}
           fetchPriority="high"
         />
+        {/* O <iframe> do mapa so e criado no clique; o DNS pode ir adiantando. */}
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="me" href={instagram.url} />
+        <JsonLd />
       </head>
       <body className="w-full overflow-x-hidden bg-sand text-ink">{children}</body>
     </html>

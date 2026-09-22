@@ -3,74 +3,7 @@
 import { useRef, useState } from "react";
 import BgImage from "./bg-image";
 import BgVideo from "./bg-video";
-import { media, type ImageAsset, type VideoAsset } from "@/lib/site";
-
-type Row =
-  | {
-      label: string;
-      description: string;
-      video: true;
-      asset: VideoAsset;
-      position: string;
-    }
-  | {
-      label: string;
-      description: string;
-      video: false;
-      asset: ImageAsset;
-      position: string;
-    };
-
-const rows: Row[] = [
-  {
-    label: "Massagem Relaxante",
-    description:
-      "Uma massagem com movimentos suaves e contínuos, pensada para aliviar a sensação de tensão muscular e proporcionar um momento de descanso profundo.",
-    video: true,
-    asset: media.massagemVideo,
-    position: "50% 10%",
-  },
-  {
-    label: "Massagem Candle",
-    description:
-      "Uma experiência sensorial feita com óleo morno de vela cosmética, que combina calor, aroma e movimentos relaxantes sobre a pele.",
-    video: true,
-    asset: media.candleVideo,
-    position: "50% 10%",
-  },
-  {
-    label: "Escalpes",
-    description:
-      "Uma massagem concentrada no couro cabeludo, na nuca e nos ombros, ideal para desacelerar e aliviar a sensação de tensão nessas regiões.",
-    video: true,
-    asset: media.escalpesVideo,
-    position: "50% 22%",
-  },
-  {
-    label: "Drenagem Linfática",
-    description:
-      "Realizada com movimentos leves, lentos e ritmados, a drenagem oferece uma experiência delicada de cuidado e sensação de leveza para o corpo.",
-    video: true,
-    asset: media.escalpesVideo,
-    position: "50% 10%",
-  },
-  {
-    label: "Pedras Quentes",
-    description:
-      "Combina o toque da massagem com pedras aquecidas posicionadas sobre o corpo, criando uma sensação envolvente de calor e relaxamento.",
-    video: true,
-    asset: media.salaVideo,
-    position: "50% 10%",
-  },
-  {
-    label: "Facial",
-    description:
-      "Um cuidado dedicado ao rosto que reúne hidratação, movimentos de massagem e uma pausa relaxante para renovar a sensação da pele.",
-    video: false,
-    asset: media.facial,
-    position: "50% 100%",
-  },
-];
+import { services } from "@/lib/site";
 
 export default function Experiencias() {
   const [active, setActive] = useState(0);
@@ -95,21 +28,22 @@ export default function Experiencias() {
   return (
     <section
       id="sec-exp"
+      aria-labelledby="sec-exp-titulo"
       className="flex min-h-screen flex-wrap items-center gap-[clamp(18px,3vw,56px)] bg-taupe p-[clamp(16px,3vw,56px)]"
     >
       <div className="flex h-[clamp(420px,68vh,760px)] min-w-[260px] flex-1 basis-[420px] flex-col gap-[3px]">
-        {rows.map((row, index) => {
+        {services.map((service, index) => {
           const selected = active === index;
 
           return (
             <button
-              key={row.label}
+              key={service.name}
               ref={(element) => {
                 rowRefs.current[index] = element;
               }}
               type="button"
               aria-pressed={selected}
-              aria-label={`Selecionar ${row.label}`}
+              aria-label={`Selecionar ${service.name}`}
               onClick={() => select(index)}
               className="relative min-h-0 w-full cursor-pointer overflow-hidden border-0 p-0 text-left"
               style={{
@@ -117,18 +51,20 @@ export default function Experiencias() {
                 transition: "flex-grow .7s cubic-bezier(.22,.61,.36,1)",
               }}
             >
-              {row.video ? (
+              {service.video ? (
                 <BgVideo
-                  asset={row.asset}
+                  asset={service.asset}
                   preload="metadata"
+                  aria-label={service.alt}
                   className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: row.position }}
+                  style={{ objectPosition: service.position }}
                 />
               ) : (
                 <BgImage
-                  asset={row.asset}
+                  asset={service.asset}
+                  alt={service.alt}
                   className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: row.position }}
+                  style={{ objectPosition: service.position }}
                 />
               )}
               <span
@@ -145,7 +81,7 @@ export default function Experiencias() {
                     : "text-[clamp(13px,1.3vw,19px)] text-cream/70"
                 }`}
               >
-                {row.label}
+                {service.name}
               </span>
             </button>
           );
@@ -156,15 +92,32 @@ export default function Experiencias() {
         aria-live="polite"
         className="min-w-[240px] flex-1 basis-[300px] py-[clamp(4px,1.5vw,32px)] text-cream"
       >
-        <div className="text-[11px] font-light uppercase tracking-[0.34em] text-cream/70">
-          Sobre o serviço
-        </div>
-        <h2 className="font-accent m-0 mt-3 text-[clamp(32px,4vw,60px)] font-normal leading-[1.08]">
-          {rows[active].label}
+        <h2
+          id="sec-exp-titulo"
+          className="m-0 text-[11px] font-light uppercase tracking-[0.34em] text-cream/70"
+        >
+          Massagens e tratamentos
         </h2>
-        <p className="m-0 mt-[clamp(18px,2vw,30px)] max-w-[38ch] border-t border-cream/30 pt-[clamp(18px,2vw,30px)] text-[clamp(16px,1.3vw,21px)] font-light leading-[1.7] text-cream/90">
-          {rows[active].description}
-        </p>
+        <h3 className="font-accent m-0 mt-3 text-[clamp(32px,4vw,60px)] font-normal leading-[1.08]">
+          {services[active].name}
+        </h3>
+        {/*
+          As seis descricoes ficam no HTML, e nao so a do item aberto. Antes, um
+          buscador (ou um crawler de IA, que nao clica em nada) via o nome dos
+          seis servicos e o texto de um so — cinco descricoes simplesmente nao
+          existiam para quem indexa. O atributo hidden cuida do resto: o
+          navegador nao pinta, o leitor de tela nao anuncia, e o texto continua
+          na pagina. E o mesmo conteudo que aparece no clique.
+        */}
+        {services.map((service, index) => (
+          <p
+            key={service.name}
+            hidden={index !== active}
+            className="m-0 mt-[clamp(18px,2vw,30px)] max-w-[38ch] border-t border-cream/30 pt-[clamp(18px,2vw,30px)] text-[clamp(16px,1.3vw,21px)] font-light leading-[1.7] text-cream/90"
+          >
+            {service.description}
+          </p>
+        ))}
       </div>
     </section>
   );

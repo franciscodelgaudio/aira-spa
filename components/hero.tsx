@@ -1,6 +1,6 @@
 import Wordmark from "./wordmark";
 import BgVideo from "./bg-video";
-import { media } from "@/lib/site";
+import { hours, media, site } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -9,6 +9,7 @@ export default function Hero() {
           asset={media.massagemVideo}
           priority
           autoPlay
+          aria-label="Massagem relaxante em andamento em uma sala do Aira Spa"
           className="absolute inset-0 h-full w-full origin-center object-cover"
           style={{ objectPosition: "50% 55%" }}
         />
@@ -25,8 +26,19 @@ export default function Hero() {
             <Wordmark />
           </div>
 
-          <h1 className="m-0 text-[clamp(34px,6.4vw,92px)] font-extralight leading-[1.08] tracking-[0.01em]">
-            Seu corpo pede pausa.
+          {/*
+            O <h1> e o texto de maior peso da pagina para um buscador, e sozinha
+            "Seu corpo pede pausa." nao diz o que o negocio faz nem onde fica.
+            A linha de cima resolve isso sem trocar a frase: quem le comeca pelo
+            que o lugar e, e so depois pela promessa.
+          */}
+          <h1 className="m-0">
+            <span className="block text-[clamp(10px,1.1vw,13px)] font-light uppercase tracking-[0.32em] text-cream/75">
+              {site.name} · {site.tagline}
+            </span>
+            <span className="mt-[clamp(16px,2.2vw,30px)] block text-[clamp(34px,6.4vw,92px)] font-extralight leading-[1.08] tracking-[0.01em]">
+              Seu corpo pede pausa.
+            </span>
           </h1>
 
           <p className="font-accent m-0 mt-[clamp(16px,2vw,28px)] text-[clamp(20px,2.8vw,40px)] font-light opacity-95">
@@ -39,6 +51,15 @@ export default function Hero() {
           >
             Conheça a experiência
           </a>
+
+          {/*
+            Onde e quando, acima da dobra. Responde a duvida mais comum de quem
+            chega pelo Instagram e, de quebra, e o unico ponto em que as duas
+            marcas de hotel e o horario aparecem antes de qualquer rolagem.
+          */}
+          <p className="m-0 mt-[clamp(20px,2.6vw,34px)] max-w-[40ch] text-[clamp(11px,1.05vw,14px)] font-light leading-[1.7] text-cream/70">
+            Dentro dos hotéis DoubleTree by Hilton e Viale Cataratas · {hours.human}
+          </p>
         </div>
 
     </section>
