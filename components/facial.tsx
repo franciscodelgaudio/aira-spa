@@ -15,7 +15,7 @@ export default function Facial() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(115deg, rgba(36,31,27,.62) 0%, rgba(36,31,27,.18) 55%, rgba(36,31,27,.05) 100%)",
+              "linear-gradient(115deg, rgba(31,43,42,.62) 0%, rgba(31,43,42,.18) 55%, rgba(31,43,42,.05) 100%)",
           }}
         />
 

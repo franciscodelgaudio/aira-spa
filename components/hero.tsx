@@ -5,13 +5,13 @@ import { hours, media, site } from "@/lib/site";
 export default function Hero() {
   return (
     <section id="sec-hero" className="flex h-screen min-h-[620px] flex-col overflow-hidden bg-ink">
-      <div className="relative z-10 flex h-[clamp(104px,12vw,132px)] shrink-0 items-center justify-center bg-[#678481]">
+      <div className="relative z-10 flex h-[clamp(104px,12vw,132px)] shrink-0 items-center justify-center bg-brand">
         <Wordmark />
       </div>
 
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <BgVideo
-          asset={media.massagemVideo}
+          asset={media.heroVideo}
           priority
           autoPlay
           aria-label="Massagem relaxante em andamento em uma sala do Aira Spa"
@@ -22,7 +22,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(36,31,27,.5) 0%, rgba(36,31,27,.28) 40%, rgba(36,31,27,.62) 100%)",
+              "linear-gradient(180deg, rgba(31,43,42,.5) 0%, rgba(31,43,42,.28) 40%, rgba(31,43,42,.62) 100%)",
           }}
         />
 

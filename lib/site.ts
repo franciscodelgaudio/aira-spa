@@ -143,6 +143,7 @@ const image = (name: string, width: number, height: number): ImageAsset => ({
 });
 
 export const media = {
+  heroVideo: video("hero"),
   massagemVideo: video("costas"),
   candleVideo: video("cha"),
   escalpesVideo: video("pes"),

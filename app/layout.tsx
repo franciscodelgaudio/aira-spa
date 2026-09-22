@@ -102,8 +102,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   // Pinta a barra do navegador na cor do site antes do CSS carregar.
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#e9e5dc" },
-    { media: "(prefers-color-scheme: dark)", color: "#241f1b" },
+    { media: "(prefers-color-scheme: light)", color: "#e7eceb" },
+    { media: "(prefers-color-scheme: dark)", color: "#1f2b2a" },
   ],
   colorScheme: "light",
 };

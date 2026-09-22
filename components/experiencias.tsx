@@ -71,7 +71,7 @@ export default function Experiencias() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(90deg, rgba(36,31,27,.55), rgba(36,31,27,.12))",
+                    "linear-gradient(90deg, rgba(31,43,42,.55), rgba(31,43,42,.12))",
                 }}
               />
               <span

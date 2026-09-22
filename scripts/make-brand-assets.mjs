@@ -1,13 +1,9 @@
 /**
- * Gera os arquivos de marca que o SEO precisa e que nao existem no design:
+ * Gera a imagem de compartilhamento que o SEO precisa:
  *
  *   public/og.jpg                 1200x630, a previa de link (WhatsApp, Insta, X)
- *   public/icon-192.png           icone do manifesto
- *   public/icon-512.png           icone do manifesto e logo do JSON-LD
- *   public/icon-maskable-512.png  icone Android recortado em circulo/squircle
- *   public/apple-icon.png         180x180, tela inicial do iOS
  *
- * Rode depois de trocar a foto de origem ou o app/icon.svg:
+ * Rode depois de trocar a foto de origem:
  *   node scripts/make-brand-assets.mjs
  *
  * Sao arquivos GERADOS: nao edite a mao, edite a origem e rode de novo.
@@ -61,25 +57,6 @@ const overlay = Buffer.from(`
 </svg>
 `);
 
-/** O icone do app, redesenhado por tamanho para a linha nao sumir no 192. */
-const iconSvg = ({ size, inset }) => {
-  // inset = margem de seguranca. O Android recorta o icone maskable em circulo
-  // ou squircle e come ate 20% de cada lado; o "A" precisa caber no miolo.
-  const s = (n) => (n / 64) * size * (1 - inset * 2) + size * inset;
-  return Buffer.from(`
-<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  <rect width="${size}" height="${size}" fill="#8A6A4F"/>
-  <g fill="none" stroke="#F6F2EA" stroke-width="${(3.4 / 64) * size * (1 - inset * 2)}" stroke-linecap="round">
-    <path d="M${s(32)} ${s(15)} L${s(19.5)} ${s(49)}"/>
-    <path d="M${s(32)} ${s(15)} L${s(44.5)} ${s(49)}"/>
-    <path d="M${s(23.2)} ${s(39)} L${s(40.8)} ${s(39)}"/>
-  </g>
-</svg>`);
-};
-
-const icon = (size, inset, file) =>
-  sharp(iconSvg({ size, inset }), { density: 384 }).png().toFile(out(file));
-
 await mkdir(path.join(root, "public"), { recursive: true });
 
 await sharp(SOURCE)
@@ -88,11 +65,4 @@ await sharp(SOURCE)
   .jpeg({ quality: 82, chromaSubsampling: "4:4:4", mozjpeg: true })
   .toFile(out("og.jpg"));
 
-await Promise.all([
-  icon(192, 0, "icon-192.png"),
-  icon(512, 0, "icon-512.png"),
-  icon(512, 0.18, "icon-maskable-512.png"),
-  icon(180, 0, "apple-icon.png"),
-]);
-
-console.log("gerado: og.jpg, icon-192, icon-512, icon-maskable-512, apple-icon");
+console.log("gerado: og.jpg");

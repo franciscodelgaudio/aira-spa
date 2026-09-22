@@ -63,7 +63,7 @@ export default function ScrollCue() {
         className="text-[11px] font-light uppercase tracking-[0.26em] transition-opacity duration-700"
         style={{
           opacity: nudge ? 1 : 0.72,
-          textShadow: "0 1px 12px rgba(36,31,27,.45)",
+          textShadow: "0 1px 12px rgba(31,43,42,.45)",
         }}
       >
         {/* No toque nao existe "rolar o mouse": o gesto e outro e o verbo tambem.

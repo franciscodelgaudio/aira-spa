@@ -28,8 +28,8 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: site.locale,
     dir: "ltr",
     categories: ["health", "lifestyle", "travel"],
-    background_color: "#e9e5dc",
-    theme_color: "#8a6a4f",
+    background_color: "#e7eceb",
+    theme_color: "#678481",
     icons: [
       {
         src: "/FAVICON.png?v=3",

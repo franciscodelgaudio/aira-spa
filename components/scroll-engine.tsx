@@ -89,7 +89,7 @@ export default function ScrollEngine() {
         }
 
         const dim = sec.querySelector<HTMLElement>("[data-dim]");
-        if (dim) dim.style.background = `rgba(36,31,27,${(0.42 + 0.22 * p).toFixed(3)})`;
+        if (dim) dim.style.background = `rgba(31,43,42,${(0.42 + 0.22 * p).toFixed(3)})`;
 
         if (sec.dataset.steps) {
           const n = parseInt(sec.dataset.steps, 10);
@@ -102,7 +102,7 @@ export default function ScrollEngine() {
               row.style.flexGrow = on ? "2.6" : "1";
               const label = row.querySelector<HTMLElement>("[data-rowlabel]");
               if (label) {
-                label.style.color = on ? "#FFFFFF" : "rgba(246,242,234,.72)";
+                label.style.color = on ? "#FFFFFF" : "rgba(246,244,238,.72)";
                 label.style.fontSize = on
                   ? "clamp(16px,1.8vw,26px)"
                   : "clamp(13px,1.3vw,19px)";

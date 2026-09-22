@@ -5,7 +5,7 @@ import InstagramIcon from "./instagram-icon";
 import { instagram } from "@/lib/site";
 
 const pill =
-  "flex min-h-12 items-center rounded-full bg-clay text-cream shadow-[0_10px_30px_rgba(36,31,27,.22)] transition-colors hover:bg-clay-deep";
+  "flex min-h-12 items-center rounded-full bg-clay text-cream shadow-[0_10px_30px_rgba(31,43,42,.22)] transition-colors hover:bg-clay-deep";
 
 export default function AgendarFab() {
   const [showBooking, setShowBooking] = useState(false);

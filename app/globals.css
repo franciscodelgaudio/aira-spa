@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --sand: #e9e5dc;
-  --ink: #241f1b;
-  --clay: #8a6a4f;
-  --clay-deep: #6e5340;
-  --cream: #f6f2ea;
-  --taupe: #b5a08a;
-  --stone: #cfc7ba;
-  --body: #4a403a;
-  --muted: #6b5f56;
+  --brand: #678481;
+  --sand: #e7eceb;
+  --ink: #1f2b2a;
+  --clay: #52706d;
+  --clay-deep: #3f5c59;
+  --cream: #f6f4ee;
+  --taupe: #829b98;
+  --stone: #c8d3d1;
+  --body: #3d4b49;
+  --muted: #60706e;
 }
 
 @theme inline {
   --color-sand: var(--sand);
+  --color-brand: var(--brand);
   --color-ink: var(--ink);
   --color-clay: var(--clay);
   --color-clay-deep: var(--clay-deep);
