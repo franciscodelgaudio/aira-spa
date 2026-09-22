@@ -2,6 +2,14 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site";
 
 /**
+ * Exigido por output: "export" — sem isso o Next trata a rota de metadata como
+ * dinamica e o build para, porque um export estatico nao tem servidor para
+ * responder em tempo de requisicao.
+ */
+export const dynamic = "force-static";
+
+
+/**
  * Site institucional de pagina unica: tudo aqui e para ser encontrado, entao a
  * regra e liberar.
  *

@@ -2,6 +2,14 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 
 /**
+ * Exigido por output: "export" — sem isso o Next trata a rota de metadata como
+ * dinamica e o build para, porque um export estatico nao tem servidor para
+ * responder em tempo de requisicao.
+ */
+export const dynamic = "force-static";
+
+
+/**
  * O manifesto vale menos como PWA e mais como identidade: e o que da nome e
  * icone corretos quando alguem salva o site na tela inicial do celular, que e
  * de onde vem a maior parte do trafego de um spa.

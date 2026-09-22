@@ -2,6 +2,14 @@ import type { MetadataRoute } from "next";
 import { media, services, site, siteUrl } from "@/lib/site";
 
 /**
+ * Exigido por output: "export" — sem isso o Next trata a rota de metadata como
+ * dinamica e o build para, porque um export estatico nao tem servidor para
+ * responder em tempo de requisicao.
+ */
+export const dynamic = "force-static";
+
+
+/**
  * Uma pagina so — o sitemap nao serve aqui para o Google "achar" o site, e sim
  * para declarar a URL canonica com barra final (next.config.ts usa
  * trailingSlash) e para entregar as fotos ao Google Imagens, que nao rastreia

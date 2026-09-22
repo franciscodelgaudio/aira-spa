@@ -34,7 +34,7 @@ export default function Hero() {
           */}
           <h1 className="m-0">
             <span className="block text-[clamp(10px,1.1vw,13px)] font-light uppercase tracking-[0.32em] text-cream/75">
-              {site.name} · {site.tagline}
+              {site.tagline}
             </span>
             <span className="mt-[clamp(16px,2.2vw,30px)] block text-[clamp(34px,6.4vw,92px)] font-extralight leading-[1.08] tracking-[0.01em]">
               Seu corpo pede pausa.
@@ -57,7 +57,7 @@ export default function Hero() {
             chega pelo Instagram e, de quebra, e o unico ponto em que as duas
             marcas de hotel e o horario aparecem antes de qualquer rolagem.
           */}
-          <p className="m-0 mt-[clamp(20px,2.6vw,34px)] max-w-[40ch] text-[clamp(11px,1.05vw,14px)] font-light leading-[1.7] text-cream/70">
+          <p className="m-0 mt-[clamp(20px,2.6vw,34px)] max-w-[62ch] text-balance text-[clamp(11px,1.05vw,14px)] font-light leading-[1.7] text-cream/70">
             Dentro dos hotéis DoubleTree by Hilton e Viale Cataratas · {hours.human}
           </p>
         </div>
