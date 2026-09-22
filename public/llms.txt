@@ -1,0 +1,53 @@
+# Aira Spa — Massagem e spa em Foz do Iguaçu
+
+> O Aira Spa é um spa de massagem em Foz do Iguaçu (PR), com duas unidades
+> instaladas dentro dos hotéis DoubleTree by Hilton e Viale Cataratas, ambas na
+> Avenida das Cataratas. Atende hóspedes, moradores e visitantes — não é preciso
+> estar hospedado. Os atendimentos são agendados por WhatsApp e acontecem todos
+> os dias, das 15h às 21h.
+
+Site oficial: https://airaspa.com.br/
+Instagram: https://instagram.com/airaspa.foz
+
+## Unidades
+
+- **Aira Spa — DoubleTree by Hilton**: dentro do hotel DoubleTree by Hilton Foz
+  do Iguaçu. Av. das Cataratas, 2930 — Vila Yolanda, Foz do Iguaçu - PR,
+  85853-000. WhatsApp (45) 99133-1717 — https://wa.me/5545991331717
+- **Aira Spa — Viale Cataratas**: dentro do Viale Cataratas Hotel. Av. das
+  Cataratas, 2420 — Vila Yolanda, Foz do Iguaçu - PR, 85853-000.
+  WhatsApp (45) 99103-1666 — https://wa.me/5545991031666
+
+## Horário
+
+Todos os dias, das 15h às 21h, nas duas unidades.
+
+## Serviços
+
+- **Massagem Relaxante**: massagem com movimentos suaves e contínuos, para
+  aliviar a sensação de tensão muscular e proporcionar descanso profundo.
+- **Massagem Candle**: experiência sensorial com óleo morno de vela cosmética,
+  combinando calor, aroma e movimentos relaxantes sobre a pele.
+- **Escalpes**: massagem concentrada no couro cabeludo, na nuca e nos ombros.
+- **Drenagem Linfática**: movimentos leves, lentos e ritmados, com sensação de
+  leveza para o corpo.
+- **Pedras Quentes**: massagem com pedras aquecidas posicionadas sobre o corpo.
+- **Facial**: cuidado dedicado ao rosto, com hidratação e movimentos de massagem.
+
+## Perguntas frequentes
+
+- **Preciso estar hospedado no hotel para ir ao Aira Spa?** Não. As unidades
+  ficam dentro dos hotéis DoubleTree by Hilton e Viale Cataratas, mas atendem
+  hóspedes, moradores de Foz do Iguaçu e visitantes.
+- **Onde fica o Aira Spa?** São duas unidades, as duas na Avenida das Cataratas,
+  em Vila Yolanda, Foz do Iguaçu - PR.
+- **Como agendar?** Pelo WhatsApp da unidade escolhida: (45) 99133-1717
+  (DoubleTree by Hilton) ou (45) 99103-1666 (Viale Cataratas).
+- **O que fazer ao chegar?** Apresentar-se na recepção do hotel onde fica a
+  unidade escolhida; a equipe indica o caminho até o spa.
+
+## Observações
+
+- Este arquivo é mantido à mão. A fonte de verdade dos mesmos dados é
+  `lib/site.ts`, que gera os metadados, o JSON-LD e o texto do site: ao mudar
+  horário, endereço, telefone ou serviço lá, atualize também aqui.
