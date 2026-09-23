@@ -144,16 +144,20 @@ const image = (name: string, width: number, height: number): ImageAsset => ({
 });
 
 export const media = {
+  /** Triptico para telas deitadas; a versao vertical e a faixa central dele. */
   heroVideo: video("hero"),
+  heroVerticalVideo: video("hero-vertical"),
   massagemVideo: video("costas"),
   candleVideo: video("cha"),
   escalpesVideo: video("pes"),
   ambienteVideo: video("hidro"),
   salaVideo: video("sala-spa"),
   facial: image("facial", 1820, 1666),
-  card1: image("chegada", 720, 1280),
+  // Dois trechos do mesmo reels da unidade DoubleTree (media-fonte/2026-08-12_18-58-38_UTC.mp4):
+  // o ambiente do spa (14,3–22,7 s) e o caminho do saguao ate a porta (0,5–12,2 s).
+  card1Video: video("chegada-momento"),
   card2: image("hidro", 519, 649),
-  card3: image("banho", 720, 1280),
+  card3Video: video("chegada-caminho"),
   local1: image("sala", 1086, 1358),
   local2: image("cha", 1088, 1344),
 } as const;

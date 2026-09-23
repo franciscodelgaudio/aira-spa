@@ -1,13 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BgImage from "./bg-image";
-import { media } from "@/lib/site";
+import BgVideo from "./bg-video";
+import { media, units } from "@/lib/site";
 
 const cardShell =
-  "flex shrink-0 basis-[calc(100vw-40px)] snap-center flex-wrap items-center gap-[clamp(16px,3vw,48px)] rounded-[2px] bg-cream p-[clamp(20px,4vw,64px)] md:basis-[min(78vw,780px)]";
+  "flex shrink-0 basis-[calc(100vw-72px)] snap-start flex-wrap items-center gap-[clamp(16px,3vw,48px)] rounded-[2px] bg-cream p-[clamp(20px,4vw,64px)] md:basis-[min(78vw,780px)] md:snap-center";
 const cardText = "min-w-[200px] flex-1 basis-[240px]";
-const cardMedia = "h-[clamp(220px,42vh,420px)] flex-[0_1_200px] overflow-hidden";
+const cardMedia = "relative h-[clamp(220px,42vh,420px)] flex-[1_1_200px] overflow-hidden md:flex-[0_1_200px]";
 const rule = "mb-[clamp(18px,2.4vw,34px)] h-px w-[clamp(80px,9vw,140px)] bg-clay";
 const paragraph =
   "m-0 mt-[clamp(14px,1.8vw,26px)] max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body";
@@ -15,6 +16,28 @@ const paragraph =
 export default function PrimeiraVez() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentCard, setCurrentCard] = useState(0);
+
+  // Cada video toca so enquanto o cartao dele esta de fato na tela (o
+  // observer ja considera o recorte do carrossel) e pausa ao sair. Com
+  // movimento reduzido fica no poster.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          const video = target as HTMLVideoElement;
+          if (isIntersecting) void video.play().catch(() => undefined);
+          else video.pause();
+        });
+      },
+      { threshold: 0.6 }
+    );
+    track.querySelectorAll("video").forEach((video) => io.observe(video));
+    return () => io.disconnect();
+  }, []);
 
   const goToCard = (index: number) => {
     const track = trackRef.current;
@@ -25,8 +48,9 @@ export default function PrimeiraVez() {
     const target = cards[nextIndex];
     if (!target) return;
 
+    const scrollPadding = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
     track.scrollTo({
-      left: target.offsetLeft - track.offsetLeft,
+      left: target.offsetLeft - track.offsetLeft - scrollPadding,
       behavior: "smooth",
     });
     setCurrentCard(nextIndex);
@@ -62,7 +86,7 @@ export default function PrimeiraVez() {
           ref={trackRef}
           aria-label="Informações para a primeira visita ao Aira Spa"
           onScroll={syncCurrentCard}
-          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain px-5 pb-4 touch-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
+          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-4 md:scroll-px-0 touch-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
         >
           <article className={cardShell}>
             <div className={cardText}>
@@ -86,11 +110,10 @@ export default function PrimeiraVez() {
               </p>
             </div>
             <div className={cardMedia}>
-              <BgImage
-                asset={media.card1}
-                alt="Chegada e recepção de uma visitante no Aira Spa, em Foz do Iguaçu"
+              <BgVideo
+                asset={media.card1Video}
+                aria-label="Chinelos, roupão, vela acesa e banheira com espuma no Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
-                style={{ objectPosition: "50% 50%" }}
               />
             </div>
           </article>
@@ -117,17 +140,31 @@ export default function PrimeiraVez() {
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
+              {/*
+                A foto sozinha nao responde a pergunta do cartao; os dois hoteis
+                por cima dela, sim.
+              */}
+              <ul className="absolute inset-x-0 bottom-0 m-0 flex list-none flex-col gap-2 bg-gradient-to-t from-ink/80 via-ink/50 to-transparent p-3 pt-12 text-cream">
+                {units.map((unit) => (
+                  <li key={unit.slug} className="leading-tight">
+                    <span className="block text-[13px] font-normal">{unit.name.replace("Unidade ", "")}</span>
+                    <span className="block text-[11px] font-light opacity-85">{unit.address}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </article>
 
           <article className={cardShell}>
             <div className={`${cardMedia} order-2`}>
-              <BgImage
-                asset={media.card3}
-                alt="Área de banho e relaxamento do Aira Spa, em Foz do Iguaçu"
+              <BgVideo
+                asset={media.card3Video}
+                aria-label="Caminho do saguão do DoubleTree by Hilton, pelo elevador e corredor, até a porta do Aira Spa"
                 className="h-full w-full object-cover"
-                style={{ objectPosition: "50% 50%" }}
               />
+              <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-normal uppercase tracking-[0.14em] text-clay">
+                Unidade DoubleTree
+              </span>
             </div>
             <div className={cardText}>
               <div className={rule} />
@@ -161,6 +198,30 @@ export default function PrimeiraVez() {
         >
           <span aria-hidden="true" className="text-2xl leading-none">→</span>
         </button>
+      </div>
+
+      {/*
+        No celular as setas ficam escondidas; sem estes pontos o primeiro
+        cartao parecia ser o conteudo inteiro da secao.
+      */}
+      <div className="mt-5 flex items-center justify-center gap-2 md:mt-8">
+        {[0, 1, 2].map((index) => (
+          <button
+            key={index}
+            type="button"
+            aria-label={`Ver cartão ${index + 1} de 3`}
+            aria-current={currentCard === index}
+            onClick={() => goToCard(index)}
+            className="flex h-6 items-center px-1"
+          >
+            <span
+              aria-hidden="true"
+              className={`block h-1.5 rounded-full bg-clay transition-all ${
+                currentCard === index ? "w-6 opacity-100" : "w-1.5 opacity-35"
+              }`}
+            />
+          </button>
+        ))}
       </div>
     </section>
   );

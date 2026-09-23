@@ -52,19 +52,92 @@ for (const file of files) {
   const ext = path.extname(file).toLowerCase();
   before += statSync(src).size;
 
+  if (name === "hero") {
+    // O original foi gravado para redes sociais: 1920x1080 com o conteudo
+    // vertical nitido so na faixa central (x 656..1264) e as laterais
+    // desfocadas. Dele saem dois videos:
+    //   hero-vertical  a faixa central sozinha, para telas em pe
+    //   hero           triptico da mesma faixa em 3 paineis, cada um adiantado
+    //                  um terco do video, para telas deitadas. Um arquivo so,
+    //                  entao continua sendo um download.
+    // O corte deixa 4 px de folga de cada lado para nao pegar a borda do blur.
+    const crop = "crop=600:1080:660:0,setsar=1";
+    const vertical = { name: "hero-vertical", inputs: ["-ss", "1", "-i", src], filter: ["-vf", crop] };
+
+    // Cada painel lateral e o video rotacionado: do offset ate o fim, depois do
+    // inicio ate o offset. Emendado assim o loop continua sem salto. Entradas
+    // separadas em vez de split+trim para o ffmpeg nao bufferizar segundos de
+    // frames crus na memoria.
+    const d = 36.37 - 1; // duracao do original menos o 1o segundo pulado
+    const off = [Math.round(d / 3), Math.round((2 * d) / 3)];
+    const gap = "pad=608:1080:0:0:color=0x1f2b2a"; // 8 px de --ink entre paineis
+    const triptych = {
+      name: "hero",
+      inputs: [
+        "-ss", "1", "-i", src,
+        "-ss", String(1 + off[0]), "-i", src,
+        "-ss", "1", "-t", String(off[0]), "-i", src,
+        "-ss", String(1 + off[1]), "-i", src,
+        "-ss", "1", "-t", String(off[1]), "-i", src,
+      ],
+      filter: [
+        "-filter_complex",
+        [
+          `[1:v]${crop}[l1]`, `[2:v]${crop}[l2]`, `[l1][l2]concat=n=2:v=1,${gap}[L]`,
+          `[0:v]${crop},${gap}[C]`,
+          `[3:v]${crop}[r1]`, `[4:v]${crop}[r2]`, `[r1][r2]concat=n=2:v=1[R]`,
+          `[L][C][R]hstack=inputs=3[v]`,
+        ].join(";"),
+        "-map", "[v]",
+      ],
+    };
+
+    for (const v of [vertical, triptych]) {
+      const webm = path.join(OUT, `${v.name}.webm`);
+      const mp4 = path.join(OUT, `${v.name}.mp4`);
+      const poster = path.join(POSTERS, `${v.name}.jpg`);
+      if (stale(src, webm)) {
+        ffmpeg([
+          ...v.inputs, "-an", ...v.filter,
+          "-c:v", "libvpx-vp9", "-crf", "28", "-b:v", "0",
+          "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
+          "-pix_fmt", "yuv420p", webm,
+        ]);
+      }
+      if (stale(src, mp4)) {
+        ffmpeg([
+          ...v.inputs, "-an", ...v.filter,
+          "-c:v", "libx264", "-preset", "slow", "-crf", "22",
+          "-profile:v", "high", "-level", "4.0", "-pix_fmt", "yuv420p",
+          "-g", "60", "-movflags", "+faststart", mp4,
+        ]);
+      }
+      // Primeiro frame do proprio mp4: e exatamente o que o video mostra antes
+      // de tocar.
+      if (stale(mp4, poster)) {
+        ffmpeg(["-i", mp4, "-frames:v", "1", "-q:v", "4", poster]);
+      }
+      after += statSync(webm).size + statSync(poster).size;
+      console.log(
+        `${(v.name + ".mp4").padEnd(16)} ${kb(src)} -> webm ${kb(webm)} | mp4 ${kb(mp4)} | poster ${kb(poster)}`
+      );
+    }
+    continue;
+  }
+
   if (ext === ".mp4") {
     const webm = path.join(OUT, `${name}.webm`);
     const mp4 = path.join(OUT, `${name}.mp4`);
     const poster = path.join(POSTERS, `${name}.jpg`);
-    const startAt = name === "hero" ? "1" : name === "cha" ? "3" : "0";
-    const videoCrfVp9 = name === "hero" || name === "cha" ? 28 : VIDEO_CRF_VP9;
-    const videoCrfH264 = name === "cha" ? 21 : name === "hero" ? 22 : VIDEO_CRF_H264;
+    const startAt = name === "cha" ? "3" : "0";
+    const videoCrfVp9 = name === "cha" ? 28 : VIDEO_CRF_VP9;
+    const videoCrfH264 = name === "cha" ? 21 : VIDEO_CRF_H264;
     const videoFilters =
       name === "cha"
         ? ["-vf", "hqdn3d=1.2:1.2:4:4,unsharp=3:3:0.25:3:3:0"]
         : [];
 
-    // Poster = primeiro frame exibido (1 s no hero, 0 nos demais), exatamente o
+    // Poster = primeiro frame exibido (3 s no cha, 0 nos demais), exatamente o
     // que o video mostra antes de tocar. Serve de
     // primeira pintura e e o que fica na tela quando o autoplay e bloqueado
     // (iOS em Modo de Baixo Consumo, por exemplo). JPEG de proposito: o atributo

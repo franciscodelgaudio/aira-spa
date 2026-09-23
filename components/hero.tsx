@@ -12,6 +12,7 @@ export default function Hero() {
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <BgVideo
           asset={media.heroVideo}
+          portrait={media.heroVerticalVideo}
           priority
           autoPlay
           aria-label="Massagem relaxante em andamento em uma sala do Aira Spa"

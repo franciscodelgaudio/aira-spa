@@ -134,6 +134,18 @@ Cada vídeo vira três arquivos e cada imagem, três formatos:
 | | `x.webp` | fallback intermediário |
 | | `x.jpg` | fallback final |
 
+O `hero.mp4` é exceção. O original é 1920×1080 com o conteúdo vertical só na
+faixa central e as laterais desfocadas, porque foi gravado para redes sociais.
+O script recorta essa faixa e gera dois vídeos:
+
+- `hero-vertical`: só a faixa central, usada quando a tela está em pé;
+- `hero`: um tríptico da mesma faixa em três painéis defasados no tempo, usado
+  quando a tela está deitada.
+
+Se um dia vier um hero gravado na horizontal, o recorte em
+`scripts/optimize-media.mjs` precisa ser revisto. As coordenadas estão fixas ali,
+assim como a duração do original.
+
 Os CRFs em `scripts/optimize-media.mjs` foram calibrados medindo SSIM contra os
 originais (≥ 0,98, ou seja, sem diferença visível). Subir o CRF encolhe mais e
 degrada mais.
