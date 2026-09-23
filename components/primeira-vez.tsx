@@ -6,9 +6,10 @@ import BgVideo from "./bg-video";
 import { media, units } from "@/lib/site";
 
 const cardShell =
-  "flex shrink-0 basis-[calc(100vw-72px)] snap-start flex-wrap items-center gap-[clamp(16px,3vw,48px)] rounded-[2px] bg-cream p-[clamp(20px,4vw,64px)] md:basis-[min(78vw,780px)] md:snap-center";
+  "flex shrink-0 basis-[calc(100vw-72px)] snap-start flex-wrap items-center gap-[clamp(16px,3vw,48px)] rounded-[2px] bg-cream p-[clamp(20px,4vw,64px)] md:basis-[min(84vw,1000px)] md:snap-center";
 const cardText = "min-w-[200px] flex-1 basis-[240px]";
-const cardMedia = "relative h-[clamp(220px,42vh,420px)] flex-[1_1_200px] overflow-hidden md:flex-[0_1_200px]";
+// A midia ocupa ~42% do cartao: com base fixa de 200px ela sumia ao lado do texto.
+const cardMedia = "relative h-[clamp(260px,52vh,540px)] flex-[1_1_220px] overflow-hidden rounded-[2px] md:flex-[0_0_42%]";
 const rule = "mb-[clamp(18px,2.4vw,34px)] h-px w-[clamp(80px,9vw,140px)] bg-clay";
 const paragraph =
   "m-0 mt-[clamp(14px,1.8vw,26px)] max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body";
@@ -112,7 +113,7 @@ export default function PrimeiraVez() {
             <div className={cardMedia}>
               <BgVideo
                 asset={media.card1Video}
-                aria-label="Chinelos, roupão, vela acesa e banheira com espuma no Aira Spa, em Foz do Iguaçu"
+                aria-label="Cliente de roupão e chinelos chegando à sala do Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -159,7 +160,7 @@ export default function PrimeiraVez() {
             <div className={`${cardMedia} order-2`}>
               <BgVideo
                 asset={media.card3Video}
-                aria-label="Caminho do saguão do DoubleTree by Hilton, pelo elevador e corredor, até a porta do Aira Spa"
+                aria-label="Elevador e corredor do DoubleTree by Hilton, no caminho até o Aira Spa"
                 className="h-full w-full object-cover"
               />
               <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-normal uppercase tracking-[0.14em] text-clay">

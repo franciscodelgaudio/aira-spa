@@ -1,4 +1,5 @@
 import AgendarFab from "@/components/agendar-fab";
+import AutoplayUnlock from "@/components/autoplay-unlock";
 import Hero from "@/components/hero";
 import Experiencias from "@/components/experiencias";
 import PrimeiraVez from "@/components/primeira-vez";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <AgendarFab />
+      <AutoplayUnlock />
       {/*
         <main> marca onde comeca o conteudo. Serve para o "pular para o conteudo"
         dos leitores de tela e para os extratores de texto (incluindo os de IA),

@@ -160,8 +160,10 @@ export const media = {
   candleVideo: video("cha"),
   ambienteVideo: video("hidro"),
   facial: image("facial", 1820, 1666),
-  // Dois trechos do mesmo reels da unidade DoubleTree (media-fonte/2026-08-12_18-58-38_UTC.mp4):
-  // o ambiente do spa (14,3–22,7 s) e o caminho do saguao ate a porta (0,5–12,2 s).
+  // Cortados sem legenda gravada. chegada-momento vem da producao no DoubleTree
+  // (media-fonte/2026-08-21_15-26-15_UTC.mp4, 0–4,63 s: chinelos e a sala).
+  // chegada-caminho vem do reels da unidade (2026-08-12_18-58-38_UTC.mp4,
+  // 4,75–9,63 s: elevador e corredor); antes e depois disso ha texto na tela.
   card1Video: video("chegada-momento"),
   card2: image("hidro", 519, 649),
   card3Video: video("chegada-caminho"),

@@ -89,3 +89,16 @@ html {
     display: inline;
   }
 }
+
+/*
+  Videos de fundo nunca mostram o botao nativo de play do iOS. Quando o autoplay
+  e barrado ele aparecia no meio do hero sem funcionar (o texto fica por cima);
+  autoplay-unlock.tsx da o play no primeiro toque em qualquer lugar da pagina.
+*/
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+video::-webkit-media-controls {
+  display: none !important;
+}

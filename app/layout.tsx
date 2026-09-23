@@ -116,14 +116,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           O poster do hero e a primeira pintura da pagina. Sem esse preload ele
           so entra na fila depois do parser achar o <video>, e o topo fica preto
           ate o MP4/WebM ter buffer — que e justamente o que demora no 4G.
-          Tem que ser o poster de media.heroVideo, o mesmo que hero.tsx passa ao
-          <video>: apontar para outro aquece um arquivo que ninguem pede agora e
-          deixa o LCP esperando assim mesmo.
+          Tem que casar com o <picture> que bg-video.tsx monta para o hero: o
+          poster vertical em tela em pe, o triptico deitado nas demais. Apontar
+          para outro aquece um arquivo que ninguem pede agora e deixa o LCP
+          esperando assim mesmo.
         */}
         <link
           rel="preload"
           as="image"
+          href={media.heroVerticalVideo.poster}
+          media="(orientation: portrait)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
           href={media.heroVideo.poster}
+          media="not (orientation: portrait)"
           fetchPriority="high"
         />
         {/* O <iframe> do mapa so e criado no clique; o DNS pode ir adiantando. */}

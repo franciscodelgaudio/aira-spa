@@ -21,7 +21,7 @@ export default function Local() {
             style={{ top: "-8%", bottom: "-8%", objectPosition: "50% 50%" }}
           />
         </div>
-        <div className="flex flex-1 basis-[380px] flex-col justify-center p-[clamp(32px,6vw,110px)]">
+        <div className="flex flex-1 basis-[380px] flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(56px,6vw,110px)]">
           <h2
             data-reveal="1"
             className="m-0 text-[clamp(32px,4.4vw,68px)] font-extralight leading-[1.05] tracking-[0.04em] text-clay"
@@ -119,7 +119,7 @@ export default function Local() {
         id="sec-agendar"
         className="flex min-h-[80vh] scroll-mt-0 flex-wrap items-stretch bg-taupe"
       >
-        <div className="flex flex-1 basis-[380px] flex-col justify-center p-[clamp(32px,6vw,110px)] text-cream">
+        <div className="flex flex-1 basis-[380px] flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(56px,6vw,110px)] text-cream">
           <h2
             data-reveal="1"
             className="m-0 text-[clamp(32px,4.4vw,68px)] font-extralight leading-[1.05] tracking-[0.04em]"
@@ -161,9 +161,14 @@ export default function Local() {
             ))}
           </div>
         </div>
+        {/*
+          Empilhado no celular, o texto do agendamento vinha logo abaixo do
+          "Onde fica?" e os dois blocos pareciam um so. A foto sobe para
+          separa-los; no desktop ela volta para a direita.
+        */}
         <div
           data-parallax="1"
-          className="relative min-h-[clamp(280px,56vh,720px)] flex-1 basis-[320px] overflow-hidden"
+          className="relative order-first min-h-[clamp(280px,56vh,720px)] flex-1 basis-[320px] overflow-hidden md:order-none"
         >
           <BgImage
             asset={media.local2}
