@@ -136,6 +136,14 @@ for (const file of files) {
       name === "cha"
         ? ["-vf", "hqdn3d=1.2:1.2:4:4,unsharp=3:3:0.25:3:3:0"]
         : [];
+    // Os trechos exp-* tem uma cena so, de 2 a 4 s: em loop o salto de volta ao
+    // inicio ficaria visivel. Bumerangue (ida + volta) dobra a duracao e o fim
+    // emenda no comeco sem corte. O trim tira o quadro repetido na virada.
+    // reverse guarda o trecho inteiro na memoria, por isso so vale para clipes
+    // curtos. Nao entra no poster: ele e o primeiro quadro, igual nos dois.
+    const encodeFilters = name.startsWith("exp-")
+      ? ["-vf", "split[a][b];[b]reverse,trim=start_frame=1,setpts=PTS-STARTPTS[r];[a][r]concat=n=2:v=1:a=0"]
+      : videoFilters;
 
     // Poster = primeiro frame exibido (3 s no cha, 0 nos demais), exatamente o
     // que o video mostra antes de tocar. Serve de
@@ -152,7 +160,7 @@ for (const file of files) {
     // -an: todo video da pagina toca mudo, faixa de audio e byte jogado fora.
     if (stale(src, webm)) {
       ffmpeg([
-        "-ss", startAt, "-i", src, "-an", ...videoFilters,
+        "-ss", startAt, "-i", src, "-an", ...encodeFilters,
         "-c:v", "libvpx-vp9", "-crf", String(videoCrfVp9), "-b:v", "0",
         "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
         "-pix_fmt", "yuv420p", webm,
@@ -163,7 +171,7 @@ for (const file of files) {
     // player comecar sem baixar o arquivo inteiro.
     if (stale(src, mp4)) {
       ffmpeg([
-        "-ss", startAt, "-i", src, "-an", ...videoFilters,
+        "-ss", startAt, "-i", src, "-an", ...encodeFilters,
         "-c:v", "libx264", "-preset", "slow", "-crf", String(videoCrfH264),
         "-profile:v", "high", "-level", "4.0", "-pix_fmt", "yuv420p",
         "-g", "60", "-movflags", "+faststart", mp4,

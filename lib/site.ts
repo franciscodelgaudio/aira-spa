@@ -147,11 +147,18 @@ export const media = {
   /** Triptico para telas deitadas; a versao vertical e a faixa central dele. */
   heroVideo: video("hero"),
   heroVerticalVideo: video("hero-vertical"),
-  massagemVideo: video("costas"),
+  // Trechos do video da producao no DoubleTree (airaspa.foz/2026-08-21_15-26-15_UTC.mp4),
+  // o unico sem legenda gravada: da para usar o quadro 9:16 inteiro. Cada um e
+  // uma cena, cortada nos pontos de troca de plano.
+  relaxanteVideo: video("exp-relaxante"), // 12,30–15,55 s
+  escalpesVideo: video("exp-escalpes"), // 9,10–11,20 s
+  drenagemVideo: video("exp-drenagem"), // 22,97–26,45 s
+  pedrasVideo: video("exp-pedras"), // 15,63–19,90 s
+  facialVideo: video("exp-facial"), // 6,90–9,03 s
+  // Unico video com vela acesa, mas legendado do comeco ao fim; por isso segue
+  // recortado na faixa acima da legenda (720x570).
   candleVideo: video("cha"),
-  escalpesVideo: video("pes"),
   ambienteVideo: video("hidro"),
-  salaVideo: video("sala-spa"),
   facial: image("facial", 1820, 1666),
   // Dois trechos do mesmo reels da unidade DoubleTree (media-fonte/2026-08-12_18-58-38_UTC.mp4):
   // o ambiente do spa (14,3–22,7 s) e o caminho do saguao ate a porta (0,5–12,2 s).
@@ -182,8 +189,8 @@ export const services: Service[] = [
       "Uma massagem com movimentos suaves e contínuos, pensada para aliviar a sensação de tensão muscular e proporcionar um momento de descanso profundo.",
     alt: "Massagem relaxante nas costas durante um atendimento no Aira Spa",
     video: true,
-    asset: media.massagemVideo,
-    position: "50% 10%",
+    asset: media.relaxanteVideo,
+    position: "50% 50%",
   },
   {
     name: "Massagem Candle",
@@ -198,10 +205,10 @@ export const services: Service[] = [
     name: "Escalpes",
     description:
       "Uma massagem concentrada no couro cabeludo, na nuca e nos ombros, ideal para desacelerar e aliviar a sensação de tensão nessas regiões.",
-    alt: "Massagem de escalpe no couro cabeludo e na nuca no Aira Spa",
+    alt: "Massagem na nuca e no pescoço durante um atendimento de escalpes no Aira Spa",
     video: true,
     asset: media.escalpesVideo,
-    position: "50% 22%",
+    position: "50% 50%",
   },
   {
     name: "Drenagem Linfática",
@@ -209,26 +216,26 @@ export const services: Service[] = [
       "Realizada com movimentos leves, lentos e ritmados, a drenagem oferece uma experiência delicada de cuidado e sensação de leveza para o corpo.",
     alt: "Drenagem linfática com movimentos leves e ritmados no Aira Spa",
     video: true,
-    asset: media.escalpesVideo,
-    position: "50% 10%",
+    asset: media.drenagemVideo,
+    position: "50% 50%",
   },
   {
     name: "Pedras Quentes",
     description:
       "Combina o toque da massagem com pedras aquecidas posicionadas sobre o corpo, criando uma sensação envolvente de calor e relaxamento.",
-    alt: "Sala de massagem com pedras quentes do Aira Spa em Foz do Iguaçu",
+    alt: "Pedras quentes sendo posicionadas sobre as costas em um atendimento no Aira Spa",
     video: true,
-    asset: media.salaVideo,
-    position: "50% 10%",
+    asset: media.pedrasVideo,
+    position: "50% 50%",
   },
   {
     name: "Facial",
     description:
       "Um cuidado dedicado ao rosto que reúne hidratação, movimentos de massagem e uma pausa relaxante para renovar a sensação da pele.",
-    alt: "Tratamento facial com hidratação e massagem no rosto no Aira Spa",
-    video: false,
-    asset: media.facial,
-    position: "50% 100%",
+    alt: "Aplicação de máscara com pincel durante um tratamento facial no Aira Spa",
+    video: true,
+    asset: media.facialVideo,
+    position: "50% 50%",
   },
 ];
 
