@@ -14,6 +14,20 @@ const rule = "mb-[clamp(18px,2.4vw,34px)] h-px w-[clamp(80px,9vw,140px)] bg-clay
 const paragraph =
   "m-0 mt-[clamp(14px,1.8vw,26px)] max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body";
 
+// scrollLeft em que o cartao fica encaixado. Tem de seguir o mesmo alinhamento
+// do scroll-snap: no celular a borda esquerda (snap-start), no desktop o centro
+// (snap-center). Com os dois desencontrados, o alvo de rolagem do cartao do
+// meio passava do limite em telas largas e o navegador parava no ultimo. A
+// folga lateral do trilho no desktop e metade da sobra da tela, para o primeiro
+// e o ultimo cartao tambem conseguirem ficar no centro.
+function snapOffset(track: HTMLElement, card: HTMLElement) {
+  const left = card.offsetLeft - track.offsetLeft;
+  if (getComputedStyle(card).scrollSnapAlign.includes("center")) {
+    return left - (track.clientWidth - card.offsetWidth) / 2;
+  }
+  return left - (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0);
+}
+
 export default function PrimeiraVez() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentCard, setCurrentCard] = useState(0);
@@ -49,11 +63,7 @@ export default function PrimeiraVez() {
     const target = cards[nextIndex];
     if (!target) return;
 
-    const scrollPadding = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
-    track.scrollTo({
-      left: target.offsetLeft - track.offsetLeft - scrollPadding,
-      behavior: "smooth",
-    });
+    track.scrollTo({ left: snapOffset(track, target), behavior: "smooth" });
     setCurrentCard(nextIndex);
   };
 
@@ -62,12 +72,11 @@ export default function PrimeiraVez() {
     if (!track) return;
 
     const cards = Array.from(track.querySelectorAll<HTMLElement>("article"));
-    const trackLeft = track.getBoundingClientRect().left;
     let nearest = 0;
     let nearestDistance = Number.POSITIVE_INFINITY;
 
     cards.forEach((card, index) => {
-      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      const distance = Math.abs(snapOffset(track, card) - track.scrollLeft);
       if (distance < nearestDistance) {
         nearest = index;
         nearestDistance = distance;
@@ -87,7 +96,7 @@ export default function PrimeiraVez() {
           ref={trackRef}
           aria-label="Informações para a primeira visita ao Aira Spa"
           onScroll={syncCurrentCard}
-          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-4 md:scroll-px-0 touch-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[clamp(64px,8vw,160px)] md:pb-0"
+          className="flex w-full snap-x snap-mandatory gap-[clamp(16px,2.4vw,44px)] overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-4 md:scroll-px-0 touch-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:px-[max(64px,calc((100%_-_min(84vw,1000px))_/_2))] md:pb-0"
         >
           <article className={cardShell}>
             <div className={cardText}>
