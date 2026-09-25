@@ -128,27 +128,31 @@ export default function Experiencias() {
           id="sec-exp-titulo"
           className="m-0 text-[11px] font-light uppercase tracking-[0.34em] text-cream/70"
         >
-          Massagens e tratamentos
+          Massagens
         </h2>
         <h3 className="font-accent m-0 mt-3 text-[clamp(32px,4vw,60px)] font-normal leading-[1.08]">
           {services[active].name}
         </h3>
         {/*
-          As seis descricoes ficam no HTML, e nao so a do item aberto. Antes, um
+          As sete descricoes ficam no HTML, e nao so a do item aberto. Antes, um
           buscador (ou um crawler de IA, que nao clica em nada) via o nome dos
-          seis servicos e o texto de um so — cinco descricoes simplesmente nao
+          sete servicos e o texto de um so — seis descricoes simplesmente nao
           existiam para quem indexa. O atributo hidden cuida do resto: o
           navegador nao pinta, o leitor de tela nao anuncia, e o texto continua
           na pagina. E o mesmo conteudo que aparece no clique.
         */}
         {services.map((service, index) => (
-          <p
+          <div
             key={service.name}
             hidden={index !== active}
-            className="m-0 mt-[clamp(18px,2vw,30px)] max-w-[38ch] border-t border-cream/30 pt-[clamp(18px,2vw,30px)] text-[clamp(16px,1.3vw,21px)] font-light leading-[1.7] text-cream/90"
+            className="mt-[clamp(18px,2vw,30px)] max-w-[38ch] border-t border-cream/30 pt-[clamp(18px,2vw,30px)] text-[clamp(16px,1.3vw,21px)] font-light leading-[1.7] text-cream/90"
           >
-            {service.description}
-          </p>
+            {service.description.map((paragraph) => (
+              <p key={paragraph} className="m-0 [&+&]:mt-[1em]">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         ))}
       </div>
     </section>

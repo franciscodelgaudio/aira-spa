@@ -115,8 +115,8 @@ export default function PrimeiraVez() {
                 </span>
               </h2>
               <p className={paragraph}>
-                Criamos uma experiência simples, acolhedora e pensada para você relaxar
-                desde a chegada.
+                Preparamos algumas informações para que você saiba como funciona e
+                aproveite seu momento com tranquilidade.
               </p>
             </div>
             <div className={cardMedia}>
@@ -138,9 +138,9 @@ export default function PrimeiraVez() {
                 Não
               </div>
               <p className="m-0 mt-1.5 max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
-                Não é necessário se hospedar. As unidades do Aira Spa ficam dentro dos
-                hotéis DoubleTree by Hilton e Viale Cataratas, mas atendem hóspedes,
-                moradores de Foz do Iguaçu e visitantes.
+                O Aira Spa está localizado dentro dos hotéis DoubleTree by Hilton e
+                Viale Cataratas, mas nossas experiências também são abertas a moradores
+                de Foz do Iguaçu e visitantes.
               </p>
             </div>
             <div className={cardMedia}>
@@ -166,6 +166,31 @@ export default function PrimeiraVez() {
           </article>
 
           <article className={cardShell}>
+            <div className={cardText}>
+              <div className={rule} />
+              <h2 className="m-0 text-[clamp(28px,3.8vw,56px)] font-extralight leading-[1.08] tracking-[0.05em] text-clay">
+                PRECISO AGENDAR?
+              </h2>
+              <div className="font-accent mt-[clamp(16px,2vw,28px)] text-[clamp(24px,2.6vw,38px)] text-clay">
+                Recomendamos, sim
+              </div>
+              <p className="m-0 mt-1.5 max-w-[32ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
+                O agendamento antecipado permite escolher a experiência e o horário com
+                mais tranquilidade, além de garantir a disponibilidade para o seu
+                momento.
+              </p>
+            </div>
+            <div className={cardMedia}>
+              <BgImage
+                asset={media.local2}
+                alt="Chá de boas-vindas servido no Aira Spa, em Foz do Iguaçu"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: "50% 50%" }}
+              />
+            </div>
+          </article>
+
+          <article className={cardShell}>
             <div className={`${cardMedia} order-2`}>
               <BgVideo
                 asset={media.card3Video}
@@ -182,9 +207,9 @@ export default function PrimeiraVez() {
                 E QUANDO EU CHEGAR?
               </h2>
               <p className="m-0 mt-[clamp(16px,2vw,28px)] max-w-[34ch] text-[clamp(15px,1.15vw,19px)] font-light leading-[1.65] text-body">
-                É só se apresentar na recepção do hotel onde fica a unidade do Aira Spa
-                escolhida. A equipe indicará o caminho; depois, é só relaxar e aproveitar
-                o seu momento.
+                Ao chegar, é só se apresentar na recepção do hotel da unidade escolhida.
+                A equipe indicará o caminho até o Aira Spa. Depois, é só aproveitar o
+                seu momento.
               </p>
             </div>
           </article>
@@ -202,7 +227,7 @@ export default function PrimeiraVez() {
         <button
           type="button"
           aria-label="Ver próximo cartão"
-          disabled={currentCard === 2}
+          disabled={currentCard === 3}
           onClick={() => goToCard(currentCard + 1)}
           className="absolute right-3 top-1/2 z-10 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border border-clay/25 bg-cream/95 text-clay shadow-lg transition hover:bg-white disabled:pointer-events-none disabled:opacity-30 md:flex"
         >
@@ -215,11 +240,11 @@ export default function PrimeiraVez() {
         cartao parecia ser o conteudo inteiro da secao.
       */}
       <div className="mt-5 flex items-center justify-center gap-2 md:mt-8">
-        {[0, 1, 2].map((index) => (
+        {[0, 1, 2, 3].map((index) => (
           <button
             key={index}
             type="button"
-            aria-label={`Ver cartão ${index + 1} de 3`}
+            aria-label={`Ver cartão ${index + 1} de 4`}
             aria-current={currentCard === index}
             onClick={() => goToCard(index)}
             className="flex h-6 items-center px-1"

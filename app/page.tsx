@@ -1,6 +1,7 @@
 import AgendarFab from "@/components/agendar-fab";
 import AutoplayUnlock from "@/components/autoplay-unlock";
 import Hero from "@/components/hero";
+import Sobre from "@/components/sobre";
 import Experiencias from "@/components/experiencias";
 import PrimeiraVez from "@/components/primeira-vez";
 import Local from "@/components/local";
@@ -18,6 +19,7 @@ export default function Home() {
       */}
       <main>
         <Hero />
+        <Sobre />
         <Experiencias />
         <PrimeiraVez />
         <Local />

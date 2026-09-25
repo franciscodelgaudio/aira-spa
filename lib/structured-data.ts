@@ -63,7 +63,7 @@ const offerCatalog = (unit: Unit) => ({
     itemOffered: {
       "@type": "Service",
       name: service.name,
-      description: service.description,
+      description: service.description.join(" "),
       serviceType: service.name,
       category: "Massagem e estética",
       provider: { "@id": unitId(unit) },
@@ -79,7 +79,7 @@ const localBusiness = (unit: Unit) => ({
   "@id": unitId(unit),
   name: `${site.name} — ${unit.name.replace(/^Unidade /, "")}`,
   alternateName: site.name,
-  description: `${unit.location}, na ${fullAddress(unit)}. Massagem relaxante, candle, escalpes, drenagem linfática, pedras quentes e facial. Não é preciso estar hospedado.`,
+  description: `${unit.location}, na ${fullAddress(unit)}. Massagem relaxante, candle, pedras quentes, drenagem linfática, escalda-pés, facial e hidromassagem. Não é preciso estar hospedado.`,
   url: `${siteUrl}/`,
   image: `${siteUrl}${site.ogImage}`,
   telephone: unit.phoneE164,

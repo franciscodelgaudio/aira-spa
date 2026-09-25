@@ -1,7 +1,7 @@
 // Controla quando cada <video> da pagina baixa e toca.
 //
 // O problema que isso resolve: com preload="none" o download so comeca quando
-// alguem chama play() ou load(). Se varios videos entram na tela juntos (as seis
+// alguem chama play() ou load(). Se varios videos entram na tela juntos (as sete
 // linhas de Experiencias, por exemplo), eles disputam a mesma banda, nenhum
 // termina a tempo e o usuario ve o poster parado ou tela preta. Alem disso um
 // erro de rede num <video> e definitivo: o browser nao tenta de novo sozinho.

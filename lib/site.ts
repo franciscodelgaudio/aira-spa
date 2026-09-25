@@ -151,19 +151,23 @@ export const media = {
   // o unico sem legenda gravada: da para usar o quadro 9:16 inteiro. Cada um e
   // uma cena, cortada nos pontos de troca de plano.
   relaxanteVideo: video("exp-relaxante"), // 12,30–15,55 s
-  escalpesVideo: video("exp-escalpes"), // 9,10–11,20 s
   drenagemVideo: video("exp-drenagem"), // 22,97–26,45 s
   pedrasVideo: video("exp-pedras"), // 15,63–19,90 s
   facialVideo: video("exp-facial"), // 6,90–9,03 s
   // Unico video com vela acesa, mas legendado do comeco ao fim; por isso segue
   // recortado na faixa acima da legenda (720x570).
   candleVideo: video("cha"),
+  // Massagem nos pes; nao ha gravacao da bacia do escalda-pes.
+  escaldaPesVideo: video("pes"),
   ambienteVideo: video("hidro"),
   facial: image("facial", 1820, 1666),
   // Cortados sem legenda gravada. chegada-momento vem da producao no DoubleTree
   // (media-fonte/2026-08-21_15-26-15_UTC.mp4, 0–4,63 s: chinelos e a sala).
   // chegada-caminho vem do reels da unidade (2026-08-12_18-58-38_UTC.mp4,
   // 4,75–9,63 s: elevador e corredor); antes e depois disso ha texto na tela.
+  // Luz baixa e tons de pele e parede: e a unica foto clara o bastante para
+  // ficar em fundo creme sem pesar.
+  sobre: image("corpo", 1080, 610),
   card1Video: video("chegada-momento"),
   card2: image("hidro", 519, 649),
   card3Video: video("chegada-caminho"),
@@ -173,7 +177,8 @@ export const media = {
 
 export type Service = {
   name: string;
-  description: string;
+  /** Um item por paragrafo. */
+  description: string[];
   /** Descricao da midia: vira o alt da imagem ou o aria-label do video. */
   alt: string;
   /** object-position do recorte. */
@@ -186,9 +191,11 @@ export type Service = {
  */
 export const services: Service[] = [
   {
-    name: "Massagem Relaxante",
-    description:
-      "Uma massagem com movimentos suaves e contínuos, pensada para aliviar a sensação de tensão muscular e proporcionar um momento de descanso profundo.",
+    name: "Massagens Relaxantes",
+    description: [
+      "Duas formas de viver o relaxamento, de acordo com a intensidade que você prefere. A Relaxante Clássica combina movimentos fluidos e ritmados, com um toque firme, intencional e envolvente. Já a Relaxante Profunda utiliza movimentos mais profundos e maior pressão, ideal para quem prefere um toque mais intenso.",
+      "Ambas preservam a essência do cuidado Aira: presença, acolhimento e bem-estar.",
+    ],
     alt: "Massagem relaxante nas costas durante um atendimento no Aira Spa",
     video: true,
     asset: media.relaxanteVideo,
@@ -196,47 +203,62 @@ export const services: Service[] = [
   },
   {
     name: "Massagem Candle",
-    description:
-      "Uma experiência sensorial feita com óleo morno de vela cosmética, que combina calor, aroma e movimentos relaxantes sobre a pele.",
+    description: [
+      "Uma experiência sensorial envolvente que combina o calor suave das velas com movimentos relaxantes e aromas acolhedores, proporcionando conforto, hidratação profunda e intenso relaxamento.",
+    ],
     alt: "Vela cosmética e chá servidos na sala de massagem candle do Aira Spa",
     video: true,
     asset: media.candleVideo,
     position: "50% 10%",
   },
   {
-    name: "Escalpes",
-    description:
-      "Uma massagem concentrada no couro cabeludo, na nuca e nos ombros, ideal para desacelerar e aliviar a sensação de tensão nessas regiões.",
-    alt: "Massagem na nuca e no pescoço durante um atendimento de escalpes no Aira Spa",
-    video: true,
-    asset: media.escalpesVideo,
-    position: "50% 50%",
-  },
-  {
-    name: "Drenagem Linfática",
-    description:
-      "Realizada com movimentos leves, lentos e ritmados, a drenagem oferece uma experiência delicada de cuidado e sensação de leveza para o corpo.",
-    alt: "Drenagem linfática com movimentos leves e ritmados no Aira Spa",
-    video: true,
-    asset: media.drenagemVideo,
-    position: "50% 50%",
-  },
-  {
-    name: "Pedras Quentes",
-    description:
-      "Combina o toque da massagem com pedras aquecidas posicionadas sobre o corpo, criando uma sensação envolvente de calor e relaxamento.",
+    name: "Massagem Pedras Quentes",
+    description: [
+      "O calor das pedras aquecidas combinado a movimentos fluidos e contínuos promove relaxamento profundo, alívio das tensões e uma intensa sensação de conforto e bem-estar.",
+    ],
     alt: "Pedras quentes sendo posicionadas sobre as costas em um atendimento no Aira Spa",
     video: true,
     asset: media.pedrasVideo,
     position: "50% 50%",
   },
   {
+    name: "Drenagem Linfática",
+    description: [
+      "Uma experiência de cuidado e bem-estar, indicada para auxiliar na retenção de líquidos, sensação de inchaço e pernas cansadas após viagens e longos passeios. Com movimentos lentos e delicados, a drenagem linfática promove alívio de edemas e uma agradável sensação de leveza corporal.",
+    ],
+    alt: "Drenagem linfática com movimentos leves e ritmados no Aira Spa",
+    video: true,
+    asset: media.drenagemVideo,
+    position: "50% 50%",
+  },
+  {
+    name: "Escalda-pés",
+    description: [
+      "Um momento de cuidado que começa pelos pés e se reflete no corpo inteiro. Um cuidado completo para pés que também merecem descansar. A experiência começa com a imersão em água morna e sais relaxantes, seguida de esfoliação e hidratação. Para finalizar, uma massagem relaxante com movimentos de reflexologia, proporcionando uma agradável sensação de conforto, leveza e bem-estar.",
+    ],
+    alt: "Massagem nos pés durante um atendimento de escalda-pés no Aira Spa",
+    video: true,
+    asset: media.escaldaPesVideo,
+    position: "50% 50%",
+  },
+  {
     name: "Facial",
-    description:
-      "Um cuidado dedicado ao rosto que reúne hidratação, movimentos de massagem e uma pausa relaxante para renovar a sensação da pele.",
+    description: [
+      "Um delicado ritual de cuidado facial com máscara hidratante e drenagem facial suave e cadenciada, ajudando a aliviar tensões e diminuir os níveis de estresse. A experiência proporciona toque macio, hidratação e luminosidade natural à pele, enquanto movimentos relaxantes nos braços, colo, pescoço e couro cabeludo completam esse momento de bem-estar.",
+    ],
     alt: "Aplicação de máscara com pincel durante um tratamento facial no Aira Spa",
     video: true,
     asset: media.facialVideo,
+    position: "50% 50%",
+  },
+  {
+    name: "Hidro Relax",
+    description: [
+      "Um momento de relaxamento e bem-estar através da hidromassagem preparada com aromas suaves e sais relaxantes. Ideal para compartilhar entre amigos momentos de descanso e tranquilidade.",
+    ],
+    alt: "Banheiras de hidromassagem na sala do Aira Spa",
+    video: true,
+    asset: media.ambienteVideo,
     position: "50% 50%",
   },
 ];
@@ -270,7 +292,7 @@ export const faqs = [
   {
     question: "Quais massagens e tratamentos o Aira Spa oferece?",
     answer:
-      "Massagem relaxante, massagem candle, escalpes, drenagem linfática, massagem com pedras quentes e tratamento facial.",
+      "Massagens relaxantes (clássica e profunda), massagem candle, massagem com pedras quentes, drenagem linfática, escalda-pés, tratamento facial e Hidro Relax, a hidromassagem com aromas e sais.",
   },
   {
     question: "O que acontece quando eu chego para o atendimento?",

@@ -78,11 +78,11 @@ node scripts/make-brand-assets.mjs
 
 Tres coisas parecem enfeite e nao sao:
 
-- **`hidden` nas descricoes de `experiencias.tsx`.** As seis descricoes ficam no
+- **`hidden` nas descricoes de `experiencias.tsx`.** As sete descricoes ficam no
   HTML, nao so a do item aberto. Trocar por renderizacao condicional
-  (`{services[active].description}`) tira cinco das seis do alcance de quem
+  (`{services[active].description}`) tira seis das sete do alcance de quem
   indexa — crawler nenhum clica nos botoes.
-- **A primeira linha do `<h1>` no hero.** "Seu corpo pede pausa." sozinha nao
+- **A primeira linha do `<h1>` no hero.** "Onde o acolhimento leva à pausa." sozinha nao
   diz o que o negocio faz nem onde fica. A linha de cima e o que conecta a
   pagina a busca por "massagem em Foz do Iguacu".
 - **O horario escrito em `local.tsx` e no rodape.** O JSON-LD declara

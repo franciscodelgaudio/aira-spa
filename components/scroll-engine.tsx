@@ -111,7 +111,7 @@ export default function ScrollEngine() {
               if (media && !reduce) {
                 // Toca so a linha ativa, mas ja pede a proxima: quando o scroll
                 // chegar nela o arquivo tende a estar bufferizado. Sem isso as
-                // seis linhas entram na tela juntas e brigam pela mesma banda.
+                // sete linhas entram na tela juntas e brigam pela mesma banda.
                 if (on) loader.play(media);
                 else {
                   loader.pause(media);

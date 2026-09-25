@@ -24,15 +24,21 @@ Todos os dias, das 15h às 21h, nas duas unidades.
 
 ## Serviços
 
-- **Massagem Relaxante**: massagem com movimentos suaves e contínuos, para
-  aliviar a sensação de tensão muscular e proporcionar descanso profundo.
-- **Massagem Candle**: experiência sensorial com óleo morno de vela cosmética,
-  combinando calor, aroma e movimentos relaxantes sobre a pele.
-- **Escalpes**: massagem concentrada no couro cabeludo, na nuca e nos ombros.
-- **Drenagem Linfática**: movimentos leves, lentos e ritmados, com sensação de
-  leveza para o corpo.
-- **Pedras Quentes**: massagem com pedras aquecidas posicionadas sobre o corpo.
-- **Facial**: cuidado dedicado ao rosto, com hidratação e movimentos de massagem.
+- **Massagens Relaxantes**: duas intensidades. A Relaxante Clássica tem
+  movimentos fluidos e ritmados, com toque firme; a Relaxante Profunda usa
+  movimentos mais profundos e maior pressão.
+- **Massagem Candle**: calor suave das velas, movimentos relaxantes e aromas,
+  com hidratação da pele.
+- **Massagem Pedras Quentes**: pedras aquecidas combinadas a movimentos fluidos
+  e contínuos.
+- **Drenagem Linfática**: movimentos lentos e delicados, indicada para sensação
+  de inchaço e pernas cansadas após viagens e longos passeios.
+- **Escalda-pés**: imersão dos pés em água morna com sais, esfoliação,
+  hidratação e massagem com movimentos de reflexologia.
+- **Facial**: máscara hidratante e drenagem facial, com movimentos relaxantes
+  nos braços, colo, pescoço e couro cabeludo.
+- **Hidro Relax**: hidromassagem com aromas suaves e sais relaxantes, para
+  compartilhar entre amigos.
 
 ## Perguntas frequentes
 
