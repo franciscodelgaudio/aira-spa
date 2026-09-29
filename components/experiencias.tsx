@@ -85,6 +85,7 @@ export default function Experiencias() {
               {service.video ? (
                 <BgVideo
                   asset={service.asset}
+                  loop={false}
                   preload={index === 0 ? "metadata" : "none"}
                   aria-label={service.alt}
                   className="absolute inset-0 h-full w-full object-cover"
