@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Jost, Cormorant_Garamond } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import JsonLd from "@/components/json-ld";
 import { instagram, media, site, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -140,7 +141,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="me" href={instagram.url} />
         <JsonLd />
       </head>
-      <body className="w-full overflow-x-hidden bg-sand text-ink">{children}</body>
+      <body className="w-full overflow-x-hidden bg-sand text-ink">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
