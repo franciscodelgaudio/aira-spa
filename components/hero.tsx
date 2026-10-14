@@ -26,8 +26,13 @@ export default function Hero() {
         <div className="absolute inset-0 flex flex-col items-center justify-center p-[clamp(24px,5vw,72px)] text-center text-cream">
           <Wordmark />
 
-          <h1 className="m-0 mt-[clamp(28px,4vw,52px)] text-[clamp(34px,6.4vw,92px)] font-extralight leading-[1.08] tracking-[0.01em]">
-            Onde o acolhimento leva à pausa.
+          {/*
+            Cada metade e nowrap: a quebra so pode cair entre "acolhimento" e
+            "leva", nunca deixando uma palavra sozinha na linha.
+          */}
+          <h1 className="m-0 mt-[clamp(28px,4vw,52px)] text-[clamp(28px,8vw,40px)] font-extralight leading-[1.08] tracking-[0.01em] md:text-[clamp(40px,4.6vw,68px)]">
+            <span className="block whitespace-nowrap md:inline">Onde o acolhimento</span>{" "}
+            <span className="block whitespace-nowrap md:inline">leva à pausa.</span>
           </h1>
 
           <a

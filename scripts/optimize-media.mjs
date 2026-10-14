@@ -53,32 +53,32 @@ for (const file of files) {
   before += statSync(src).size;
 
   if (name === "hero") {
-    // O original foi gravado para redes sociais: 1920x1080 com o conteudo
-    // vertical nitido so na faixa central (x 656..1264) e as laterais
-    // desfocadas. Dele saem dois videos:
-    //   hero-vertical  a faixa central sozinha, para telas em pe
-    //   hero           triptico da mesma faixa em 3 paineis, cada um adiantado
+    // O original e o reels vertical da unidade (WhatsApp, 480x848, 31,1 s), ja
+    // sem laterais: usa o quadro inteiro. Dele saem dois videos:
+    //   hero-vertical  o video sozinho, para telas em pe
+    //   hero           triptico do mesmo video em 3 paineis, cada um adiantado
     //                  um terco do video, para telas deitadas. Um arquivo so,
     //                  entao continua sendo um download.
-    // O corte deixa 4 px de folga de cada lado para nao pegar a borda do blur.
-    const crop = "crop=600:1080:660:0,setsar=1";
-    const vertical = { name: "hero-vertical", inputs: ["-ss", "1", "-i", src], filter: ["-vf", crop] };
+    // Os ultimos 1,1 s (29,97 s em diante) sao tela preta: ficam de fora para o
+    // loop nao piscar.
+    const crop = "setsar=1";
+    const d = 29.95;
+    const vertical = { name: "hero-vertical", inputs: ["-t", String(d), "-i", src], filter: ["-vf", crop] };
 
     // Cada painel lateral e o video rotacionado: do offset ate o fim, depois do
     // inicio ate o offset. Emendado assim o loop continua sem salto. Entradas
     // separadas em vez de split+trim para o ffmpeg nao bufferizar segundos de
     // frames crus na memoria.
-    const d = 36.37 - 1; // duracao do original menos o 1o segundo pulado
     const off = [Math.round(d / 3), Math.round((2 * d) / 3)];
-    const gap = "pad=608:1080:0:0:color=0x1f2b2a"; // 8 px de --ink entre paineis
+    const gap = "pad=488:848:0:0:color=0x1f2b2a"; // 8 px de --ink entre paineis
     const triptych = {
       name: "hero",
       inputs: [
-        "-ss", "1", "-i", src,
-        "-ss", String(1 + off[0]), "-i", src,
-        "-ss", "1", "-t", String(off[0]), "-i", src,
-        "-ss", String(1 + off[1]), "-i", src,
-        "-ss", "1", "-t", String(off[1]), "-i", src,
+        "-t", String(d), "-i", src,
+        "-ss", String(off[0]), "-t", String(d - off[0]), "-i", src,
+        "-t", String(off[0]), "-i", src,
+        "-ss", String(off[1]), "-t", String(d - off[1]), "-i", src,
+        "-t", String(off[1]), "-i", src,
       ],
       filter: [
         "-filter_complex",
@@ -136,14 +136,9 @@ for (const file of files) {
       name === "cha"
         ? ["-vf", "hqdn3d=1.2:1.2:4:4,unsharp=3:3:0.25:3:3:0"]
         : [];
-    // Os trechos exp-* tem uma cena so, de 2 a 4 s: em loop o salto de volta ao
-    // inicio ficaria visivel. Bumerangue (ida + volta) dobra a duracao e o fim
-    // emenda no comeco sem corte. O trim tira o quadro repetido na virada.
-    // reverse guarda o trecho inteiro na memoria, por isso so vale para clipes
-    // curtos. Nao entra no poster: ele e o primeiro quadro, igual nos dois.
-    const encodeFilters = name.startsWith("exp-")
-      ? ["-vf", "split[a][b];[b]reverse,trim=start_frame=1,setpts=PTS-STARTPTS[r];[a][r]concat=n=2:v=1:a=0"]
-      : videoFilters;
+    // Os trechos exp-* tocam em loop simples: ao terminar, voltam ao inicio.
+    // Sem bumerangue (ida + volta) de proposito.
+    const encodeFilters = videoFilters;
 
     // Poster = primeiro frame exibido (3 s no cha, 0 nos demais), exatamente o
     // que o video mostra antes de tocar. Serve de

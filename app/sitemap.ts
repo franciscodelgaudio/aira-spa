@@ -25,7 +25,10 @@ const photos = [
   ...services.filter((service) => !service.video).map(({ asset }) => asset.jpg),
   media.local1.jpg,
   media.local2.jpg,
-  media.card2.jpg,
+  media.primeira1.jpg,
+  media.primeira2.jpg,
+  media.primeira3.jpg,
+  media.primeira4.jpg,
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

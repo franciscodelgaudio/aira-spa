@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import BgImage from "./bg-image";
-import BgVideo from "./bg-video";
 import { media, units } from "@/lib/site";
 
 const cardShell =
@@ -31,28 +30,6 @@ function snapOffset(track: HTMLElement, card: HTMLElement) {
 export default function PrimeiraVez() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [currentCard, setCurrentCard] = useState(0);
-
-  // Cada video toca so enquanto o cartao dele esta de fato na tela (o
-  // observer ja considera o recorte do carrossel) e pausa ao sair. Com
-  // movimento reduzido fica no poster.
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          const video = target as HTMLVideoElement;
-          if (isIntersecting) void video.play().catch(() => undefined);
-          else video.pause();
-        });
-      },
-      { threshold: 0.6 }
-    );
-    track.querySelectorAll("video").forEach((video) => io.observe(video));
-    return () => io.disconnect();
-  }, []);
 
   const goToCard = (index: number) => {
     const track = trackRef.current;
@@ -120,10 +97,11 @@ export default function PrimeiraVez() {
               </p>
             </div>
             <div className={cardMedia}>
-              <BgVideo
-                asset={media.card1Video}
-                aria-label="Cliente de roupão e chinelos chegando à sala do Aira Spa, em Foz do Iguaçu"
+              <BgImage
+                asset={media.primeira1}
+                alt="Poltronas com almofadas azuis e luminárias de bambu na área de descanso do Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
+                style={{ objectPosition: "50% 50%" }}
               />
             </div>
           </article>
@@ -145,8 +123,8 @@ export default function PrimeiraVez() {
             </div>
             <div className={cardMedia}>
               <BgImage
-                asset={media.card2}
-                alt="Hidromassagem do Aira Spa dentro do hotel, em Foz do Iguaçu"
+                asset={media.primeira2}
+                alt="Roupão branco pendurado na parede de pedra do Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -182,8 +160,8 @@ export default function PrimeiraVez() {
             </div>
             <div className={cardMedia}>
               <BgImage
-                asset={media.local2}
-                alt="Chá de boas-vindas servido no Aira Spa, em Foz do Iguaçu"
+                asset={media.primeira3}
+                alt="Massagem facial à luz de velas no Aira Spa, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: "50% 50%" }}
               />
@@ -192,10 +170,11 @@ export default function PrimeiraVez() {
 
           <article className={cardShell}>
             <div className={`${cardMedia} order-2`}>
-              <BgVideo
-                asset={media.card3Video}
-                aria-label="Elevador e corredor do DoubleTree by Hilton, no caminho até o Aira Spa"
+              <BgImage
+                asset={media.primeira4}
+                alt="Banheiras de hidromassagem e deck de madeira do Aira Spa no DoubleTree by Hilton, em Foz do Iguaçu"
                 className="h-full w-full object-cover"
+                style={{ objectPosition: "50% 50%" }}
               />
               <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-normal uppercase tracking-[0.14em] text-clay">
                 Unidade DoubleTree

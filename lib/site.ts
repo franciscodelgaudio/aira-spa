@@ -154,23 +154,25 @@ export const media = {
   drenagemVideo: video("exp-drenagem"), // 22,97–26,45 s
   pedrasVideo: video("exp-pedras"), // 15,63–19,90 s
   facialVideo: video("exp-facial"), // 6,90–9,03 s
-  // Unico video com vela acesa, mas legendado do comeco ao fim; por isso segue
-  // recortado na faixa acima da legenda (720x570).
-  candleVideo: video("cha"),
-  // Massagem nos pes; nao ha gravacao da bacia do escalda-pes.
-  escaldaPesVideo: video("pes"),
+  // Vela no copo de vidro (airaspa.foz/2026-07-17_13-15-26_UTC_2.jpg), cortada
+  // abaixo da frase do post: sobra so a foto, sem texto nem logotipo.
+  candle: image("candle", 1080, 1031),
+  // Gravacao propria do escalda-pes (media-fonte/escalda-pes.mov, 1,00–46,00 s:
+  // corta o fade de entrada e o de saida para o loop nao piscar).
+  escaldaPesVideo: video("escalda-pes"),
   ambienteVideo: video("hidro"),
   facial: image("facial", 1820, 1666),
-  // Cortados sem legenda gravada. chegada-momento vem da producao no DoubleTree
-  // (media-fonte/2026-08-21_15-26-15_UTC.mp4, 0–4,63 s: chinelos e a sala).
-  // chegada-caminho vem do reels da unidade (2026-08-12_18-58-38_UTC.mp4,
-  // 4,75–9,63 s: elevador e corredor); antes e depois disso ha texto na tela.
+  // Banco de imagens (Pexels 10893343, Paolo Ortega; licenca Pexels, uso
+  // comercial livre): nao ha foto propria de drenagem sem texto ou logo.
+  drenagem: image("drenagem", 1080, 1920),
   // Luz baixa e tons de pele e parede: e a unica foto clara o bastante para
   // ficar em fundo creme sem pesar.
   sobre: image("corpo", 1080, 610),
-  card1Video: video("chegada-momento"),
-  card2: image("hidro", 519, 649),
-  card3Video: video("chegada-caminho"),
+  // Os quatro cartoes da secao "Primeira vez", na ordem em que aparecem.
+  primeira1: image("primeira-1", 1024, 1536),
+  primeira2: image("primeira-2", 1024, 1536),
+  primeira3: image("primeira-3", 1086, 1448),
+  primeira4: image("primeira-4", 1536, 1024),
   local1: image("sala", 1086, 1358),
   local2: image("cha", 1088, 1344),
 } as const;
@@ -206,10 +208,10 @@ export const services: Service[] = [
     description: [
       "Uma experiência sensorial envolvente que combina o calor suave das velas com movimentos relaxantes e aromas acolhedores, proporcionando conforto, hidratação profunda e intenso relaxamento.",
     ],
-    alt: "Vela cosmética e chá servidos na sala de massagem candle do Aira Spa",
-    video: true,
-    asset: media.candleVideo,
-    position: "50% 10%",
+    alt: "Vela acesa em copo de vidro sobre ramos verdes, usada na massagem candle do Aira Spa",
+    video: false,
+    asset: media.candle,
+    position: "60% 50%",
   },
   {
     name: "Massagem Pedras Quentes",
@@ -226,9 +228,9 @@ export const services: Service[] = [
     description: [
       "Uma experiência de cuidado e bem-estar, indicada para auxiliar na retenção de líquidos, sensação de inchaço e pernas cansadas após viagens e longos passeios. Com movimentos lentos e delicados, a drenagem linfática promove alívio de edemas e uma agradável sensação de leveza corporal.",
     ],
-    alt: "Drenagem linfática com movimentos leves e ritmados no Aira Spa",
-    video: true,
-    asset: media.drenagemVideo,
+    alt: "Mãos deslizando sobre a perna em uma sessão de drenagem linfática",
+    video: false,
+    asset: media.drenagem,
     position: "50% 50%",
   },
   {
@@ -236,7 +238,7 @@ export const services: Service[] = [
     description: [
       "Um momento de cuidado que começa pelos pés e se reflete no corpo inteiro. Um cuidado completo para pés que também merecem descansar. A experiência começa com a imersão em água morna e sais relaxantes, seguida de esfoliação e hidratação. Para finalizar, uma massagem relaxante com movimentos de reflexologia, proporcionando uma agradável sensação de conforto, leveza e bem-estar.",
     ],
-    alt: "Massagem nos pés durante um atendimento de escalda-pés no Aira Spa",
+    alt: "Bacia de madeira sendo preparada com água morna e sais para o escalda-pés no Aira Spa",
     video: true,
     asset: media.escaldaPesVideo,
     position: "50% 50%",
