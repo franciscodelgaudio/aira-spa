@@ -88,8 +88,10 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/FAVICON.png?v=3", sizes: "1254x1254", type: "image/png" }],
-    apple: [{ url: "/FAVICON.png?v=3", sizes: "1254x1254", type: "image/png" }],
+    // Gerados por scripts/make-brand-assets.mjs. O FAVICON.png original tem
+    // ~630 KB e era baixado inteiro em toda visita so para o icone da aba.
+    icon: [{ url: "/icon-32.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   // O <link rel="manifest"> sai de app/manifest.ts — declarar aqui duplicaria a tag.
   other: {

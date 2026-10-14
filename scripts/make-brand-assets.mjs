@@ -1,7 +1,11 @@
 /**
- * Gera a imagem de compartilhamento que o SEO precisa:
+ * Gera a imagem de compartilhamento que o SEO precisa e os icones do site:
  *
  *   public/og.jpg                 1200x630, a previa de link (WhatsApp, Insta, X)
+ *   public/icon-32.png            32x32, o icone da aba
+ *   public/apple-touch-icon.png   180x180, ao salvar na tela inicial do iPhone
+ *   public/icon-192.png           192x192, manifesto (Android)
+ *   public/icon-512.png           512x512, manifesto (Android, tela de abertura)
  *
  * Rode depois de trocar a foto de origem ou o logotipo:
  *   node scripts/make-brand-assets.mjs
@@ -158,3 +162,27 @@ await sharp(SOURCE)
   .toFile(out("og.jpg"));
 
 console.log("gerado: og.jpg");
+
+/**
+ * O FAVICON.png oficial tem 1254x1254 e ~630 KB. Servido direto, o navegador
+ * baixava tudo isso em toda visita so para desenhar o icone da aba — no
+ * celular, era o maior arquivo da carga inicial depois do video do hero.
+ */
+const FAVICON = path.join(root, "public", "FAVICON.png");
+const BRAND = "#678481"; // --brand
+
+const icons = [
+  { file: "icon-32.png", size: 32 },
+  // O iOS pinta de preto o que for transparente: os cantos arredondados do
+  // original viram o verde da marca, e o proprio iOS arredonda o icone.
+  { file: "apple-touch-icon.png", size: 180, flatten: true },
+  { file: "icon-192.png", size: 192 },
+  { file: "icon-512.png", size: 512 },
+];
+
+for (const { file, size, flatten } of icons) {
+  let img = sharp(FAVICON).resize(size, size);
+  if (flatten) img = img.flatten({ background: BRAND });
+  await img.png({ compressionLevel: 9, palette: true, quality: 90 }).toFile(out(file));
+  console.log("gerado:", file);
+}

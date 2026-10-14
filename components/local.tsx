@@ -15,6 +15,10 @@ const blockMedia =
 
 export default function Local() {
   const [openUnit, setOpenUnit] = useState<number | null>(null);
+  // O <iframe> do Google Maps so nasce no primeiro clique: mesmo escondido e
+  // com loading="lazy", o Chrome carregava os dois mapas ao passar rolando.
+  // Depois de aberto fica montado, para o fechamento animar com o mapa dentro.
+  const [mapsShown, setMapsShown] = useState<number[]>([]);
 
   return (
     <section id="sec-local" className="relative bg-sand">
@@ -69,7 +73,10 @@ export default function Local() {
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={mapId}
-                  onClick={() => setOpenUnit(isOpen ? null : index)}
+                  onClick={() => {
+                    setOpenUnit(isOpen ? null : index);
+                    if (!mapsShown.includes(index)) setMapsShown([...mapsShown, index]);
+                  }}
                   className="flex w-full cursor-pointer items-center justify-between gap-4 rounded-sm border-0 bg-transparent p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-clay/45"
                 >
                   <span>
@@ -100,17 +107,19 @@ export default function Local() {
                 >
                   <div className="min-h-0 overflow-hidden">
                     <div className="overflow-hidden rounded-sm border border-clay/15 bg-cream">
-                      <iframe
-                        title={`Mapa da ${unit.name}`}
-                        src={`https://www.google.com/maps?q=${encodeURIComponent(
-                          mapsQuery(unit)
-                        )}&output=embed`}
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        className="h-[clamp(190px,26vw,280px)] w-full border-0"
-                        allowFullScreen
-                        tabIndex={isOpen ? 0 : -1}
-                      />
+                      {mapsShown.includes(index) && (
+                        <iframe
+                          title={`Mapa da ${unit.name}`}
+                          src={`https://www.google.com/maps?q=${encodeURIComponent(
+                            mapsQuery(unit)
+                          )}&output=embed`}
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          className="h-[clamp(190px,26vw,280px)] w-full border-0"
+                          allowFullScreen
+                          tabIndex={isOpen ? 0 : -1}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
