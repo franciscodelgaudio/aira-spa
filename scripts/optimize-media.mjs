@@ -134,8 +134,11 @@ for (const file of files) {
     const mp4 = path.join(OUT, `${name}.mp4`);
     const poster = path.join(POSTERS, `${name}.jpg`);
     const startAt = name === "cha" ? "3" : "0";
-    const videoCrfVp9 = name === "cha" ? 28 : VIDEO_CRF_VP9;
-    const videoCrfH264 = name === "cha" ? 21 : VIDEO_CRF_H264;
+    // exp-hidro: espuma em movimento e quase so ruido para o codec, e no CRF
+    // padrao o webm passava de 2 MB. Mais compressao so nele; a perda fica no
+    // brilho fino das bolhas, que no tamanho do cartao nao aparece.
+    const videoCrfVp9 = name === "cha" ? 28 : name === "exp-hidro" ? 42 : VIDEO_CRF_VP9;
+    const videoCrfH264 = name === "cha" ? 21 : name === "exp-hidro" ? 32 : VIDEO_CRF_H264;
     const videoFilters =
       name === "cha"
         ? ["-vf", "hqdn3d=1.2:1.2:4:4,unsharp=3:3:0.25:3:3:0"]
