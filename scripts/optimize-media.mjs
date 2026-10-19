@@ -2,6 +2,7 @@
 //
 //   node scripts/optimize-media.mjs            # so o que estiver faltando/desatualizado
 //   node scripts/optimize-media.mjs --force    # regera tudo
+//   node scripts/optimize-media.mjs exp-candle exp-hidro   # so esses nomes
 //
 // Precisa de ffmpeg no PATH, ou de FFMPEG_PATH apontando para o binario.
 // Sem ffmpeg instalado: npm i -D ffmpeg-static e rode com
@@ -24,6 +25,8 @@ const POSTERS = path.join(OUT, "posters");
 
 const FFMPEG = process.env.FFMPEG_PATH || "ffmpeg";
 const FORCE = process.argv.includes("--force");
+// Nomes sem extensao. Sem nenhum, processa a pasta inteira.
+const ONLY = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
 
 const VIDEO_CRF_VP9 = 34; // SSIM ~0.988 vs original
 const VIDEO_CRF_H264 = 27;
@@ -50,6 +53,7 @@ for (const file of files) {
   const src = path.join(SRC, file);
   const name = file.replace(/\.[^.]+$/, "");
   const ext = path.extname(file).toLowerCase();
+  if (ONLY.length && !ONLY.includes(name)) continue;
   before += statSync(src).size;
 
   if (name === "hero") {

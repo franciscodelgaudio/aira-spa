@@ -151,20 +151,17 @@ export const media = {
   // o unico sem legenda gravada: da para usar o quadro 9:16 inteiro. Cada um e
   // uma cena, cortada nos pontos de troca de plano.
   relaxanteVideo: video("exp-relaxante"), // 12,30–15,55 s
-  drenagemVideo: video("exp-drenagem"), // 22,97–26,45 s
-  pedrasVideo: video("exp-pedras"), // 15,63–19,90 s
   facialVideo: video("exp-facial"), // 6,90–9,03 s
-  // Vela no copo de vidro (airaspa.foz/2026-07-17_13-15-26_UTC_2.jpg), cortada
-  // abaixo da frase do post: sobra so a foto, sem texto nem logotipo.
-  candle: image("candle", 1080, 1031),
+  // Gravacoes proprias (media-fonte/exp-*.mov), usadas inteiras: comecam e
+  // terminam sem fade, entao o loop nao pisca.
+  candleVideo: video("exp-candle"),
+  pedrasVideo: video("exp-pedras"),
+  drenagemVideo: video("exp-drenagem"),
+  hidroVideo: video("exp-hidro"),
   // Gravacao propria do escalda-pes (media-fonte/escalda-pes.mov, 1,00–46,00 s:
   // corta o fade de entrada e o de saida para o loop nao piscar).
   escaldaPesVideo: video("escalda-pes"),
-  ambienteVideo: video("hidro"),
   facial: image("facial", 1820, 1666),
-  // Banco de imagens (Pexels 10893343, Paolo Ortega; licenca Pexels, uso
-  // comercial livre): nao ha foto propria de drenagem sem texto ou logo.
-  drenagem: image("drenagem", 1080, 1920),
   // Luz baixa e tons de pele e parede: e a unica foto clara o bastante para
   // ficar em fundo creme sem pesar.
   sobre: image("corpo", 1080, 610),
@@ -208,17 +205,17 @@ export const services: Service[] = [
     description: [
       "Uma experiência sensorial envolvente que combina o calor suave das velas com movimentos relaxantes e aromas acolhedores, proporcionando conforto, hidratação profunda e intenso relaxamento.",
     ],
-    alt: "Vela acesa em copo de vidro sobre ramos verdes, usada na massagem candle do Aira Spa",
-    video: false,
-    asset: media.candle,
-    position: "60% 50%",
+    alt: "Óleo morno da vela sendo derramado sobre as costas durante a massagem candle no Aira Spa",
+    video: true,
+    asset: media.candleVideo,
+    position: "50% 50%",
   },
   {
     name: "Massagem Pedras Quentes",
     description: [
       "O calor das pedras aquecidas combinado a movimentos fluidos e contínuos promove relaxamento profundo, alívio das tensões e uma intensa sensação de conforto e bem-estar.",
     ],
-    alt: "Pedras quentes sendo posicionadas sobre as costas em um atendimento no Aira Spa",
+    alt: "Pedras quentes deslizando pela mão e posicionadas sobre as costas em um atendimento no Aira Spa",
     video: true,
     asset: media.pedrasVideo,
     position: "50% 50%",
@@ -228,9 +225,9 @@ export const services: Service[] = [
     description: [
       "Uma experiência de cuidado e bem-estar, indicada para auxiliar na retenção de líquidos, sensação de inchaço e pernas cansadas após viagens e longos passeios. Com movimentos lentos e delicados, a drenagem linfática promove alívio de edemas e uma agradável sensação de leveza corporal.",
     ],
-    alt: "Mãos deslizando sobre a perna em uma sessão de drenagem linfática",
-    video: false,
-    asset: media.drenagem,
+    alt: "Movimentos suaves de drenagem linfática no colo, nos braços e nas pernas em um atendimento no Aira Spa",
+    video: true,
+    asset: media.drenagemVideo,
     position: "50% 50%",
   },
   {
@@ -258,9 +255,9 @@ export const services: Service[] = [
     description: [
       "Um momento de relaxamento e bem-estar através da hidromassagem preparada com aromas suaves e sais relaxantes. Ideal para compartilhar entre amigos momentos de descanso e tranquilidade.",
     ],
-    alt: "Banheiras de hidromassagem na sala do Aira Spa",
+    alt: "Banheira de hidromassagem sendo preparada com sais, com vela acesa ao lado, no Aira Spa",
     video: true,
-    asset: media.ambienteVideo,
+    asset: media.hidroVideo,
     position: "50% 50%",
   },
 ];
