@@ -127,18 +127,25 @@ export type ImageAsset = {
   height: number;
 };
 
+/**
+ * Prefixo dos arquivos de public/. No site fica vazio e os caminhos continuam
+ * relativos a raiz. O pacote do Claude Design (.design-sync/) define
+ * NEXT_PUBLIC_ASSET_BASE com o site publicado, porque la /uploads nao existe.
+ */
+export const assetBase = (process.env.NEXT_PUBLIC_ASSET_BASE ?? "").replace(/\/+$/, "");
+
 // Os arquivos sao gerados por scripts/optimize-media.mjs a partir de media-original/.
 const video = (name: string): VideoAsset => ({
-  webm: `/uploads/${name}.webm`,
-  mp4: `/uploads/${name}.mp4`,
-  poster: `/uploads/posters/${name}.jpg`,
+  webm: `${assetBase}/uploads/${name}.webm`,
+  mp4: `${assetBase}/uploads/${name}.mp4`,
+  poster: `${assetBase}/uploads/posters/${name}.jpg`,
 });
 
 // width/height sao os do arquivo, usados para reservar a caixa e nao dar layout shift.
 const image = (name: string, width: number, height: number): ImageAsset => ({
-  avif: `/uploads/${name}.avif`,
-  webp: `/uploads/${name}.webp`,
-  jpg: `/uploads/${name}.jpg`,
+  avif: `${assetBase}/uploads/${name}.avif`,
+  webp: `${assetBase}/uploads/${name}.webp`,
+  jpg: `${assetBase}/uploads/${name}.jpg`,
   width,
   height,
 });
@@ -169,7 +176,31 @@ export const media = {
   primeira4: image("primeira-4", 1536, 1024),
   local1: image("sala", 1086, 1358),
   local2: image("cha", 1088, 1344),
+  // Fotos dos hoteis para os cartoes de unidade da secao "Onde estamos".
+  doubletreeRecepcao: image("doubletree-recepcao", 1600, 1066),
+  vialeLobby: image("viale-lobby", 1600, 1068),
 } as const;
+
+/**
+ * Foto e logotipo do hotel de cada unidade (cartoes da secao "Onde estamos").
+ * Os logotipos ficam em PNG porque tem transparencia; o optimize-media.mjs so
+ * gera JPEG/WebP/AVIF opacos.
+ */
+export const unitHotels = {
+  doubletree: {
+    photo: media.doubletreeRecepcao,
+    photoAlt: "Recepção do DoubleTree by Hilton Foz do Iguaçu",
+    logo: `${assetBase}/uploads/logos/doubletree-horizontal-azul.png`,
+  },
+  viale: {
+    photo: media.vialeLobby,
+    photoAlt: "Lobby do Viale Cataratas Hotel",
+    logo: `${assetBase}/uploads/logos/viale-cataratas-branco.png`,
+  },
+} as const satisfies Record<
+  Unit["slug"],
+  { photo: ImageAsset; photoAlt: string; logo: string }
+>;
 
 export type Service = {
   name: string;

@@ -23,8 +23,8 @@ export const dynamic = "force-static";
 const photos = [
   site.ogImage,
   ...services.filter((service) => !service.video).map(({ asset }) => asset.jpg),
-  media.local1.jpg,
-  media.local2.jpg,
+  media.doubletreeRecepcao.jpg,
+  media.vialeLobby.jpg,
   media.primeira1.jpg,
   media.primeira2.jpg,
   media.primeira3.jpg,

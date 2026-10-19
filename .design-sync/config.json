@@ -1,0 +1,79 @@
+{
+  "projectId": "e4a7d9c3-d188-4290-837d-525cd1661723",
+  "shape": "package",
+  "pkg": "aira-spa",
+  "globalName": "AiraSpa",
+  "buildCmd": "node .design-sync/build-css.mjs",
+  "entry": ".design-sync/entry.ts",
+  "srcDir": "components",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": ".design-sync/.cache/ds.css",
+  "extraFonts": [
+    ".design-sync/fonts/fonts.css"
+  ],
+  "docsDir": ".design-sync/docs",
+  "componentSrcMap": {
+    "AgendarFab": "components/agendar-fab.tsx",
+    "BgImage": "components/bg-image.tsx",
+    "BgVideo": "components/bg-video.tsx",
+    "Experiencias": "components/experiencias.tsx",
+    "Footer": "components/footer.tsx",
+    "Hero": "components/hero.tsx",
+    "InstagramIcon": "components/instagram-icon.tsx",
+    "Local": "components/local.tsx",
+    "PrimeiraVez": "components/primeira-vez.tsx",
+    "Sobre": "components/sobre.tsx",
+    "Wordmark": "components/wordmark.tsx"
+  },
+  "dtsPropsFor": {
+    "BgImage": "  /** Imagem de lib/site.ts (media.*): AVIF, WebP e JPEG do mesmo arquivo, mais o tamanho real. */\n  asset: { avif: string; webp: string; jpg: string; width: number; height: number };\n  /** Acima da dobra: carrega junto com a pagina, com prioridade alta. */\n  priority?: boolean;\n  alt?: string;\n  className?: string;\n  style?: React.CSSProperties;",
+    "BgVideo": "  /** Video de lib/site.ts (media.*Video): WebM, MP4 e poster. */\n  asset: { webm: string; mp4: string; poster: string };\n  /** Acima da dobra: preload=auto. */\n  priority?: boolean;\n  /** Versao para telas em pe, escolhida por (orientation: portrait). */\n  portrait?: { webm: string; mp4: string; poster: string };\n  autoPlay?: boolean;\n  className?: string;\n  style?: React.CSSProperties;\n  'aria-label'?: string;",
+    "InstagramIcon": "  /** Tamanho e cor vem da classe (o traco usa currentColor), ex.: \"h-5 w-5 text-cream\". */\n  className?: string;",
+    "AgendarFab": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Experiencias": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Footer": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Hero": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Local": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "PrimeiraVez": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Sobre": "  /** Sem props: o conteudo vem de lib/site.ts. */",
+    "Wordmark": "  /** Sem props: o conteudo vem de lib/site.ts. */"
+  },
+  "overrides": {
+    "Hero": {
+      "cardMode": "single",
+      "viewport": "1280x800"
+    },
+    "Sobre": {
+      "cardMode": "single",
+      "viewport": "1280x900"
+    },
+    "Experiencias": {
+      "cardMode": "single",
+      "viewport": "1280x900"
+    },
+    "PrimeiraVez": {
+      "cardMode": "single",
+      "viewport": "1280x900"
+    },
+    "Local": {
+      "cardMode": "single",
+      "viewport": "1280x900"
+    },
+    "Footer": {
+      "cardMode": "single",
+      "viewport": "1280x600"
+    },
+    "AgendarFab": {
+      "cardMode": "single",
+      "primaryStory": "DepoisDoHero",
+      "viewport": "480x220"
+    },
+    "BgImage": {
+      "cardMode": "column"
+    },
+    "BgVideo": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

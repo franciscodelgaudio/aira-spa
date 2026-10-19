@@ -173,7 +173,7 @@ export const structuredData = {
       // Os trechos que um assistente de voz pode ler em voz alta.
       speakable: {
         "@type": "SpeakableSpecification",
-        cssSelector: ["#sec-local h2", "#sec-agendar h2", "#sec-faq"],
+        cssSelector: ["#sec-local h2", "#sec-local h3", "#sec-faq"],
       },
     },
     {

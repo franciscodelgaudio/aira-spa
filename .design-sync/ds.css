@@ -1,0 +1,15 @@
+/*
+  Folha do pacote do Claude Design. E o app/globals.css do site (tokens, Tailwind,
+  .font-accent) compilado pelo Tailwind com as classes de components/ e de
+  .design-sync/previews/. Gerada por build-css.mjs em .cache/ds.css.
+*/
+@import "../app/globals.css";
+
+/*
+  No site, next/font define estas variaveis numa classe do <html>. Fora do Next
+  elas viram as familias de fonts/fonts.css.
+*/
+:root {
+  --font-jost: "Jost";
+  --font-cormorant: "Cormorant Garamond";
+}
