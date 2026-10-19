@@ -73,8 +73,8 @@ export default function Local() {
               ONDE ESTAMOS
             </h2>
           </div>
-          <div className="max-w-[40ch]">
-            <p className="m-0 mt-[clamp(16px,2vw,28px)] text-pretty text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-body">
+          <div className="max-w-[72ch]">
+            <p className="m-0 mt-[clamp(16px,2vw,28px)] text-balance text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-body">
               O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos
               hotéis DoubleTree by Hilton e Viale Cataratas.
             </p>
