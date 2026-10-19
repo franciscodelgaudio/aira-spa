@@ -51,15 +51,15 @@ export default function Sobre() {
         </div>
 
         {/*
-          A foto original e 1080x610; 4:3 e o recorte mais alto que ela aguenta
-          sem ficar mole numa tela retina.
+          A foto e vertical (3:4). Um recorte deitado cortaria o rosto ou o pe;
+          4:5 so tira um pouco de espuma e azulejo das bordas.
         */}
-        <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[2px] md:aspect-[4/3]">
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2px]">
           <BgImage
             asset={media.sobre}
-            alt="Mão apoiada na nuca, em um momento de pausa"
+            alt="Mulher de roupão sentada na borda da banheira de hidromassagem, molhando o pé na espuma, no Aira Spa"
             className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: "45% 50%" }}
+            style={{ objectPosition: "50% 30%" }}
           />
         </div>
       </div>

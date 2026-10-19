@@ -147,13 +147,13 @@ export const media = {
   /** Triptico para telas deitadas; a versao vertical e a faixa central dele. */
   heroVideo: video("hero"),
   heroVerticalVideo: video("hero-vertical"),
-  // Trechos do video da producao no DoubleTree (airaspa.foz/2026-08-21_15-26-15_UTC.mp4),
-  // o unico sem legenda gravada: da para usar o quadro 9:16 inteiro. Cada um e
-  // uma cena, cortada nos pontos de troca de plano.
-  relaxanteVideo: video("exp-relaxante"), // 12,30–15,55 s
+  // Trecho do video da producao no DoubleTree (media-fonte/2026-08-21_15-26-15_UTC.mp4),
+  // o unico sem legenda gravada: da para usar o quadro 9:16 inteiro. Cortado
+  // nos pontos de troca de plano.
   facialVideo: video("exp-facial"), // 6,90–9,03 s
   // Gravacoes proprias (media-fonte/exp-*.mov), usadas inteiras: comecam e
   // terminam sem fade, entao o loop nao pisca.
+  relaxanteVideo: video("exp-relaxante"),
   candleVideo: video("exp-candle"),
   pedrasVideo: video("exp-pedras"),
   drenagemVideo: video("exp-drenagem"),
@@ -161,10 +161,7 @@ export const media = {
   // Gravacao propria do escalda-pes (media-fonte/escalda-pes.mov, 1,00–46,00 s:
   // corta o fade de entrada e o de saida para o loop nao piscar).
   escaldaPesVideo: video("escalda-pes"),
-  facial: image("facial", 1820, 1666),
-  // Luz baixa e tons de pele e parede: e a unica foto clara o bastante para
-  // ficar em fundo creme sem pesar.
-  sobre: image("corpo", 1080, 610),
+  sobre: image("sobre", 1086, 1448),
   // Os quatro cartoes da secao "Primeira vez", na ordem em que aparecem.
   primeira1: image("primeira-1", 1024, 1536),
   primeira2: image("primeira-2", 1024, 1536),
@@ -195,7 +192,7 @@ export const services: Service[] = [
       "Duas formas de viver o relaxamento, de acordo com a intensidade que você prefere. A Relaxante Clássica combina movimentos fluidos e ritmados, com um toque firme, intencional e envolvente. Já a Relaxante Profunda utiliza movimentos mais profundos e maior pressão, ideal para quem prefere um toque mais intenso.",
       "Ambas preservam a essência do cuidado Aira: presença, acolhimento e bem-estar.",
     ],
-    alt: "Massagem relaxante nas costas durante um atendimento no Aira Spa",
+    alt: "Massagem relaxante no pescoço, nas costas e nas pernas durante um atendimento no Aira Spa",
     video: true,
     asset: media.relaxanteVideo,
     position: "50% 50%",

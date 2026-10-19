@@ -122,7 +122,12 @@ FFMPEG_PATH=$(node -p "require('ffmpeg-static')") node scripts/optimize-media.mj
 
 Para trocar uma foto ou um vídeo: coloque o arquivo novo em `media-original/`
 com o mesmo nome e rode o script. Ele só reprocessa o que está desatualizado
-(use `--force` para refazer tudo).
+(use `--force` para refazer tudo). Para processar só alguns arquivos, passe os
+nomes sem extensão: `node scripts/optimize-media.mjs exp-candle sobre`.
+
+Os vídeos gravados no celular (`.mov`, 1080×1920) ficam guardados em
+`media-fonte/`. Em `media-original/` entra uma cópia em 720×1280 (H.264, CRF 18,
+sem áudio), que é o tamanho em que os cartões são exibidos.
 
 Cada vídeo vira três arquivos e cada imagem, três formatos:
 
@@ -157,11 +162,6 @@ Nunca escreva `<img>` ou `<video>` direto — use `components/bg-image.tsx` e
 `components/bg-video.tsx`, que montam o `<picture>`/`<source>` com os fallbacks,
 o poster e os atributos de prioridade. Os assets ficam declarados em
 `lib/site.ts`.
-
-O download e o play dos vídeos são coordenados por `lib/media-loader.ts`: fila
-com no máximo 2 downloads simultâneos ordenada pela distância até a viewport,
-retry com backoff exponencial e cache-bust, e watchdog de travamento. Vídeo que
-esgota as tentativas fica no poster em vez de deixar a tela preta.
 
 ### Cache no servidor
 
