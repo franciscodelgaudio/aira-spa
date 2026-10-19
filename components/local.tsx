@@ -59,20 +59,22 @@ export default function Local() {
   };
 
   return (
+    // Sem padding em cima: a secao anterior (PrimeiraVez) tem o mesmo fundo e
+    // ja termina com o respiro dela; somados, os dois davam um vao duplo.
     <section
       id="sec-local"
-      className="bg-sand px-[clamp(20px,4vw,64px)] py-[clamp(56px,8vw,120px)]"
+      className="bg-sand px-[clamp(20px,4vw,64px)] pb-[clamp(56px,8vw,120px)]"
     >
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-[clamp(32px,4vw,64px)] flex flex-wrap items-end justify-between gap-[clamp(16px,3vw,48px)]">
-          <div className="flex-[1_1_360px]">
+        <div className="mb-[clamp(32px,4vw,64px)]">
+          <div>
             <div className="mb-[clamp(18px,2.4vw,34px)] h-px w-[clamp(80px,9vw,140px)] bg-clay" />
             <h2 className="m-0 text-[clamp(32px,4.4vw,68px)] font-extralight leading-[1.05] tracking-[0.04em] text-clay">
               ONDE ESTAMOS
             </h2>
           </div>
-          <div className="max-w-[520px] flex-[1_1_320px]">
-            <p className="m-0 text-pretty text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-body">
+          <div className="max-w-[40ch]">
+            <p className="m-0 mt-[clamp(16px,2vw,28px)] text-pretty text-[clamp(16px,1.2vw,20px)] font-light leading-[1.6] text-body">
               O Aira Spa possui duas unidades em Foz do Iguaçu, localizadas dentro dos
               hotéis DoubleTree by Hilton e Viale Cataratas.
             </p>

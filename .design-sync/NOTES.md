@@ -29,7 +29,9 @@ Projeto no Claude Design: https://claude.ai/design/p/e4a7d9c3-d188-4290-837d-525
 - `BgImage` e `BgVideo` usam `cardMode: column` (as prévias são mais largas que a célula da grade).
 - `package-capture.mjs` é lento aqui: cada prévia com vídeo espera o `networkidle` estourar (20s), porque o vídeo continua baixando. É esperado (a rodada completa leva uns 2 min).
 - **A captura trava para sempre** se a prévia tiver `<img loading="lazy">` fora da tela: o `settle()` espera `img.decode()`, que nunca resolve para imagem que não carrega. Aconteceu com `PrimeiraVez` (cartões do carrossel) e com `Sobre` (foto abaixo da dobra). As prévias delas envolvem a seção num `Eager` que troca as fotos para `loading="eager"`. Seção nova com foto lazy fora da tela precisa do mesmo. Rode a captura com `timeout 500 node .ds-sync/package-capture.mjs ...` para um travamento não passar despercebido.
-- O `Local` em 1280x900 mostra só o bloco "Onde estamos"; o bloco "Agendar" começa abaixo da dobra. Aceito: o cartão rola no Claude Design.
+- O `Local` em 1280x900 mostra o cabeçalho e o topo dos dois cartões de unidade; a pílula de WhatsApp e o "Ver mapa" ficam abaixo da dobra. Aceito: o cartão rola no Claude Design.
+- **As notas das prévias não acompanham o código do componente**: a chave é o `.tsx` da prévia + a config. Quando uma seção é redesenhada sem mudar a prévia (ex.: o `Local`, em out/2026), o driver a dá como `unchanged`. Recapture à mão com `package-capture.mjs --components <Nome> --spot-check-components <Nome>` e confira a folha.
+- Fotos ou logos novos só aparecem nas prévias depois de publicados em www.airaspa.com.br (as mídias vêm do site no ar). Publique o site antes de sincronizar.
 - Nas checagens: `tsc` ignora `.design-sync/` (pasta com ponto) e `eslint.config.mjs` ignora `.ds-sync/`, `ds-bundle/` e `.design-sync/.cache/`. `npm run build` e `npm run lint` continuam limpos.
 
 ## Known render warns
