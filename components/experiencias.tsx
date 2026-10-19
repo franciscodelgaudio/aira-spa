@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import BgImage from "./bg-image";
 import BgVideo from "./bg-video";
 import { services } from "@/lib/site";
@@ -62,7 +62,18 @@ export default function Experiencias() {
         a tela ja e em pe, entao as linhas empilham: a ativa ocupa quase toda a
         altura e fica perto do 9:16, as outras viram faixas de 44px.
       */}
-      <div className="flex h-[var(--h)] min-w-0 flex-[2] basis-[560px] flex-col gap-[3px] [--h:clamp(520px,88svh,820px)] md:flex-row md:[--h:clamp(420px,72vh,780px)]">
+      {/*
+        No desktop a sanfona nunca cabe em menos que a coluna 9:16 mais as tiras
+        fechadas (56px + 3px de gap cada). Esse minimo vira o min-width do bloco;
+        sem ele o flex-wrap so olha o basis de 560px, deixa o texto na mesma linha
+        e a sanfona transborda por baixo dele. Com o minimo, o texto desce quando
+        nao ha espaco. Se nem a linha inteira comporta (o min com 100%), a coluna
+        ativa encolhe um pouco abaixo do 9:16 em vez de vazar da tela.
+      */}
+      <div
+        className="flex h-[var(--h)] min-w-0 flex-[2] basis-[560px] flex-col gap-[3px] [--h:clamp(520px,88svh,820px)] md:min-w-[min(100%,calc(var(--h)*9/16_+_var(--fechadas)))] md:flex-row md:[--h:clamp(420px,72vh,780px)]"
+        style={{ "--fechadas": `${(services.length - 1) * 59}px` } as CSSProperties}
+      >
         {services.map((service, index) => {
           const selected = active === index;
 
@@ -78,7 +89,7 @@ export default function Experiencias() {
               onClick={() => select(index)}
               className={`relative min-h-0 min-w-0 cursor-pointer overflow-hidden border-0 p-0 text-left transition-[flex] duration-700 ease-[cubic-bezier(.22,.61,.36,1)] ${
                 selected
-                  ? "flex-[1_1_0%] md:flex-[0_0_calc(var(--h)*9/16)]"
+                  ? "flex-[1_1_0%] md:flex-[0_1_calc(var(--h)*9/16)]"
                   : "flex-[0_0_44px] md:min-w-[56px] md:flex-[1_1_0%]"
               }`}
             >
